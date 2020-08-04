@@ -32,7 +32,7 @@ public class ExampleExtensionApplication implements CFWAppInterface {
 		
 		//----------------------------------
 		// Register Feature
-		CFW.Registry.Features.addFeature(RegularFeature.class);
+		CFW.Registry.Features.addFeature(FeatureRegular.class);
 	}
 
 	@Override

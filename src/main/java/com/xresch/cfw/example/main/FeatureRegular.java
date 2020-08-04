@@ -6,13 +6,16 @@ import com.xresch.cfw._main.CFWApplicationExecutor;
 import com.xresch.cfw.response.bootstrap.MenuItem;
 
 
-public class RegularFeature extends CFWAppFeature {
+public class FeatureRegular extends CFWAppFeature {
 
 	@Override
 	public void register() {
-		// TODO Auto-generated method stub
+
 		//----------------------------------
     	// Register Menu
+		// as no permissions are set, also 
+		// none logged in users will see 
+		// the menu entry.
 		
 		CFW.Registry.Components.addRegularMenuItem(
 				(MenuItem)new MenuItem("Regular Feature")

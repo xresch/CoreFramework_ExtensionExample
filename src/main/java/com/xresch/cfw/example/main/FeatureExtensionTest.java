@@ -15,20 +15,28 @@ public class FeatureExtensionTest extends CFWAppFeature {
 		//-------------------------------------
     	// Register Menus that needs permission
 		// to access
-		CFW.Registry.Components.addRegularMenuItem(
-				(MenuItem)new MenuItem("Extension Example")
+		
+		MenuItem extensionExamplesMenu = new MenuItem("Extension Examples")
 				.faicon("fas fa-flask")
-				.addPermission(ExampleExtensionApplication.PERMISSION_CFWSAMPLES),
-				null
+				.addPermission(ExampleExtensionApplication.PERMISSION_CFWSAMPLES);
+		
+		extensionExamplesMenu.addChild(
+			new MenuItem("Form Example")
+				.faicon("fas fa-th-large")
+				.addPermission(ExampleExtensionApplication.PERMISSION_CFWSAMPLES)
+				.href("/app/formexample")
 		);
 		
-		CFW.Registry.Components.addRegularMenuItem(
-				(MenuItem)new MenuItem("Open Google")
-					.faicon("fab fa-google")
-					.addPermission(ExampleExtensionApplication.PERMISSION_CFWSAMPLES)
-					.href("http://www.google.ch")
-					.addAttribute("target", "_blank")
-				, "Extension Example");
+		extensionExamplesMenu.addChild(
+			new MenuItem("Open Google")
+				.faicon("fab fa-google")
+				.addPermission(ExampleExtensionApplication.PERMISSION_CFWSAMPLES)
+				.href("http://www.google.ch")
+				.addAttribute("target", "_blank")
+		);
+		
+		CFW.Registry.Components.addRegularMenuItem(extensionExamplesMenu, null);
+		
 	}
 
 	@Override
@@ -38,8 +46,9 @@ public class FeatureExtensionTest extends CFWAppFeature {
 	}
 
 	@Override
-	public void addFeature(CFWApplicationExecutor app) {
-		// TODO Auto-generated method stub
+	public void addFeature(CFWApplicationExecutor executor) {
+		
+		executor.addAppServlet(FormExampleServlet.class, "/formexample");
 
 	}
 
