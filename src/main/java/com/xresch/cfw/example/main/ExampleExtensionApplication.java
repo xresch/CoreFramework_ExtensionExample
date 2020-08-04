@@ -5,6 +5,7 @@ import com.xresch.cfw._main.CFWAppInterface;
 import com.xresch.cfw._main.CFWApplicationExecutor;
 import com.xresch.cfw._main.CFWExtensionApplication;
 import com.xresch.cfw.features.usermgmt.Permission;
+import com.xresch.cfw.response.bootstrap.MenuItem;
 
 /**********************************************************************************
  * Using @CFWExtensionApplication marks this class as the application that should
@@ -19,6 +20,9 @@ public class ExampleExtensionApplication implements CFWAppInterface {
 	
 	public static final String PERMISSION_CFWSAMPLES = "CFW Extension Samples";
 	
+	public static final MenuItem EXTENSION_MENU_ROOT = new MenuItem("Extension Examples")
+			.faicon("fas fa-flask")
+			.addPermission(ExampleExtensionApplication.PERMISSION_CFWSAMPLES);
 	@Override
 	public void settings() {
 		CFW.AppSettings.setEnableDashboarding(true);
@@ -31,8 +35,12 @@ public class ExampleExtensionApplication implements CFWAppInterface {
 		CFW.Files.addAllowedPackage(RESOURCE_PACKAGE);
 		
 		//----------------------------------
-		// Register Feature
+		// Register Features
 		CFW.Registry.Features.addFeature(FeatureRegular.class);
+		
+		//----------------------------------
+		// Register Menu Entry
+		CFW.Registry.Components.addRegularMenuItem(EXTENSION_MENU_ROOT, null);
 	}
 
 	@Override

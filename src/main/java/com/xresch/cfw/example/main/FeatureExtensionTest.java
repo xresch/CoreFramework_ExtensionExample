@@ -15,19 +15,15 @@ public class FeatureExtensionTest extends CFWAppFeature {
 		//-------------------------------------
     	// Register Menus that needs permission
 		// to access
-		
-		MenuItem extensionExamplesMenu = new MenuItem("Extension Examples")
-				.faicon("fas fa-flask")
-				.addPermission(ExampleExtensionApplication.PERMISSION_CFWSAMPLES);
-		
-		extensionExamplesMenu.addChild(
+				
+		ExampleExtensionApplication.EXTENSION_MENU_ROOT.addChild(
 			new MenuItem("Form Example")
 				.faicon("fas fa-th-large")
 				.addPermission(ExampleExtensionApplication.PERMISSION_CFWSAMPLES)
 				.href("/app/formexample")
 		);
 		
-		extensionExamplesMenu.addChild(
+		ExampleExtensionApplication.EXTENSION_MENU_ROOT.addChild(
 			new MenuItem("Open Google")
 				.faicon("fab fa-google")
 				.addPermission(ExampleExtensionApplication.PERMISSION_CFWSAMPLES)
@@ -35,7 +31,6 @@ public class FeatureExtensionTest extends CFWAppFeature {
 				.addAttribute("target", "_blank")
 		);
 		
-		CFW.Registry.Components.addRegularMenuItem(extensionExamplesMenu, null);
 		
 	}
 
