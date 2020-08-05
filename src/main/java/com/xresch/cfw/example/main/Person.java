@@ -22,10 +22,10 @@ public class Person extends CFWObject {
 	
 	public enum PersonFields{
 		PK_ID, 
-		EMAIL, 
 		FIRSTNAME, 
 		LASTNAME, 
 		LOCATION,
+		EMAIL, 
 		LIKES_TIRAMISU
 	}
 	
@@ -47,7 +47,7 @@ public class Person extends CFWObject {
 			.addValidator(new LengthValidator(-1, 255));
 	
 	private CFWField<String> email = CFWField.newString(FormFieldType.EMAIL, PersonFields.EMAIL)
-			.setColumnDefinition("VARCHAR(255) UNIQUE")
+			.setColumnDefinition("VARCHAR(255)")
 			.setDescription("The user email address.")
 			.addValidator(new LengthValidator(-1, 255))
 			.addValidator(new EmailValidator());
@@ -60,8 +60,6 @@ public class Person extends CFWObject {
 	private CFWField<Boolean> likesTiramisu = CFWField.newBoolean(FormFieldType.BOOLEAN, PersonFields.LIKES_TIRAMISU)
 					.setDescription("Foreign users are managed by other authentication providers like LDAP. Password in database is ignored when a foreign authentication provider is used.")
 					.setValue(false);
-	
-	private boolean hasUsernameChanged = false;
 	
 
 	public Person() {

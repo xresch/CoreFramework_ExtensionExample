@@ -2,11 +2,10 @@
 /**************************************************************************************************************
  * 
  * @author Reto Scheiwiller, (c) Copyright 2019 
- * @license Creative Commons: Attribution-NonCommercial-NoDerivatives 4.0 International
  **************************************************************************************************************/
 
-var jsexamples_URL = "./list";
-var jsexamples_LAST_OPTIONS = null;
+var jsexamples_URL = "./jsexamples";
+var JSEXAMPLES_LAST_OPTIONS = null;
 
 /******************************************************************
  * Reset the view.
@@ -18,21 +17,8 @@ function jsexamples_createTabs(){
 		
 		var list = $('<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">');
 		
-		if(CFW.hasPermission('Dashboard Creator') 
-		|| CFW.hasPermission('Dashboard Admin')){
-			list.append(
-				'<li class="nav-item"><a class="nav-link" id="tab-mydashboards" data-toggle="pill" href="#" role="tab" onclick="jsexamples_draw({tab: \'mydashboards\'})"><i class="fas fa-user-circle mr-2"></i>My Dashboards</a></li>'
-				+'<li class="nav-item"><a class="nav-link" id="tab-shareddashboards" data-toggle="pill" href="#" role="tab" onclick="jsexamples_draw({tab: \'shareddashboards\'})"><i class="fas fa-share-alt mr-2"></i>Shared Dashboards</a></li>'
-			);
-		}else if(CFW.hasPermission('Dashboard Viewer')){
-			list.append('<li class="nav-item"><a class="nav-link" id="tab-shareddashboards" data-toggle="pill" href="#" role="tab" onclick="jsexamples_draw({tab: \'shareddashboards\'})"><i class="fas fa-share-alt mr-2"></i>Shared Dashboards</a></li>');
-		}
-		
-		if(CFW.hasPermission('Dashboard Admin')){
-					list.append(
-						'<li class="nav-item"><a class="nav-link" id="tab-admindashboards" data-toggle="pill" href="#" role="tab" onclick="jsexamples_draw({tab: \'admindashboards\'})"><i class="fas fa-tools mr-2"></i>Manage Dashboards</a></li>');
-		}
-		
+		list.append('<li class="nav-item"><a class="nav-link" id="tab-datahandling" data-toggle="pill" href="#" role="tab" onclick="jsexamples_draw({tab: \'datahandling\'})"><i class="fas fa-share-alt mr-2"></i>Data Handling</a></li>');
+
 		var parent = $("#cfw-container");
 		parent.append(list);
 		parent.append('<div id="tab-content"></div>');
@@ -43,60 +29,57 @@ function jsexamples_createTabs(){
 /******************************************************************
  * Create Role
  ******************************************************************/
-function jsexamples_createDashboard(){
+function jsexamples_addPerson(){
 	
-	var html = $('<div id="cfw-usermgmt-createDashboard">');	
+	var html = $('<div>');	
 
-	CFW.http.getForm('cfwCreateDashboardForm', html);
+	CFW.http.getForm('cfwCreatePersonForm', html);
 	
-	CFW.ui.showModal(CFWL('jsexamples_createDashboard', 
-			CFWL("jsexamples_createDashboard", "Create Dashboard")), 
-			html, "CFW.cache.clearCache(); jsexamples_draw(jsexamples_LAST_OPTIONS)");
+	CFW.ui.showModal(
+			"Create Person", 
+			html, 
+			"CFW.cache.clearCache(); jsexamples_draw(JSEXAMPLES_LAST_OPTIONS)"
+		);
 	
 }
 /******************************************************************
  * Edit Role
  ******************************************************************/
-function jsexamples_editDashboard(id){
+function jsexamples_edit(id){
 	
-	var allDiv = $('<div id="cfw-usermgmt">');	
-
 	//-----------------------------------
-	// Role Details
+	// Details
 	//-----------------------------------
-	var detailsDiv = $('<div id="cfw-usermgmt-details">');
-	detailsDiv.append('<h2>'+CFWL('jsexamples_dashboard', "Dashboard")+' Details</h2>');
-	allDiv.append(detailsDiv);
+	var detailsDiv = $('<div id="jsexamples-details">');
 	
-
 	CFW.ui.showModal(
-			CFWL("jsexamples_editDashboard","Edit Dashboard"), 
-			allDiv, 
-			"CFW.cache.clearCache(); jsexamples_draw(jsexamples_LAST_OPTIONS)"
+		"Edit Person", 
+		detailsDiv, 
+		"CFW.cache.clearCache(); jsexamples_draw(JSEXAMPLES_LAST_OPTIONS)"
 	);
 	
 	//-----------------------------------
 	// Load Form
 	//-----------------------------------
-	CFW.http.createForm(jsexamples_URL, {action: "getform", item: "editdashboard", id: id}, detailsDiv);
+	CFW.http.createForm(jsexamples_URL, {action: "getform", item: "editperson", id: id}, detailsDiv);
 	
 }
 
 /******************************************************************
  * Delete
  ******************************************************************/
-function jsexamples_delete(ids){
+function jsexamples_delete(id){
 	
-	params = {action: "delete", item: "dashboards", ids: ids};
+	params = {action: "delete", item: "person", id: id};
 	CFW.http.getJSON(jsexamples_URL, params, 
 		function(data) {
 			if(data.success){
 				//CFW.ui.showSmallModal('Success!', '<span>The selected '+item+' were deleted.</span>');
 				//clear cache and reload data
 				CFW.cache.clearCache();
-				jsexamples_draw(jsexamples_LAST_OPTIONS);
+				jsexamples_draw(JSEXAMPLES_LAST_OPTIONS);
 			}else{
-				CFW.ui.showSmallModal("Error!", '<span>The selected '+item+' could <b style="color: red">NOT</b> be deleted.</span>');
+				CFW.ui.showSmallModal("Error!", '<span>The selected person could <b style="color: red">NOT</b> be deleted.</span>');
 			}
 	});
 }
@@ -106,35 +89,14 @@ function jsexamples_delete(ids){
  ******************************************************************/
 function jsexamples_duplicate(id){
 	
-	params = {action: "duplicate", item: "dashboard", id: id};
+	params = {action: "duplicate", item: "person", id: id};
 	CFW.http.getJSON(jsexamples_URL, params, 
 		function(data) {
 			if(data.success){
 				CFW.cache.clearCache();
-				jsexamples_draw(jsexamples_LAST_OPTIONS);
+				jsexamples_draw(JSEXAMPLES_LAST_OPTIONS);
 			}
 	});
-}
-
-/******************************************************************
- * 
- ******************************************************************/
-function jsexamples_printMyDashboards(data){
-	jsexamples_printDashboards(data, 'mydashboards');
-}
-
-/******************************************************************
- * 
- ******************************************************************/
-function jsexamples_printSharedDashboards(data){
-	jsexamples_printDashboards(data, 'shareddashboards');
-}
-
-/******************************************************************
- * 
- ******************************************************************/
-function jsexamples_printAdminDashboards(data){
-	jsexamples_printDashboards(data, 'admindashboards');
 }
 
 
@@ -144,19 +106,17 @@ function jsexamples_printAdminDashboards(data){
  * @param data as returned by CFW.http.getJSON()
  * @return 
  ******************************************************************/
-function jsexamples_printDashboards(data, type){
+function jsexamples_printList(data, type){
 	
 	var parent = $("#tab-content");
 
 	//--------------------------------
 	// Button
-	if(type == 'mydashboards'){
-		var createButton = $('<button class="btn btn-sm btn-success mb-2" onclick="jsexamples_createDashboard()">'
-							+ '<i class="fas fa-plus-circle"></i> '+ CFWL('jsexamples_createDashboard')
-					   + '</button>');
+	var addPersonButton = $('<button class="btn btn-sm btn-success mb-2" onclick="jsexamples_addPerson()">'
+						+ '<i class="fas fa-plus-circle"></i>Add Person</button>');
+
+	parent.append(addPersonButton);
 	
-		parent.append(createButton);
-	}
 	
 	//--------------------------------
 	// Table
@@ -165,88 +125,46 @@ function jsexamples_printDashboards(data, type){
 		
 		var resultCount = data.payload.length;
 		if(resultCount == 0){
-			CFW.ui.addToastInfo("Hmm... seems there aren't any dashboards in the list.");
+			CFW.ui.addToastInfo("Hmm... seems there aren't any people in the list.");
 			return;
 		}
-		
-		//-----------------------------------
-		// Prepare Columns
-		var showFields = [];
-		if(type == 'mydashboards'){
-			showFields = ['NAME', 'DESCRIPTION', 'IS_SHARED'];
-		}else if (type == 'shareddashboards'){
-			showFields = ['OWNER', 'NAME', 'DESCRIPTION'];
-		}else if (type == 'admindashboards'){
-			showFields = ['PK_ID', 'OWNER', 'NAME', 'DESCRIPTION', 'IS_SHARED'];
-		}
-		
+				
 		
 		//======================================
 		// Prepare actions
-		
-		//-------------------------
-		// View Button
-		var actionButtons = [ 
-			function (record, id){ 
-				return '<a class="btn btn-success btn-sm" role="button" href="/app/dashboard/view?id='+id+'&title='+encodeURIComponent(record.NAME)+'" alt="View" title="View" >'
-				+ '<i class="fa fa-eye"></i>'
-				+ '</a>';
-			}];
-
+		var actionButtons = [];
 		//-------------------------
 		// Edit Button
-		if(type == 'mydashboards'
-		|| type == 'admindashboards'){
+		actionButtons.push(
+			function (record, id){ 
+				return '<button class="btn btn-primary btn-sm" alt="Edit" title="Edit" '
+						+'onclick="jsexamples_edit('+id+');">'
+						+ '<i class="fa fa-pen"></i>'
+						+ '</button>';
 
-			actionButtons.push(
-				function (record, id){ 
-					var htmlString = '';
-					if(JSDATA.userid == record.FK_ID_USER || type == 'admindashboards'){
-						htmlString += '<button class="btn btn-primary btn-sm" alt="Edit" title="Edit" '
-							+'onclick="jsexamples_editDashboard('+id+');">'
-							+ '<i class="fa fa-pen"></i>'
-							+ '</button>';
-					}else{
-						htmlString += '&nbsp;';
-					}
-					return htmlString;
-				});
-		}
+			});
+
 		
-		if(CFW.hasPermission('Dashboard Creator') 
-		|| CFW.hasPermission('Dashboard Admin')){
-			//-------------------------
-			// Duplicate Button
-			actionButtons.push(
-				function (record, id){
-					var htmlString = '<button class="btn btn-warning btn-sm" alt="Duplicate" title="Duplicate" '
-							+'onclick="CFW.ui.confirmExecute(\'This will create a duplicate of <b>\\\''+record.NAME.replace(/\"/g,'&quot;')+'\\\'</b> and add it to your dashboards.\', \'Do it!\', \'jsexamples_duplicate('+id+');\')">'
-							+ '<i class="fas fa-clone"></i>'
-							+ '</button>';
-					
-					return htmlString;
-				});
-		}
+		//-------------------------
+		// Duplicate Button
+		actionButtons.push(
+			function (record, id){
+				return '<button class="btn btn-warning btn-sm" alt="Duplicate" title="Duplicate" '
+						+'onclick="CFW.ui.confirmExecute(\'This will create a duplicate of <b>\\\''+record.FIRSTNAME.replace(/\"/g,'&quot;')+'\\\'</b>.\', \'Do it!\', \'jsexamples_duplicate('+id+');\')">'
+						+ '<i class="fas fa-clone"></i>'
+						+ '</button>';
+		});
 		
 		//-------------------------
 		// Delete Button
-		if(type == 'mydashboards'
-		|| type == 'admindashboards'){
-			actionButtons.push(
-				function (record, id){
-					var htmlString = '';
-					if(JSDATA.userid == record.FK_ID_USER || type == 'admindashboards'){
-						htmlString += '<button class="btn btn-danger btn-sm" alt="Delete" title="Delete" '
-							+'onclick="CFW.ui.confirmExecute(\'Do you want to delete the dashboard <b>\\\''+record.NAME.replace(/\"/g,'&quot;')+'\\\'</b>?\', \'Delete\', \'jsexamples_delete('+id+');\')">'
-							+ '<i class="fa fa-trash"></i>'
-							+ '</button>';
-					}else{
-						htmlString += '&nbsp;';
-					}
-					return htmlString;
-				});
-		}
+		actionButtons.push(
+			function (record, id){
+				return '<button class="btn btn-danger btn-sm" alt="Delete" title="Delete" '
+						+'onclick="CFW.ui.confirmExecute(\'Do you want to delete <b>\\\''+record.FIRSTNAME.replace(/\"/g,'&quot;')+'\\\'</b>?\', \'Delete\', \'jsexamples_delete('+id+');\')">'
+						+ '<i class="fa fa-trash"></i>'
+						+ '</button>';
 
+			});
 		
 
 		//-----------------------------------
@@ -257,16 +175,14 @@ function jsexamples_printDashboards(data, type){
 			 	textstylefield: null,
 			 	titlefields: ['NAME'],
 			 	titledelimiter: ' ',
-			 	visiblefields: showFields,
+			 	visiblefields: ['PK_ID', 'FIRSTNAME', 'LASTNAME', 'LOCATION', "EMAIL", "LIKES_TIRAMISU"],
 			 	labels: {
 			 		PK_ID: "ID",
-			 		USERNAME: 'Owner',
-			 		IS_SHARED: 'Shared'
 			 	},
 			 	customizers: {
-			 		IS_SHARED: function(record, value) { 
-			 			var isShared = value;
-			 			if(isShared){
+			 		LIKES_TIRAMISU: function(record, value) { 
+			 			var likesTiramisu = value;
+			 			if(likesTiramisu){
 								return '<span class="badge badge-success m-1">true</span>';
 						}else{
 							return '<span class="badge badge-danger m-1">false</span>';
@@ -309,13 +225,7 @@ function jsexamples_initialDraw(){
 	
 	jsexamples_createTabs();
 	
-	var tabToDisplay = CFW.cache.retrieveValue("dashboardlist-lasttab", "mydashboards");
-	
-	if(CFW.hasPermission('Dashboard Viewer') 
-	&& !CFW.hasPermission('Dashboard Creator') 
-	&& !CFW.hasPermission('Dashboard Admin')){
-		tabToDisplay = "shareddashboards";
-	}
+	var tabToDisplay = CFW.cache.retrieveValue("jsexamples-lasttab", "datahandling");
 	
 	$('#tab-'+tabToDisplay).addClass('active');
 	
@@ -323,9 +233,9 @@ function jsexamples_initialDraw(){
 }
 
 function jsexamples_draw(options){
-	jsexamples_LAST_OPTIONS = options;
+	JSEXAMPLES_LAST_OPTIONS = options;
 	
-	CFW.cache.storeValue("dashboardlist-lasttab", options.tab);
+	CFW.cache.storeValue("jsexamples-lasttab", options.tab);
 	$("#tab-content").html("");
 	
 	CFW.ui.toogleLoader(true);
@@ -334,11 +244,7 @@ function jsexamples_draw(options){
 	function(){
 		
 		switch(options.tab){
-			case "mydashboards":		CFW.http.fetchAndCacheData(jsexamples_URL, {action: "fetch", item: "mydashboards"}, "mydashboards", jsexamples_printMyDashboards);
-										break;	
-			case "shareddashboards":	CFW.http.fetchAndCacheData(jsexamples_URL, {action: "fetch", item: "shareddashboards"}, "shareddashboards", jsexamples_printSharedDashboards);
-										break;
-			case "admindashboards":		CFW.http.fetchAndCacheData(jsexamples_URL, {action: "fetch", item: "admindashboards"}, "admindashboards", jsexamples_printAdminDashboards);
+			case "datahandling":	CFW.http.fetchAndCacheData(jsexamples_URL, {action: "fetch", item: "personlist"}, "personlist", jsexamples_printList);
 										break;						
 			default:				CFW.ui.addToastDanger('This tab is unknown: '+options.tab);
 		}

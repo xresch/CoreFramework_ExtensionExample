@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.xresch.cfw._main.CFW;
 import com.xresch.cfw.caching.FileDefinition.HandlingType;
+import com.xresch.cfw.datahandling.CFWForm;
+import com.xresch.cfw.datahandling.CFWFormHandler;
+import com.xresch.cfw.datahandling.CFWObject;
 import com.xresch.cfw.response.HTMLResponse;
 import com.xresch.cfw.response.JSONResponse;
 import com.xresch.cfw.response.bootstrap.AlertMessage.MessageType;
@@ -75,25 +78,26 @@ public class JavascriptExamplesServlet extends HttpServlet
 		
 			case "fetch": 			
 				switch(item.toLowerCase()) {
-					case "mydashboards": 		jsonResponse.getContent().append(CFW.DB.Dashboards.getUserDashboardListAsJSON());
-	  											break;
-	  											
-					case "shareddashboards": 	jsonResponse.getContent().append(CFW.DB.Dashboards.getSharedDashboardListAsJSON());
-												break;	
-												
-					case "admindashboards": 	jsonResponse.getContent().append(CFW.DB.Dashboards.getAdminDashboardListAsJSON());
-												break;									
-	  																					
-					default: 					CFW.Context.Request.addAlertMessage(MessageType.ERROR, "The value of item '"+item+"' is not supported.");
-												break;
+					case "personlist": 		jsonResponse.getContent().append(PersonDBMethods.getPersonListAsJSON());
+	  										break;
 				}
 				break;
 			
-
 			case "delete": 			
 				switch(item.toLowerCase()) {
 
-					case "dashboards": 	deleteDashboards(jsonResponse, IDs);
+					case "person": 		deletePerson(jsonResponse, ID);
+										break;  
+										
+					default: 			CFW.Context.Request.addAlertMessage(MessageType.ERROR, "The value of item '"+item+"' is not supported.");
+										break;
+				}
+				break;	
+				
+			case "duplicate": 			
+				switch(item.toLowerCase()) {
+
+					case "person": 	 	duplicatePerson(jsonResponse, ID);
 										break;  
 										
 					default: 			CFW.Context.Request.addAlertMessage(MessageType.ERROR, "The value of item '"+item+"' is not supported.");
@@ -102,7 +106,7 @@ public class JavascriptExamplesServlet extends HttpServlet
 				break;	
 			case "getform": 			
 				switch(item.toLowerCase()) {
-					case "edit": 		createEditForm(jsonResponse, ID);
+					case "editperson": 	createEditForm(jsonResponse, ID);
 					break;
 					
 					default: 			CFW.Context.Request.addAlertMessage(MessageType.ERROR, "The value of item '"+item+"' is not supported.");
@@ -119,36 +123,43 @@ public class JavascriptExamplesServlet extends HttpServlet
 	/******************************************************************
 	 *
 	 ******************************************************************/
-	private void deleteDashboards(JSONResponse jsonResponse, String IDs) {
-		// TODO Auto-generated method stub
+	private void deletePerson(JSONResponse jsonResponse, String ID) {
+		PersonDBMethods.deleteByID(Integer.parseInt(ID));
 	}
 	
 	
 	/******************************************************************
 	 *
 	 ******************************************************************/
+	private void duplicatePerson(JSONResponse jsonResponse, String id) {
+		PersonDBMethods.duplicateByID(id);
+	}
+	
+	/******************************************************************
+	 *
+	 ******************************************************************/
 	private void createForms() {
 				
-//		CFWForm createDashboardForm = new Dashboard().toForm("cfwCreateDashboardForm", "{!cfw_dashboard_create!}");
-//		
-//		createDashboardForm.setFormHandler(new CFWFormHandler() {
-//			
-//			@Override
-//			public void handleForm(HttpServletRequest request, HttpServletResponse response, CFWForm form, CFWObject origin) {
-//								
-//				if(origin != null) {
-//					
-//					origin.mapRequestParameters(request);
-//					Dashboard dashboard = (Dashboard)origin;
-//					dashboard.foreignKeyUser(CFW.Context.Request.getUser().id());
-//					if( CFW.DB.Dashboards.create(dashboard) ) {
-//						CFW.Context.Request.addAlertMessage(MessageType.SUCCESS, "Dashboard created successfully!");
-//					}
-//				}
-//				
-//			}
-//		});
-//		
+		CFWForm createPersonForm = new Person().toForm("cfwCreatePersonForm", "Create Person");
+		
+		createPersonForm.setFormHandler(new CFWFormHandler() {
+			
+			@Override
+			public void handleForm(HttpServletRequest request, HttpServletResponse response, CFWForm form, CFWObject origin) {
+								
+				if(origin != null) {
+					if(origin.mapRequestParameters(request)) {
+						Person Person = (Person)origin;
+						
+						if(PersonDBMethods.create(Person) ) {
+							CFW.Context.Request.addAlertMessage(MessageType.SUCCESS, "Person created successfully!");
+						}
+					}
+				}
+				
+			}
+		});
+		
 	}
 	
 	/******************************************************************
@@ -156,31 +167,31 @@ public class JavascriptExamplesServlet extends HttpServlet
 	 ******************************************************************/
 	private void createEditForm(JSONResponse json, String ID) {
 
-//		Dashboard dashboard = CFW.DB.Dashboards.selectByID(Integer.parseInt(ID));
-//		
-//		if(dashboard != null) {
-//			
-//			CFWForm editDashboardForm = dashboard.toForm("cfwEditDashboardForm"+ID, "Update Dashboard");
-//			
-//			editDashboardForm.setFormHandler(new CFWFormHandler() {
-//				
-//				@Override
-//				public void handleForm(HttpServletRequest request, HttpServletResponse response, CFWForm form, CFWObject origin) {
-//					
-//					if(origin.mapRequestParameters(request)) {
-//						
-//						if(CFW.DB.Dashboards.update((Dashboard)origin)) {
-//							CFW.Context.Request.addAlertMessage(MessageType.SUCCESS, "Updated!");
-//						}
-//							
-//					}
-//					
-//				}
-//			});
-//			
-//			editDashboardForm.appendToPayload(json);
-//			json.setSuccess(true);	
-//		}
+		Person Person = PersonDBMethods.selectByID(Integer.parseInt(ID));
+		
+		if(Person != null) {
+			
+			CFWForm editPersonForm = Person.toForm("cfwEditPersonForm"+ID, "Update Person");
+			
+			editPersonForm.setFormHandler(new CFWFormHandler() {
+				
+				@Override
+				public void handleForm(HttpServletRequest request, HttpServletResponse response, CFWForm form, CFWObject origin) {
+					
+					if(origin.mapRequestParameters(request)) {
+						
+						if(PersonDBMethods.update((Person)origin)) {
+							CFW.Context.Request.addAlertMessage(MessageType.SUCCESS, "Updated!");
+						}
+							
+					}
+					
+				}
+			});
+			
+			editPersonForm.appendToPayload(json);
+			json.setSuccess(true);	
+		}
 
 	}
 }

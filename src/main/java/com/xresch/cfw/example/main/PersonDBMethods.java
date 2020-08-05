@@ -9,9 +9,7 @@ import com.xresch.cfw.example.main.Person.PersonFields;
 import com.xresch.cfw.logging.CFWLog;
 
 /**************************************************************************************************************
- * 
- * @author Reto Scheiwiller, (c) Copyright 2019 
- * @license Creative Commons: Attribution-NonCommercial-NoDerivatives 4.0 International
+ * @author Reto Scheiwiller
  **************************************************************************************************************/
 public class PersonDBMethods {
 	
@@ -60,6 +58,8 @@ public class PersonDBMethods {
 	public static boolean	create(Person... items) 	{ return CFWDBDefaultOperations.create(prechecksCreateUpdate, items); }
 	public static boolean 	create(Person item) 		{ return CFWDBDefaultOperations.create(prechecksCreateUpdate, item);}
 	public static Integer 	createGetPrimaryKey(Person item) { return CFWDBDefaultOperations.createGetPrimaryKey(prechecksCreateUpdate, item);}
+	
+	
 	//####################################################################################################
 	// UPDATE
 	//####################################################################################################
@@ -72,6 +72,18 @@ public class PersonDBMethods {
 	public static boolean 	deleteByID(int id) 					{ return CFWDBDefaultOperations.deleteFirstBy(prechecksDelete, cfwObjectClass, PersonFields.PK_ID.toString(), id); }
 	public static boolean 	deleteMultipleByID(String itemIDs) 	{ return CFWDBDefaultOperations.deleteMultipleByID(cfwObjectClass, itemIDs); }
 	
+	//####################################################################################################
+	// DUPLICATE
+	//####################################################################################################
+	public static boolean duplicateByID(String id ) {
+		Person person = selectByID(id);
+		if(person != null) {
+			person.id(null);
+			return create(person);
+		}
+		
+		return false;
+	}
 		
 	//####################################################################################################
 	// SELECT
@@ -87,6 +99,8 @@ public class PersonDBMethods {
 	public static Person selectFirstByName(String name) { 
 		return CFWDBDefaultOperations.selectFirstBy(cfwObjectClass, PersonFields.FIRSTNAME.toString(), name);
 	}
+	
+	
 	
 	public static String getPersonListAsJSON() {
 		
