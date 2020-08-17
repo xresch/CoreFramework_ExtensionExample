@@ -17,7 +17,6 @@ import com.xresch.cfw.logging.CFWLog;
 import com.xresch.cfw.response.HTMLResponse;
 import com.xresch.cfw.response.JSONResponse;
 import com.xresch.cfw.response.bootstrap.AlertMessage.MessageType;
-import com.xresch.cfw.tests.assets.mockups.CFWObjectMockup;
 
 public class FormExampleServlet extends HttpServlet
 {
