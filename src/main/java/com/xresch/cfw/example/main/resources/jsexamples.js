@@ -79,7 +79,7 @@ function jsexamples_delete(id){
 				CFW.cache.clearCache();
 				jsexamples_draw(JSEXAMPLES_LAST_OPTIONS);
 			}else{
-				CFW.ui.showSmallModal("Error!", '<span>The selected person could <b style="color: red">NOT</b> be deleted.</span>');
+				CFW.ui.showSmallModal("Error!", '<span>The selected person could <b style="color: red">NOT</strong> be deleted.</span>');
 			}
 	});
 }
@@ -150,7 +150,7 @@ function jsexamples_printList(data, type){
 		actionButtons.push(
 			function (record, id){
 				return '<button class="btn btn-warning btn-sm" alt="Duplicate" title="Duplicate" '
-						+'onclick="CFW.ui.confirmExecute(\'This will create a duplicate of <b>\\\''+record.FIRSTNAME.replace(/\"/g,'&quot;')+'\\\'</b>.\', \'Do it!\', \'jsexamples_duplicate('+id+');\')">'
+						+'onclick="CFW.ui.confirmExecute(\'This will create a duplicate of <strong>\\\''+record.FIRSTNAME.replace(/\"/g,'&quot;')+'\\\'</strong>.\', \'Do it!\', \'jsexamples_duplicate('+id+');\')">'
 						+ '<i class="fas fa-clone"></i>'
 						+ '</button>';
 		});
@@ -160,7 +160,7 @@ function jsexamples_printList(data, type){
 		actionButtons.push(
 			function (record, id){
 				return '<button class="btn btn-danger btn-sm" alt="Delete" title="Delete" '
-						+'onclick="CFW.ui.confirmExecute(\'Do you want to delete <b>\\\''+record.FIRSTNAME.replace(/\"/g,'&quot;')+'\\\'</b>?\', \'Delete\', \'jsexamples_delete('+id+');\')">'
+						+'onclick="CFW.ui.confirmExecute(\'Do you want to delete <strong>\\\''+record.FIRSTNAME.replace(/\"/g,'&quot;')+'\\\'</strong>?\', \'Delete\', \'jsexamples_delete('+id+');\')">'
 						+ '<i class="fa fa-trash"></i>'
 						+ '</button>';
 

@@ -39,7 +39,7 @@ public class FormExampleCFWObject extends CFWObject{
 											.setValue(2);
 	
 	private CFWField<String> editor = CFWField.newString(FormFieldType.WYSIWYG, "EDITOR")
-			.setValue("<b>Intial Value:</b> successfull!!!");
+			.setValue("<strong>Intial Value:</strong> successfull!!!");
 	
 	private CFWField<String> tags = CFWField.newString(FormFieldType.TAGS, "TAGS")
 			.setValue("foo,test,bar,bla")
