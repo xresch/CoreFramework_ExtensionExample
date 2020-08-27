@@ -35,9 +35,9 @@ public class FeatureJavascriptExamples extends CFWAppFeature {
 			
 			for(int i = 0; i < 30; i++) {
 				
-				String firstname = CFWRandom.randomFirstname();
-				String lastname = CFWRandom.randomLastname();
-				String location = CFWRandom.randomLocation();
+				String firstname = CFWRandom.randomFirstnameOfGod();
+				String lastname = CFWRandom.randomLastnameSweden();
+				String location = CFWRandom.randomMythicalLocation();
 				String email = firstname.toLowerCase() + "." + lastname.toLowerCase() + "@"+location.replace(" ", "-").toLowerCase() + ".com";
 				
 				PersonDBMethods.create(
