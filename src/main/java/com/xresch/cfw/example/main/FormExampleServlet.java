@@ -33,7 +33,7 @@ public class FormExampleServlet extends HttpServlet
 		CFWLog log = new CFWLog(logger).method("doGet");
 		
 		HTMLResponse html = new HTMLResponse("Test Page");
-		StringBuffer content = html.getContent();
+		StringBuilder content = html.getContent();
 		  
 		//------------------------------
 		// Regular Form
