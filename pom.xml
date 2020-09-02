@@ -10,7 +10,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-	
+
 	<!-- ================= DEPENDENCIES ================== -->
 	<dependencies>
 		<dependency>
@@ -43,7 +43,25 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
+
+			<!-- ================= DEPENDENCY ================== -->
+			<plugin>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>install</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/lib</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
-		
+
+
+
 	</build>
 </project>
