@@ -27,7 +27,6 @@ public class PersonDBMethods {
 			
 			if(Person == null || Person.firstname().isEmpty()) {
 				new CFWLog(logger)
-					.method("doCheck")
 					.warn("Please specify a firstname for the person.", new Throwable());
 				return false;
 			}
@@ -43,7 +42,6 @@ public class PersonDBMethods {
 			
 			if(Person != null && Person.likesTiramisu() == true) {
 				new CFWLog(logger)
-				.method("doCheck")
 				.severe("The Person '"+Person.firstname()+"' cannot be deleted as people that like tiramisu will prevail for all eternity!", new Throwable());
 				return false;
 			}
