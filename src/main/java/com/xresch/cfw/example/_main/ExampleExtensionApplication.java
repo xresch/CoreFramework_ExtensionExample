@@ -19,11 +19,13 @@ public class ExampleExtensionApplication implements CFWAppInterface {
 	public static final String PERMISSION_CFWSAMPLES = "CFW Extension Samples";
 	
 	public static final MenuItem EXTENSION_MENU_ROOT = new MenuItem("Extension Examples")
+			
 			.faicon("fas fa-flask")
 			.addPermission(ExampleExtensionApplication.PERMISSION_CFWSAMPLES);
 	@Override
 	public void settings() {
 		CFW.AppSettings.setEnableDashboarding(true);
+		CFW.AppSettings.setEnableContextSettings(true);
 	}
 
 	@Override

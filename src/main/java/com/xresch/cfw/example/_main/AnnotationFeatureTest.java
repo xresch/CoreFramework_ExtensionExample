@@ -1,6 +1,5 @@
 package com.xresch.cfw.example._main;
 
-import com.xresch.cfw._main.CFW;
 import com.xresch.cfw._main.CFWAppFeature;
 import com.xresch.cfw._main.CFWApplicationExecutor;
 import com.xresch.cfw._main.CFWExtensionFeature;
