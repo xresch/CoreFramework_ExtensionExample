@@ -1,11 +1,13 @@
-package com.xresch.cfw.example.main;
+package com.xresch.cfw.example._main;
 
 import com.xresch.cfw._main.CFW;
 import com.xresch.cfw._main.CFWAppFeature;
 import com.xresch.cfw._main.CFWApplicationExecutor;
 import com.xresch.cfw.response.bootstrap.MenuItem;
 
-
+/**************************************************************************************
+ * This feature is manually registered with CFW.Registry.Features.addFeature().
+ **************************************************************************************/
 public class FeatureRegular extends CFWAppFeature {
 
 	@Override

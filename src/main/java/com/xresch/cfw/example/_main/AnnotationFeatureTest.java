@@ -1,13 +1,14 @@
-package com.xresch.cfw.example.main;
+package com.xresch.cfw.example._main;
 
 import com.xresch.cfw._main.CFW;
 import com.xresch.cfw._main.CFWAppFeature;
 import com.xresch.cfw._main.CFWApplicationExecutor;
 import com.xresch.cfw._main.CFWExtensionFeature;
+import com.xresch.cfw.example.forms.FormExampleServlet;
 import com.xresch.cfw.response.bootstrap.MenuItem;
 
 @CFWExtensionFeature
-public class FeatureExtensionTest extends CFWAppFeature {
+public class AnnotationFeatureTest extends CFWAppFeature {
 
 	@Override
 	public void register() {

@@ -1,4 +1,4 @@
-package com.xresch.cfw.example.main;
+package com.xresch.cfw.example.javascript;
 
 import java.io.IOException;
 
@@ -12,6 +12,9 @@ import com.xresch.cfw.caching.FileDefinition.HandlingType;
 import com.xresch.cfw.datahandling.CFWForm;
 import com.xresch.cfw.datahandling.CFWFormHandler;
 import com.xresch.cfw.datahandling.CFWObject;
+import com.xresch.cfw.example._main.ExampleExtensionApplication;
+import com.xresch.cfw.example.datahandling.Person;
+import com.xresch.cfw.example.datahandling.PersonDBMethods;
 import com.xresch.cfw.response.HTMLResponse;
 import com.xresch.cfw.response.JSONResponse;
 import com.xresch.cfw.response.bootstrap.AlertMessage.MessageType;
@@ -45,7 +48,7 @@ public class JavascriptExamplesServlet extends HttpServlet
 			
 			if(action == null) {
 
-				html.addJSFileBottom(HandlingType.JAR_RESOURCE, ExampleExtensionApplication.RESOURCE_PACKAGE, "jsexamples.js");
+				html.addJSFileBottom(HandlingType.JAR_RESOURCE, FeatureJavascriptExamples.RESOURCE_PACKAGE, "jsexamples.js");
 				
 
 				html.addJavascriptCode("jsexamples_initialDraw();");

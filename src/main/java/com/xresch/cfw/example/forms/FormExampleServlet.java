@@ -1,4 +1,4 @@
-package com.xresch.cfw.example.main;
+package com.xresch.cfw.example.forms;
 
 import java.io.IOException;
 import java.util.logging.Logger;
@@ -38,12 +38,12 @@ public class FormExampleServlet extends HttpServlet
 		// sends post to same servlet
 		//------------------------------
         CFWForm form = new CFWForm("cfwExampleDirectForm", "Save");
-        form.addChild(CFWField.newString(FormFieldType.TEXT, "Firstname"));
-        form.addChild(CFWField.newString(FormFieldType.TEXT, "Lastname"));
+        form.addChild(CFWField.newString(FormFieldType.TEXT, "firstname"));
+        form.addChild(CFWField.newString(FormFieldType.TEXT, "lastname"));
         
-        content.append("<h2>Direct use of BTForm</h2>");
+        content.append("<h2>Direct use of CFWForm</h2>");
         content.append(form.getHTML());
-        
+        content.append("<br />");
         
 		//------------------------------
 		// Form with Custom Handler
@@ -55,12 +55,23 @@ public class FormExampleServlet extends HttpServlet
         handledForm2.setFormHandler(new CFWFormHandler() {
 			@Override
 			public void handleForm(HttpServletRequest request, HttpServletResponse response, CFWForm form, CFWObject origin) {
-				// TODO Auto-generated method stub
+
 				String formID = request.getParameter(CFWForm.FORM_ID);
-				origin.mapRequestParameters(request);
+				
+				// mapRequestParameters() will validate and create error messages
+				boolean isValid = origin.mapRequestParameters(request);
+				
+				if(isValid) {
+					//Do your thing
+				}else {
+					//ignore or add some additional message
+				}
+				
+				//------------------------------
+				// Test output
 				JSONResponse json = new JSONResponse();
-		    	json.addAlert(MessageType.SUCCESS, "BTFormHandler: Post recieved from "+formID+"!!!");
-		    	json.addAlert(MessageType.SUCCESS, origin.dumpFieldsAsKeyValueHTML());
+		    	json.addAlert(MessageType.SUCCESS, "CFWFormHandler: Post recieved from "+formID+"!!!");
+		    	json.addAlert(MessageType.INFO, origin.dumpFieldsAsKeyValueHTML());
 		    	form.mapRequestParameters(request);
 			}
 		});
@@ -74,7 +85,8 @@ public class FormExampleServlet extends HttpServlet
     	
     	JSONResponse json = new JSONResponse();
     	json.addAlert(MessageType.SUCCESS, "Post recieved from "+formID+"!!!");
-    	
+    	json.addAlert(MessageType.INFO, "Firstname: "+request.getParameter("firstname"));
+    	json.addAlert(MessageType.INFO, "Laststname: "+request.getParameter("lastname"));
     }
 	
 }

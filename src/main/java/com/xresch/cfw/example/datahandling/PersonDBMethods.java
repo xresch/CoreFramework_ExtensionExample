@@ -1,11 +1,11 @@
-package com.xresch.cfw.example.main;
+package com.xresch.cfw.example.datahandling;
 
 import java.util.logging.Logger;
 
 import com.xresch.cfw.datahandling.CFWObject;
 import com.xresch.cfw.db.CFWDBDefaultOperations;
 import com.xresch.cfw.db.PrecheckHandler;
-import com.xresch.cfw.example.main.Person.PersonFields;
+import com.xresch.cfw.example.datahandling.Person.PersonFields;
 import com.xresch.cfw.logging.CFWLog;
 
 /**************************************************************************************************************

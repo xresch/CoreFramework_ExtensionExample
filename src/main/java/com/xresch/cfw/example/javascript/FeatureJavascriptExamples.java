@@ -1,18 +1,26 @@
-package com.xresch.cfw.example.main;
+package com.xresch.cfw.example.javascript;
 
 import com.xresch.cfw._main.CFW;
 import com.xresch.cfw._main.CFWAppFeature;
 import com.xresch.cfw._main.CFWApplicationExecutor;
 import com.xresch.cfw._main.CFWExtensionFeature;
+import com.xresch.cfw.example._main.ExampleExtensionApplication;
+import com.xresch.cfw.example.datahandling.Person;
+import com.xresch.cfw.example.datahandling.PersonDBMethods;
 import com.xresch.cfw.response.bootstrap.MenuItem;
 import com.xresch.cfw.utils.CFWRandom;
 
 @CFWExtensionFeature
 public class FeatureJavascriptExamples extends CFWAppFeature {
-
+	
+	public static final String RESOURCE_PACKAGE = "com.xresch.cfw.example.javascript.resources";
+	
 	@Override
 	public void register() {
-
+		//----------------------------------
+		// Register Package
+		CFW.Files.addAllowedPackage(RESOURCE_PACKAGE);
+		
 		//-------------------------------------
     	// Register Menus that needs permission
 		// to access
@@ -31,6 +39,9 @@ public class FeatureJavascriptExamples extends CFWAppFeature {
 	@Override
 	public void initializeDB() {
 		
+		
+		//-------------------------------------
+    	// Create Testdata
 		if(PersonDBMethods.getCount() == 0) {
 			
 			for(int i = 0; i < 30; i++) {

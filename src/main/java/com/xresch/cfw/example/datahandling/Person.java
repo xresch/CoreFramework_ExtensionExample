@@ -1,4 +1,4 @@
-package com.xresch.cfw.example.main;
+package com.xresch.cfw.example.datahandling;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

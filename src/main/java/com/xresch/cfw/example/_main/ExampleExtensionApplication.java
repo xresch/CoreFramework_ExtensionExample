@@ -1,4 +1,4 @@
-package com.xresch.cfw.example.main;
+package com.xresch.cfw.example._main;
 
 import com.xresch.cfw._main.CFW;
 import com.xresch.cfw._main.CFWAppInterface;
@@ -16,8 +16,6 @@ import com.xresch.cfw.response.bootstrap.MenuItem;
 @CFWExtensionApplication
 public class ExampleExtensionApplication implements CFWAppInterface {
 
-	public static final String RESOURCE_PACKAGE = "com.xresch.cfw.example.main.resources";
-	
 	public static final String PERMISSION_CFWSAMPLES = "CFW Extension Samples";
 	
 	public static final MenuItem EXTENSION_MENU_ROOT = new MenuItem("Extension Examples")
@@ -30,9 +28,7 @@ public class ExampleExtensionApplication implements CFWAppInterface {
 
 	@Override
 	public void register() {
-		//----------------------------------
-		// Register Package
-		CFW.Files.addAllowedPackage(RESOURCE_PACKAGE);
+
 		
 		//----------------------------------
 		// Register Features

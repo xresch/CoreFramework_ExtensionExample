@@ -1,4 +1,4 @@
-package com.xresch.cfw.example.main;
+package com.xresch.cfw.example._main;
 
 import com.xresch.cfw._main.CFW;
 import com.xresch.cfw._main.CFWAppInterface;
