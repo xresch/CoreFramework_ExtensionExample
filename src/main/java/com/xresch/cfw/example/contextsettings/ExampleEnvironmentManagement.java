@@ -40,11 +40,13 @@ public class ExampleEnvironmentManagement {
 			public void onChange(AbstractContextSettings setting, boolean isNew) {
 				ExampleEnvironment env = (ExampleEnvironment)setting;
 				ExampleEnvironmentManagement.createEnvironment(env);
+				CFW.Context.Request.addAlertMessage(MessageType.INFO, "ContextSettingsChangeListener.onChange() was triggered.(find it in class: "+this.getClass().getName()+")");
 			}
 			
 			@Override
 			public void onDelete(AbstractContextSettings typeSettings) {
 				environments.remove(typeSettings.getDefaultObject().id());
+				CFW.Context.Request.addAlertMessage(MessageType.INFO, "ContextSettingsChangeListener.onDelete() was triggered.(find it in class: "+this.getClass().getName()+")");
 			}
 		};
 		
