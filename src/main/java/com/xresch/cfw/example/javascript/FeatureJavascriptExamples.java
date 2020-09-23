@@ -44,7 +44,7 @@ public class FeatureJavascriptExamples extends CFWAppFeature {
     	// Create Testdata
 		if(PersonDBMethods.getCount() == 0) {
 			
-			for(int i = 0; i < 30; i++) {
+			for(int i = 0; i < 321; i++) {
 				
 				String firstname = CFWRandom.randomFirstnameOfGod();
 				String lastname = CFWRandom.randomLastnameSweden();
