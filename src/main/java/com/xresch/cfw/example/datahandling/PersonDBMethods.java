@@ -109,6 +109,21 @@ public class PersonDBMethods {
 		
 	}
 	
+	public static String getPartialPersonListAsJSON(String pageSize, String pageNumber) {
+		return getPartialPersonListAsJSON(Integer.parseInt(pageSize), Integer.parseInt(pageNumber));
+	}
+	
+	
+	public static String getPartialPersonListAsJSON(int pageSize, int pageNumber) {	
+		return new Person()
+				.queryCache(PersonDBMethods.class, "getPersonListAsJSON")
+				.columnSubquery("TOTAL_RECORDS", "COUNT(*) OVER()")
+				.select()
+				.limit(pageSize)
+				.offset(pageSize*(pageNumber-1))
+				.getAsJSON();
+		
+	}
 	public static int getCount() {
 		
 		return new Person()

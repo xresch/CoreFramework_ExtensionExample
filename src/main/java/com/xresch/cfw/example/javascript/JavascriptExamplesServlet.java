@@ -86,6 +86,15 @@ public class JavascriptExamplesServlet extends HttpServlet
 				}
 				break;
 			
+			case "fetchpartial": 			
+				switch(item.toLowerCase()) {
+					case "personlist": 		String size = request.getParameter("size");
+											String pagenumber = request.getParameter("pagenumber");
+											jsonResponse.getContent().append(PersonDBMethods.getPartialPersonListAsJSON(size, pagenumber));
+	  										break;
+				}
+				break;	
+			
 			case "delete": 			
 				switch(item.toLowerCase()) {
 
