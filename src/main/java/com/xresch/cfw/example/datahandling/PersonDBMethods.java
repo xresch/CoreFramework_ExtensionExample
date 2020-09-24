@@ -116,7 +116,7 @@ public class PersonDBMethods {
 	
 	public static String getPartialPersonListAsJSON(int pageSize, int pageNumber) {	
 		return new Person()
-				.queryCache(PersonDBMethods.class, "getPersonListAsJSON")
+				.queryCache(PersonDBMethods.class, "getPartialPersonListAsJSON")
 				.columnSubquery("TOTAL_RECORDS", "COUNT(*) OVER()")
 				.select()
 				.limit(pageSize)
