@@ -78,6 +78,8 @@ public class Person extends CFWObject {
 		
 	private void initializeFields() {
 		this.setTableName(TABLE_NAME);
+		this.enableFulltextSearch();
+		
 		this.addFields(id, 
 				firstname, 
 				lastname, 

@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import com.xresch.cfw.datahandling.CFWObject;
 import com.xresch.cfw.db.CFWDBDefaultOperations;
+import com.xresch.cfw.db.CFWSQL;
 import com.xresch.cfw.db.PrecheckHandler;
 import com.xresch.cfw.example.datahandling.Person.PersonFields;
 import com.xresch.cfw.logging.CFWLog;
@@ -102,8 +103,8 @@ public class PersonDBMethods {
 	
 	public static String getPersonListAsJSON() {
 		
-		return new Person()
-				.queryCache(PersonDBMethods.class, "getPersonListAsJSON")
+		return new CFWSQL(new Person())
+				.queryCache()
 				.select()
 				.getAsJSON();
 		
@@ -115,8 +116,8 @@ public class PersonDBMethods {
 	
 	
 	public static String getPartialPersonListAsJSON(int pageSize, int pageNumber) {	
-		return new Person()
-				.queryCache(PersonDBMethods.class, "getPartialPersonListAsJSON")
+		return new CFWSQL(new Person())
+				.queryCache()
 				.columnSubquery("TOTAL_RECORDS", "COUNT(*) OVER()")
 				.select()
 				.limit(pageSize)
