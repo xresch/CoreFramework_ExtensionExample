@@ -90,7 +90,8 @@ public class JavascriptExamplesServlet extends HttpServlet
 				switch(item.toLowerCase()) {
 					case "personlist": 		String size = request.getParameter("size");
 											String pagenumber = request.getParameter("pagenumber");
-											jsonResponse.getContent().append(PersonDBMethods.getPartialPersonListAsJSON(size, pagenumber));
+											String filterquery = request.getParameter("filterquery");
+											jsonResponse.getContent().append(PersonDBMethods.getPartialPersonListAsJSON(size, pagenumber, filterquery));
 	  										break;
 				}
 				break;	

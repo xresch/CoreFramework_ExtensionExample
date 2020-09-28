@@ -2,6 +2,7 @@ package com.xresch.cfw.example.datahandling;
 
 import java.util.logging.Logger;
 
+import com.google.common.base.Strings;
 import com.xresch.cfw.datahandling.CFWObject;
 import com.xresch.cfw.db.CFWDBDefaultOperations;
 import com.xresch.cfw.db.CFWSQL;
@@ -110,19 +111,30 @@ public class PersonDBMethods {
 		
 	}
 	
-	public static String getPartialPersonListAsJSON(String pageSize, String pageNumber) {
-		return getPartialPersonListAsJSON(Integer.parseInt(pageSize), Integer.parseInt(pageNumber));
+	public static String getPartialPersonListAsJSON(String pageSize, String pageNumber, String filterquery) {
+		return getPartialPersonListAsJSON(Integer.parseInt(pageSize), Integer.parseInt(pageNumber), filterquery);
 	}
 	
 	
-	public static String getPartialPersonListAsJSON(int pageSize, int pageNumber) {	
-		return new CFWSQL(new Person())
+	public static String getPartialPersonListAsJSON(int pageSize, int pageNumber, String filterquery) {	
+		
+		if(Strings.isNullOrEmpty(filterquery)) {
+			return new CFWSQL(new Person())
 				.queryCache()
 				.columnSubquery("TOTAL_RECORDS", "COUNT(*) OVER()")
 				.select()
 				.limit(pageSize)
 				.offset(pageSize*(pageNumber-1))
 				.getAsJSON();
+		}else {
+			return new CFWSQL(new Person())
+					.queryCache()
+					.select()
+					.fulltextSearch()
+						.custom(filterquery)
+						.build(pageSize, pageNumber-1)
+					.getAsJSON();
+		}
 		
 	}
 	public static int getCount() {
