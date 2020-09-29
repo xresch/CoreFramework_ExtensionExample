@@ -19,9 +19,10 @@ function jsexamples_createTabs(){
 		var list = $('<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">');
 		
 		list.append('<li class="nav-item"><a class="nav-link" id="tab-datahandling" data-toggle="pill" href="#" role="tab" onclick="jsexamples_draw({tab: \'datahandling\'})"><i class="fas fa-share-alt mr-2"></i>Data Handling</a></li>');
-		list.append('<li class="nav-item"><a class="nav-link" id="tab-pagination-static" data-toggle="pill" href="#" role="tab" onclick="jsexamples_draw({tab: \'pagination-static\'})"><i class="fas fa-share-alt mr-2"></i>Pagination(Static)</a></li>');
-		list.append('<li class="nav-item"><a class="nav-link" id="tab-pagination-dynamic" data-toggle="pill" href="#" role="tab" onclick="jsexamples_draw({tab: \'pagination-dynamic\'})"><i class="fas fa-share-alt mr-2"></i>Pagination(Dynamic)</a></li>');
-
+		list.append('<li class="nav-item"><a class="nav-link" id="tab-pagination-static" data-toggle="pill" href="#" role="tab" onclick="jsexamples_draw({tab: \'pagination-static\'})"><i class="fas fa-copy mr-2"></i>Pagination(Static)</a></li>');
+		list.append('<li class="nav-item"><a class="nav-link" id="tab-pagination-dynamic" data-toggle="pill" href="#" role="tab" onclick="jsexamples_draw({tab: \'pagination-dynamic\'})"><i class="fas fa-dna mr-2"></i>Pagination(Dynamic)</a></li>');
+		list.append('<li class="nav-item"><a class="nav-link" id="tab-full-dataviewer" data-toggle="pill" href="#" role="tab" onclick="jsexamples_draw({tab: \'full-dataviewer\'})"><i class="fas fa-eye mr-2"></i>Full Dataviewer</a></li>');
+		
 		var parent = $("#cfw-container");
 		parent.append(list);
 		parent.append('<div id="tab-content"></div>');
@@ -325,6 +326,7 @@ function jsexamples_printPaginationStatic(data){
 	}
 }
 
+
 /******************************************************************
  * Example of pagination of static data using the dataviewer render.
  * 
@@ -427,6 +429,150 @@ function jsexamples_printPaginationDynamic(){
 }
 
 /******************************************************************
+ * Full example using the dataviewer renderer.
+ * 
+ * @param data as returned by CFW.http.getJSON()
+ ******************************************************************/
+function jsexamples_printFullDataviewer(){
+	
+	var parent = $("#tab-content");
+
+	//--------------------------------
+	// Button
+	var addPersonButton = $('<button class="btn btn-sm btn-success mb-2" onclick="jsexamples_addPerson()">'
+						+ '<i class="fas fa-plus-circle"></i>Add Person</button>');
+
+	parent.append(addPersonButton);
+	
+	
+	//======================================
+	// Prepare actions
+	var actionButtons = [];
+	//-------------------------
+	// Edit Button
+	actionButtons.push(
+		function (record, id){ 
+			return '<button class="btn btn-primary btn-sm" alt="Edit" title="Edit" '
+					+'onclick="jsexamples_edit('+id+');">'
+					+ '<i class="fa fa-pen"></i>'
+					+ '</button>';
+
+		});
+
+	
+	//-------------------------
+	// Duplicate Button
+	actionButtons.push(
+		function (record, id){
+			return '<button class="btn btn-warning btn-sm" alt="Duplicate" title="Duplicate" '
+					+'onclick="CFW.ui.confirmExecute(\'This will create a duplicate of <strong>\\\''+record.FIRSTNAME.replace(/\"/g,'&quot;')+'\\\'</strong>.\', \'Do it!\', \'jsexamples_duplicate('+id+');\')">'
+					+ '<i class="fas fa-clone"></i>'
+					+ '</button>';
+	});
+	
+	//-------------------------
+	// Delete Button
+	actionButtons.push(
+		function (record, id){
+			return '<button class="btn btn-danger btn-sm" alt="Delete" title="Delete" '
+					+'onclick="CFW.ui.confirmExecute(\'Do you want to delete <strong>\\\''+record.FIRSTNAME.replace(/\"/g,'&quot;')+'\\\'</strong>?\', \'Delete\', \'jsexamples_delete('+id+');\')">'
+					+ '<i class="fa fa-trash"></i>'
+					+ '</button>';
+
+		});
+	
+
+	//-----------------------------------
+	// Render Data
+	var rendererSettings = {
+			data: null,
+		 	idfield: 'PK_ID',
+		 	bgstylefield: null,
+		 	textstylefield: null,
+		 	titlefields: ['FIRSTNAME', 'LASTNAME'],
+		 	titledelimiter: ' ',
+		 	visiblefields: ['PK_ID', 'FIRSTNAME', 'LASTNAME', 'LOCATION', "EMAIL", "LIKES_TIRAMISU"],
+		 	labels: {
+		 		PK_ID: "ID",
+		 	},
+		 	customizers: {
+		 		LIKES_TIRAMISU: function(record, value) { 
+		 			var likesTiramisu = value;
+		 			if(likesTiramisu){
+							return '<span class="badge badge-success m-1">true</span>';
+					}else{
+						return '<span class="badge badge-danger m-1">false</span>';
+					}
+		 			 
+		 		}
+		 	},
+			actions: actionButtons,
+//				bulkActions: {
+//					"Edit": function (elements, records, values){ alert('Edit records '+values.join(',')+'!'); },
+//					"Delete": function (elements, records, values){ $(elements).remove(); },
+//				},
+//				bulkActionsPos: "both",
+			
+			rendererSettings: {
+				dataviewer: {
+					renderers: [
+						{	label: 'Table',
+							name: 'table',
+							renderdef: {
+								rendererSettings: {
+									table: {filterable: false},
+								},
+							}
+						},
+						{	label: 'Smaller Table',
+							name: 'table',
+							renderdef: {
+								visiblefields: ['FIRSTNAME', 'LASTNAME', 'EMAIL', 'LIKES_TIRAMISU'],
+								actions: [],
+								rendererSettings: {
+									table: {filterable: false, narrow: true},
+								},
+							}
+						},
+						{	label: 'Panels',
+							name: 'panels',
+							renderdef: {}
+						},
+						{	label: 'Tiles',
+							name: 'tiles',
+							renderdef: {
+								visiblefields: ['PK_ID', 'LOCATION', "EMAIL", "LIKES_TIRAMISU"],
+								rendererSettings: {
+									tiles: {
+										border: '2px solid black'
+									},
+								},
+								
+							}
+						},
+						{	label: 'CSV',
+							name: 'csv',
+							renderdef: {}
+						},
+						{	label: 'JSON',
+							name: 'json',
+							renderdef: {}
+						}
+					],
+					datainterface: {
+						url: JSEXAMPLES_URL,
+						item: 'personlist'
+					}
+				},
+			},
+		};
+	
+	var renderResult = CFW.render.getRenderer('dataviewer').render(rendererSettings);	
+	
+	parent.append(renderResult);
+	
+}
+/******************************************************************
  * Main method for building the different views.
  * 
  * @param options Array with arguments:
@@ -466,7 +612,9 @@ function jsexamples_draw(options){
 			case "pagination-static":	CFW.http.fetchAndCacheData(JSEXAMPLES_URL, {action: "fetch", item: "personlist"}, "personlist", jsexamples_printPaginationStatic);
 										break;	
 			case "pagination-dynamic":	jsexamples_printPaginationDynamic();
-										break;							
+										break;	
+			case "full-dataviewer":		jsexamples_printFullDataviewer();
+			break;	
 			default:				CFW.ui.addToastDanger('This tab is unknown: '+options.tab);
 		}
 		
