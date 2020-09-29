@@ -178,7 +178,7 @@ function jsexamples_printList(data){
 			 	bgstylefield: null,
 			 	textstylefield: null,
 			 	titlefields: ['NAME'],
-			 	titledelimiter: ' ',
+			 	titleformat: '{0}',
 			 	visiblefields: ['PK_ID', 'FIRSTNAME', 'LASTNAME', 'LOCATION', "EMAIL", "LIKES_TIRAMISU"],
 			 	labels: {
 			 		PK_ID: "ID",
@@ -289,7 +289,7 @@ function jsexamples_printPaginationStatic(data){
 			 	bgstylefield: null,
 			 	textstylefield: null,
 			 	titlefields: ['NAME'],
-			 	titledelimiter: ' ',
+			 	titleformat: '{0}',
 			 	visiblefields: ['PK_ID', 'FIRSTNAME', 'LASTNAME', 'LOCATION', "EMAIL", "LIKES_TIRAMISU"],
 			 	labels: {
 			 		PK_ID: "ID",
@@ -389,7 +389,7 @@ function jsexamples_printPaginationDynamic(){
 		 	bgstylefield: null,
 		 	textstylefield: null,
 		 	titlefields: ['NAME'],
-		 	titledelimiter: ' ',
+		 	titleformat: '{0}',
 		 	visiblefields: ['PK_ID', 'FIRSTNAME', 'LASTNAME', 'LOCATION', "EMAIL", "LIKES_TIRAMISU"],
 		 	labels: {
 		 		PK_ID: "ID",
@@ -490,7 +490,7 @@ function jsexamples_printFullDataviewer(){
 		 	bgstylefield: null,
 		 	textstylefield: null,
 		 	titlefields: ['FIRSTNAME', 'LASTNAME'],
-		 	titledelimiter: ' ',
+		 	titleformat: '{0} {1}',
 		 	visiblefields: ['PK_ID', 'FIRSTNAME', 'LASTNAME', 'LOCATION', "EMAIL", "LIKES_TIRAMISU"],
 		 	labels: {
 		 		PK_ID: "ID",
@@ -544,6 +544,7 @@ function jsexamples_printFullDataviewer(){
 								visiblefields: ['PK_ID', 'LOCATION', "EMAIL", "LIKES_TIRAMISU"],
 								rendererSettings: {
 									tiles: {
+										popover: false,
 										border: '2px solid black'
 									},
 								},
