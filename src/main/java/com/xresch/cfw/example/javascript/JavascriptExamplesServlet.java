@@ -88,10 +88,10 @@ public class JavascriptExamplesServlet extends HttpServlet
 			
 			case "fetchpartial": 			
 				switch(item.toLowerCase()) {
-					case "personlist": 		String size = request.getParameter("size");
+					case "personlist": 		String pagesize = request.getParameter("pagesize");
 											String pagenumber = request.getParameter("pagenumber");
 											String filterquery = request.getParameter("filterquery");
-											jsonResponse.getContent().append(PersonDBMethods.getPartialPersonListAsJSON(size, pagenumber, filterquery));
+											jsonResponse.getContent().append(PersonDBMethods.getPartialPersonListAsJSON(pagesize, pagenumber, filterquery));
 	  										break;
 				}
 				break;	

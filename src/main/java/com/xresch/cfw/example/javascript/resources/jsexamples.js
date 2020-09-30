@@ -109,7 +109,7 @@ function jsexamples_duplicate(id){
  * @param data as returned by CFW.http.getJSON()
  * @return 
  ******************************************************************/
-function jsexamples_printList(data){
+function jsexamples_printDataHandling(data){
 	
 	var parent = $("#tab-content");
 
@@ -313,7 +313,9 @@ function jsexamples_printPaginationStatic(data){
 //				bulkActionsPos: "both",
 				
 				rendererSettings: {
-					dataviewer: {},
+					dataviewer: {
+						storeid: 'staticpaginationexample',
+					},
 				},
 			};
 		
@@ -414,6 +416,7 @@ function jsexamples_printPaginationDynamic(){
 			
 			rendererSettings: {
 				dataviewer: {
+					storeid: 'dynamicpaginationexample',
 					datainterface: {
 						url: JSEXAMPLES_URL,
 						item: 'personlist'
@@ -515,6 +518,11 @@ function jsexamples_printFullDataviewer(){
 			
 			rendererSettings: {
 				dataviewer: {
+					storeid: 'fulldataviewerexample',
+					datainterface: {
+						url: JSEXAMPLES_URL,
+						item: 'personlist'
+					},
 					renderers: [
 						{	label: 'Table',
 							name: 'table',
@@ -536,6 +544,10 @@ function jsexamples_printFullDataviewer(){
 						},
 						{	label: 'Panels',
 							name: 'panels',
+							renderdef: {}
+						},
+						{	label: 'Cards',
+							name: 'cards',
 							renderdef: {}
 						},
 						{	label: 'Tiles',
@@ -560,10 +572,6 @@ function jsexamples_printFullDataviewer(){
 							renderdef: {}
 						}
 					],
-					datainterface: {
-						url: JSEXAMPLES_URL,
-						item: 'personlist'
-					}
 				},
 			},
 		};
@@ -589,7 +597,7 @@ function jsexamples_initialDraw(){
 	
 	//-----------------------------------
 	// Restore last tab
-	var tabToDisplay = CFW.cache.retrieveValue("jsexamples-lasttab", "datahandling");
+	var tabToDisplay = CFW.cache.retrieveValueForPage("jsexamples-lasttab", "datahandling");
 	
 	$('#tab-'+tabToDisplay).addClass('active');
 	
@@ -599,7 +607,7 @@ function jsexamples_initialDraw(){
 function jsexamples_draw(options){
 	JSEXAMPLES_LAST_OPTIONS = options;
 	
-	CFW.cache.storeValue("jsexamples-lasttab", options.tab);
+	CFW.cache.storeValueForPage("jsexamples-lasttab", options.tab);
 	$("#tab-content").html("");
 	
 	CFW.ui.toogleLoader(true);
@@ -608,7 +616,7 @@ function jsexamples_draw(options){
 	function(){
 		
 		switch(options.tab){
-			case "datahandling":		CFW.http.fetchAndCacheData(JSEXAMPLES_URL, {action: "fetch", item: "personlist"}, "personlist", jsexamples_printList);
+			case "datahandling":		CFW.http.fetchAndCacheData(JSEXAMPLES_URL, {action: "fetch", item: "personlist"}, "personlist", jsexamples_printDataHandling);
 										break;	
 			case "pagination-static":	CFW.http.fetchAndCacheData(JSEXAMPLES_URL, {action: "fetch", item: "personlist"}, "personlist", jsexamples_printPaginationStatic);
 										break;	

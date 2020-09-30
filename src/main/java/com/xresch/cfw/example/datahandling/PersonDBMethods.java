@@ -119,6 +119,8 @@ public class PersonDBMethods {
 	public static String getPartialPersonListAsJSON(int pageSize, int pageNumber, String filterquery) {	
 		
 		if(Strings.isNullOrEmpty(filterquery)) {
+			//-------------------------------------
+			// Unfiltered
 			return new CFWSQL(new Person())
 				.queryCache()
 				.columnSubquery("TOTAL_RECORDS", "COUNT(*) OVER()")
@@ -127,16 +129,21 @@ public class PersonDBMethods {
 				.offset(pageSize*(pageNumber-1))
 				.getAsJSON();
 		}else {
+			//-------------------------------------
+			// Filter with fulltext search
+			// Enabled by CFWObject.enableFulltextSearch()
+			// on the Person Object
 			return new CFWSQL(new Person())
 					.queryCache()
 					.select()
 					.fulltextSearch()
 						.custom(filterquery)
-						.build(pageSize, pageNumber-1)
+						.build(pageSize, pageSize*(pageNumber-1))
 					.getAsJSON();
 		}
 		
 	}
+	
 	public static int getCount() {
 		
 		return new Person()
