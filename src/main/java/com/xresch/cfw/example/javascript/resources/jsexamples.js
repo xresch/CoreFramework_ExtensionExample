@@ -116,7 +116,7 @@ function jsexamples_printDataHandling(data){
 	//--------------------------------
 	// Button
 	var addPersonButton = $('<button class="btn btn-sm btn-success mb-2" onclick="jsexamples_addPerson()">'
-						+ '<i class="fas fa-plus-circle"></i>Add Person</button>');
+						+ '<i class="mr-1 fas fa-plus-circle"></i>Add Person</button>');
 
 	parent.append(addPersonButton);
 	
@@ -227,7 +227,7 @@ function jsexamples_printPaginationStatic(data){
 	//--------------------------------
 	// Button
 	var addPersonButton = $('<button class="btn btn-sm btn-success mb-2" onclick="jsexamples_addPerson()">'
-						+ '<i class="fas fa-plus-circle"></i>Add Person</button>');
+						+ '<i class="mr-1 fas fa-plus-circle"></i>Add Person</button>');
 
 	parent.append(addPersonButton);
 	
@@ -341,7 +341,7 @@ function jsexamples_printPaginationDynamic(){
 	//--------------------------------
 	// Button
 	var addPersonButton = $('<button class="btn btn-sm btn-success mb-2" onclick="jsexamples_addPerson()">'
-						+ '<i class="fas fa-plus-circle"></i>Add Person</button>');
+						+ '<i class="mr-1 fas fa-plus-circle"></i>Add Person</button>');
 
 	parent.append(addPersonButton);
 	
@@ -443,7 +443,7 @@ function jsexamples_printFullDataviewer(){
 	//--------------------------------
 	// Button
 	var addPersonButton = $('<button class="btn btn-sm btn-success mb-2" onclick="jsexamples_addPerson()">'
-						+ '<i class="fas fa-plus-circle"></i>Add Person</button>');
+						+ '<i class="mr-1 fas fa-plus-circle"></i>Add Person</button>');
 
 	parent.append(addPersonButton);
 	
