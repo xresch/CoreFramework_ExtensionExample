@@ -89,7 +89,8 @@ public class FormExampleCFWObject extends CFWObject{
 	//------------------------------------------------------------------------------------------------
 	// A date and time picker field without a default value
 	private CFWField<Timestamp> timestamp = 
-				CFWField.newTimestamp(FormFieldType.DATETIMEPICKER, "TIMESTAMP");
+				CFWField.newTimestamp(FormFieldType.DATETIMEPICKER, "TIMESTAMP")
+				.setValue(new Timestamp(1580053600000L));
 	
 	//------------------------------------------------------------------------------------------------
 	// A select with options
