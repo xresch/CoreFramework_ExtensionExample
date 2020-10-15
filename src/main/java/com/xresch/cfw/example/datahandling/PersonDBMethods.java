@@ -70,7 +70,7 @@ public class PersonDBMethods {
 	// DELETE
 	//####################################################################################################
 	public static boolean 	deleteByID(int id) 					{ return CFWDBDefaultOperations.deleteFirstBy(prechecksDelete, cfwObjectClass, PersonFields.PK_ID.toString(), id); }
-	public static boolean 	deleteMultipleByID(String itemIDs) 	{ return CFWDBDefaultOperations.deleteMultipleByID(cfwObjectClass, itemIDs); }
+	public static boolean 	deleteMultipleByID(String itemIDs) 	{ return CFWDBDefaultOperations.deleteMultipleByID(prechecksDelete, cfwObjectClass, itemIDs); }
 	
 	//####################################################################################################
 	// DUPLICATE
