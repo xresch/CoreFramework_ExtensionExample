@@ -24,8 +24,8 @@ public class ExampleExtensionApplication implements CFWAppInterface {
 			.addPermission(ExampleExtensionApplication.PERMISSION_CFWSAMPLES);
 	@Override
 	public void settings() {
-		CFW.AppSettings.setEnableDashboarding(true);
-		CFW.AppSettings.setEnableContextSettings(true);
+		CFW.AppSettings.enableDashboarding(true);
+		CFW.AppSettings.enableContextSettings(true);
 	}
 
 	@Override
