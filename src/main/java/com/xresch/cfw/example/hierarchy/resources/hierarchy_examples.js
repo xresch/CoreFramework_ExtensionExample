@@ -11,17 +11,17 @@ var JSEXAMPLES_LAST_OPTIONS = null;
 /******************************************************************
  * Reset the view.
  ******************************************************************/
-function jsexamples_createTabs(){
+function hierarchyexamples_createTabs(){
 	var pillsTab = $("#pills-tab");
 	
 	if(pillsTab.length == 0){
 		
 		var list = $('<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">');
 		
-		list.append('<li class="nav-item"><a class="nav-link" id="tab-datahandling" data-toggle="pill" href="#" role="tab" onclick="jsexamples_draw({tab: \'datahandling\'})"><i class="fas fa-share-alt mr-2"></i>Data Handling</a></li>');
-		list.append('<li class="nav-item"><a class="nav-link" id="tab-pagination-static" data-toggle="pill" href="#" role="tab" onclick="jsexamples_draw({tab: \'pagination-static\'})"><i class="fas fa-copy mr-2"></i>Pagination(Static)</a></li>');
-		list.append('<li class="nav-item"><a class="nav-link" id="tab-pagination-dynamic" data-toggle="pill" href="#" role="tab" onclick="jsexamples_draw({tab: \'pagination-dynamic\'})"><i class="fas fa-dna mr-2"></i>Pagination(Dynamic)</a></li>');
-		list.append('<li class="nav-item"><a class="nav-link" id="tab-full-dataviewer" data-toggle="pill" href="#" role="tab" onclick="jsexamples_draw({tab: \'full-dataviewer\'})"><i class="fas fa-eye mr-2"></i>Full Dataviewer</a></li>');
+		list.append('<li class="nav-item"><a class="nav-link" id="tab-datahandling" data-toggle="pill" href="#" role="tab" onclick="hierarchyexamples_draw({tab: \'datahandling\'})"><i class="fas fa-share-alt mr-2"></i>Data Handling</a></li>');
+		list.append('<li class="nav-item"><a class="nav-link" id="tab-pagination-static" data-toggle="pill" href="#" role="tab" onclick="hierarchyexamples_draw({tab: \'pagination-static\'})"><i class="fas fa-copy mr-2"></i>Pagination(Static)</a></li>');
+		list.append('<li class="nav-item"><a class="nav-link" id="tab-pagination-dynamic" data-toggle="pill" href="#" role="tab" onclick="hierarchyexamples_draw({tab: \'pagination-dynamic\'})"><i class="fas fa-dna mr-2"></i>Pagination(Dynamic)</a></li>');
+		list.append('<li class="nav-item"><a class="nav-link" id="tab-full-dataviewer" data-toggle="pill" href="#" role="tab" onclick="hierarchyexamples_draw({tab: \'full-dataviewer\'})"><i class="fas fa-eye mr-2"></i>Full Dataviewer</a></li>');
 		
 		var parent = $("#cfw-container");
 		parent.append(list);
@@ -33,7 +33,7 @@ function jsexamples_createTabs(){
 /******************************************************************
  * Create Role
  ******************************************************************/
-function jsexamples_addPerson(){
+function hierarchyexamples_addPerson(){
 	
 	var html = $('<div>');	
 
@@ -42,14 +42,14 @@ function jsexamples_addPerson(){
 	CFW.ui.showModal(
 			"Create Person", 
 			html, 
-			"CFW.cache.clearCache(); jsexamples_draw(JSEXAMPLES_LAST_OPTIONS)"
+			"CFW.cache.clearCache(); hierarchyexamples_draw(JSEXAMPLES_LAST_OPTIONS)"
 		);
 	
 }
 /******************************************************************
  * Edit Role
  ******************************************************************/
-function jsexamples_edit(id){
+function hierarchyexamples_edit(id){
 	
 	//-----------------------------------
 	// Details
@@ -59,7 +59,7 @@ function jsexamples_edit(id){
 	CFW.ui.showModal(
 		"Edit Person", 
 		detailsDiv, 
-		"CFW.cache.clearCache(); jsexamples_draw(JSEXAMPLES_LAST_OPTIONS)"
+		"CFW.cache.clearCache(); hierarchyexamples_draw(JSEXAMPLES_LAST_OPTIONS)"
 	);
 	
 	//-----------------------------------
@@ -72,7 +72,7 @@ function jsexamples_edit(id){
 /******************************************************************
  * Delete
  ******************************************************************/
-function jsexamples_delete(id){
+function hierarchyexamples_delete(id){
 	
 	params = {action: "delete", item: "person", id: id};
 	CFW.http.getJSON(JSEXAMPLES_URL, params, 
@@ -81,7 +81,7 @@ function jsexamples_delete(id){
 				//CFW.ui.showSmallModal('Success!', '<span>The selected '+item+' were deleted.</span>');
 				//clear cache and reload data
 				CFW.cache.clearCache();
-				jsexamples_draw(JSEXAMPLES_LAST_OPTIONS);
+				hierarchyexamples_draw(JSEXAMPLES_LAST_OPTIONS);
 			}else{
 				CFW.ui.showSmallModal("Error!", '<span>The selected person could <b style="color: red">NOT</strong> be deleted.</span>');
 			}
@@ -91,14 +91,14 @@ function jsexamples_delete(id){
 /******************************************************************
  * Delete
  ******************************************************************/
-function jsexamples_duplicate(id){
+function hierarchyexamples_duplicate(id){
 	
 	params = {action: "duplicate", item: "person", id: id};
 	CFW.http.getJSON(JSEXAMPLES_URL, params, 
 		function(data) {
 			if(data.success){
 				CFW.cache.clearCache();
-				jsexamples_draw(JSEXAMPLES_LAST_OPTIONS);
+				hierarchyexamples_draw(JSEXAMPLES_LAST_OPTIONS);
 			}
 	});
 }
@@ -109,13 +109,13 @@ function jsexamples_duplicate(id){
  * @param data as returned by CFW.http.getJSON()
  * @return 
  ******************************************************************/
-function jsexamples_printDataHandling(data){
+function hierarchyexamples_printDataHandling(data){
 	
 	var parent = $("#tab-content");
 
 	//--------------------------------
 	// Button
-	var addPersonButton = $('<button class="btn btn-sm btn-success mb-2" onclick="jsexamples_addPerson()">'
+	var addPersonButton = $('<button class="btn btn-sm btn-success mb-2" onclick="hierarchyexamples_addPerson()">'
 						+ '<i class="mr-1 fas fa-plus-circle"></i>Add Person</button>');
 
 	parent.append(addPersonButton);
@@ -141,7 +141,7 @@ function jsexamples_printDataHandling(data){
 		actionButtons.push(
 			function (record, id){ 
 				return '<button class="btn btn-primary btn-sm" alt="Edit" title="Edit" '
-						+'onclick="jsexamples_edit('+id+');">'
+						+'onclick="hierarchyexamples_edit('+id+');">'
 						+ '<i class="fa fa-pen"></i>'
 						+ '</button>';
 
@@ -153,7 +153,7 @@ function jsexamples_printDataHandling(data){
 		actionButtons.push(
 			function (record, id){
 				return '<button class="btn btn-warning btn-sm" alt="Duplicate" title="Duplicate" '
-						+'onclick="CFW.ui.confirmExecute(\'This will create a duplicate of <strong>\\\''+record.FIRSTNAME.replace(/\"/g,'&quot;')+'\\\'</strong>.\', \'Do it!\', \'jsexamples_duplicate('+id+');\')">'
+						+'onclick="CFW.ui.confirmExecute(\'This will create a duplicate of <strong>\\\''+record.FIRSTNAME.replace(/\"/g,'&quot;')+'\\\'</strong>.\', \'Do it!\', \'hierarchyexamples_duplicate('+id+');\')">'
 						+ '<i class="fas fa-clone"></i>'
 						+ '</button>';
 		});
@@ -163,7 +163,7 @@ function jsexamples_printDataHandling(data){
 		actionButtons.push(
 			function (record, id){
 				return '<button class="btn btn-danger btn-sm" alt="Delete" title="Delete" '
-						+'onclick="CFW.ui.confirmExecute(\'Do you want to delete <strong>\\\''+record.FIRSTNAME.replace(/\"/g,'&quot;')+'\\\'</strong>?\', \'Delete\', \'jsexamples_delete('+id+');\')">'
+						+'onclick="CFW.ui.confirmExecute(\'Do you want to delete <strong>\\\''+record.FIRSTNAME.replace(/\"/g,'&quot;')+'\\\'</strong>?\', \'Delete\', \'hierarchyexamples_delete('+id+');\')">'
 						+ '<i class="fa fa-trash"></i>'
 						+ '</button>';
 
@@ -220,13 +220,13 @@ function jsexamples_printDataHandling(data){
  * 
  * @param data as returned by CFW.http.getJSON()
  ******************************************************************/
-function jsexamples_printPaginationStatic(data){
+function hierarchyexamples_printPaginationStatic(data){
 	
 	var parent = $("#tab-content");
 
 	//--------------------------------
 	// Button
-	var addPersonButton = $('<button class="btn btn-sm btn-success mb-2" onclick="jsexamples_addPerson()">'
+	var addPersonButton = $('<button class="btn btn-sm btn-success mb-2" onclick="hierarchyexamples_addPerson()">'
 						+ '<i class="mr-1 fas fa-plus-circle"></i>Add Person</button>');
 
 	parent.append(addPersonButton);
@@ -252,7 +252,7 @@ function jsexamples_printPaginationStatic(data){
 		actionButtons.push(
 			function (record, id){ 
 				return '<button class="btn btn-primary btn-sm" alt="Edit" title="Edit" '
-						+'onclick="jsexamples_edit('+id+');">'
+						+'onclick="hierarchyexamples_edit('+id+');">'
 						+ '<i class="fa fa-pen"></i>'
 						+ '</button>';
 
@@ -264,7 +264,7 @@ function jsexamples_printPaginationStatic(data){
 		actionButtons.push(
 			function (record, id){
 				return '<button class="btn btn-warning btn-sm" alt="Duplicate" title="Duplicate" '
-						+'onclick="CFW.ui.confirmExecute(\'This will create a duplicate of <strong>\\\''+record.FIRSTNAME.replace(/\"/g,'&quot;')+'\\\'</strong>.\', \'Do it!\', \'jsexamples_duplicate('+id+');\')">'
+						+'onclick="CFW.ui.confirmExecute(\'This will create a duplicate of <strong>\\\''+record.FIRSTNAME.replace(/\"/g,'&quot;')+'\\\'</strong>.\', \'Do it!\', \'hierarchyexamples_duplicate('+id+');\')">'
 						+ '<i class="fas fa-clone"></i>'
 						+ '</button>';
 		});
@@ -274,7 +274,7 @@ function jsexamples_printPaginationStatic(data){
 		actionButtons.push(
 			function (record, id){
 				return '<button class="btn btn-danger btn-sm" alt="Delete" title="Delete" '
-						+'onclick="CFW.ui.confirmExecute(\'Do you want to delete <strong>\\\''+record.FIRSTNAME.replace(/\"/g,'&quot;')+'\\\'</strong>?\', \'Delete\', \'jsexamples_delete('+id+');\')">'
+						+'onclick="CFW.ui.confirmExecute(\'Do you want to delete <strong>\\\''+record.FIRSTNAME.replace(/\"/g,'&quot;')+'\\\'</strong>?\', \'Delete\', \'hierarchyexamples_delete('+id+');\')">'
 						+ '<i class="fa fa-trash"></i>'
 						+ '</button>';
 
@@ -334,13 +334,13 @@ function jsexamples_printPaginationStatic(data){
  * 
  * @param data as returned by CFW.http.getJSON()
  ******************************************************************/
-function jsexamples_printPaginationDynamic(){
+function hierarchyexamples_printPaginationDynamic(){
 	
 	var parent = $("#tab-content");
 
 	//--------------------------------
 	// Button
-	var addPersonButton = $('<button class="btn btn-sm btn-success mb-2" onclick="jsexamples_addPerson()">'
+	var addPersonButton = $('<button class="btn btn-sm btn-success mb-2" onclick="hierarchyexamples_addPerson()">'
 						+ '<i class="mr-1 fas fa-plus-circle"></i>Add Person</button>');
 
 	parent.append(addPersonButton);
@@ -354,7 +354,7 @@ function jsexamples_printPaginationDynamic(){
 	actionButtons.push(
 		function (record, id){ 
 			return '<button class="btn btn-primary btn-sm" alt="Edit" title="Edit" '
-					+'onclick="jsexamples_edit('+id+');">'
+					+'onclick="hierarchyexamples_edit('+id+');">'
 					+ '<i class="fa fa-pen"></i>'
 					+ '</button>';
 
@@ -366,7 +366,7 @@ function jsexamples_printPaginationDynamic(){
 	actionButtons.push(
 		function (record, id){
 			return '<button class="btn btn-warning btn-sm" alt="Duplicate" title="Duplicate" '
-					+'onclick="CFW.ui.confirmExecute(\'This will create a duplicate of <strong>\\\''+record.FIRSTNAME.replace(/\"/g,'&quot;')+'\\\'</strong>.\', \'Do it!\', \'jsexamples_duplicate('+id+');\')">'
+					+'onclick="CFW.ui.confirmExecute(\'This will create a duplicate of <strong>\\\''+record.FIRSTNAME.replace(/\"/g,'&quot;')+'\\\'</strong>.\', \'Do it!\', \'hierarchyexamples_duplicate('+id+');\')">'
 					+ '<i class="fas fa-clone"></i>'
 					+ '</button>';
 	});
@@ -376,7 +376,7 @@ function jsexamples_printPaginationDynamic(){
 	actionButtons.push(
 		function (record, id){
 			return '<button class="btn btn-danger btn-sm" alt="Delete" title="Delete" '
-					+'onclick="CFW.ui.confirmExecute(\'Do you want to delete <strong>\\\''+record.FIRSTNAME.replace(/\"/g,'&quot;')+'\\\'</strong>?\', \'Delete\', \'jsexamples_delete('+id+');\')">'
+					+'onclick="CFW.ui.confirmExecute(\'Do you want to delete <strong>\\\''+record.FIRSTNAME.replace(/\"/g,'&quot;')+'\\\'</strong>?\', \'Delete\', \'hierarchyexamples_delete('+id+');\')">'
 					+ '<i class="fa fa-trash"></i>'
 					+ '</button>';
 
@@ -436,13 +436,13 @@ function jsexamples_printPaginationDynamic(){
  * 
  * @param data as returned by CFW.http.getJSON()
  ******************************************************************/
-function jsexamples_printFullDataviewer(){
+function hierarchyexamples_printFullDataviewer(){
 	
 	var parent = $("#tab-content");
 
 	//--------------------------------
 	// Button
-	var addPersonButton = $('<button class="btn btn-sm btn-success mb-2" onclick="jsexamples_addPerson()">'
+	var addPersonButton = $('<button class="btn btn-sm btn-success mb-2" onclick="hierarchyexamples_addPerson()">'
 						+ '<i class="mr-1 fas fa-plus-circle"></i>Add Person</button>');
 
 	parent.append(addPersonButton);
@@ -456,7 +456,7 @@ function jsexamples_printFullDataviewer(){
 	actionButtons.push(
 		function (record, id){ 
 			return '<button class="btn btn-primary btn-sm" alt="Edit" title="Edit" '
-					+'onclick="jsexamples_edit('+id+');">'
+					+'onclick="hierarchyexamples_edit('+id+');">'
 					+ '<i class="fa fa-pen"></i>'
 					+ '</button>';
 
@@ -468,7 +468,7 @@ function jsexamples_printFullDataviewer(){
 	actionButtons.push(
 		function (record, id){
 			return '<button class="btn btn-warning btn-sm" alt="Duplicate" title="Duplicate" '
-					+'onclick="CFW.ui.confirmExecute(\'This will create a duplicate of <strong>\\\''+record.FIRSTNAME.replace(/\"/g,'&quot;')+'\\\'</strong>.\', \'Do it!\', \'jsexamples_duplicate('+id+');\')">'
+					+'onclick="CFW.ui.confirmExecute(\'This will create a duplicate of <strong>\\\''+record.FIRSTNAME.replace(/\"/g,'&quot;')+'\\\'</strong>.\', \'Do it!\', \'hierarchyexamples_duplicate('+id+');\')">'
 					+ '<i class="fas fa-clone"></i>'
 					+ '</button>';
 	});
@@ -478,7 +478,7 @@ function jsexamples_printFullDataviewer(){
 	actionButtons.push(
 		function (record, id){
 			return '<button class="btn btn-danger btn-sm" alt="Delete" title="Delete" '
-					+'onclick="CFW.ui.confirmExecute(\'Do you want to delete <strong>\\\''+record.FIRSTNAME.replace(/\"/g,'&quot;')+'\\\'</strong>?\', \'Delete\', \'jsexamples_delete('+id+');\')">'
+					+'onclick="CFW.ui.confirmExecute(\'Do you want to delete <strong>\\\''+record.FIRSTNAME.replace(/\"/g,'&quot;')+'\\\'</strong>?\', \'Delete\', \'hierarchyexamples_delete('+id+');\')">'
 					+ '<i class="fa fa-trash"></i>'
 					+ '</button>';
 
@@ -591,9 +591,9 @@ function jsexamples_printFullDataviewer(){
  * @return 
  ******************************************************************/
 
-function jsexamples_initialDraw(){
+function hierarchyexamples_initialDraw(){
 	
-	jsexamples_createTabs();
+	hierarchyexamples_createTabs();
 	
 	//-----------------------------------
 	// Restore last tab
@@ -601,10 +601,10 @@ function jsexamples_initialDraw(){
 	
 	$('#tab-'+tabToDisplay).addClass('active');
 	
-	jsexamples_draw({tab: tabToDisplay});
+	hierarchyexamples_draw({tab: tabToDisplay});
 }
 
-function jsexamples_draw(options){
+function hierarchyexamples_draw(options){
 	JSEXAMPLES_LAST_OPTIONS = options;
 	
 	CFW.cache.storeValueForPage("jsexamples-lasttab", options.tab);
@@ -616,13 +616,13 @@ function jsexamples_draw(options){
 	function(){
 		
 		switch(options.tab){
-			case "datahandling":		CFW.http.fetchAndCacheData(JSEXAMPLES_URL, {action: "fetch", item: "personlist"}, "personlist", jsexamples_printDataHandling);
+			case "datahandling":		CFW.http.fetchAndCacheData(JSEXAMPLES_URL, {action: "fetch", item: "personlist"}, "personlist", hierarchyexamples_printDataHandling);
 										break;	
-			case "pagination-static":	CFW.http.fetchAndCacheData(JSEXAMPLES_URL, {action: "fetch", item: "personlist"}, "personlist", jsexamples_printPaginationStatic);
+			case "pagination-static":	CFW.http.fetchAndCacheData(JSEXAMPLES_URL, {action: "fetch", item: "personlist"}, "personlist", hierarchyexamples_printPaginationStatic);
 										break;	
-			case "pagination-dynamic":	jsexamples_printPaginationDynamic();
+			case "pagination-dynamic":	hierarchyexamples_printPaginationDynamic();
 										break;	
-			case "full-dataviewer":		jsexamples_printFullDataviewer();
+			case "full-dataviewer":		hierarchyexamples_printFullDataviewer();
 			break;	
 			default:				CFW.ui.addToastDanger('This tab is unknown: '+options.tab);
 		}
