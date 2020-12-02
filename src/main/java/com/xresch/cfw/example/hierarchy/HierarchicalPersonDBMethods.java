@@ -7,8 +7,7 @@ import com.xresch.cfw.datahandling.CFWObject;
 import com.xresch.cfw.db.CFWDBDefaultOperations;
 import com.xresch.cfw.db.CFWSQL;
 import com.xresch.cfw.db.PrecheckHandler;
-import com.xresch.cfw.example.javascript.HierarchicalPerson;
-import com.xresch.cfw.example.javascript.HierarchicalPerson.HierarchicalPersonFields;
+import com.xresch.cfw.example.hierarchy.HierarchicalPerson.HierarchicalPersonFields;
 import com.xresch.cfw.logging.CFWLog;
 
 /**************************************************************************************************************

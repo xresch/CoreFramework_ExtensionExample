@@ -51,7 +51,7 @@ public class HierarchyExamplesServlet extends HttpServlet
 				html.addJSFileBottom(HandlingType.JAR_RESOURCE, FeatureHierarchyExamples.RESOURCE_PACKAGE, "hierarchy_examples.js");
 				
 
-				html.addJavascriptCode("hierarchy_examples_initialDraw();");
+				html.addJavascriptCode("hierarchyexamples_draw();");
 				
 		        response.setContentType("text/html");
 		        response.setStatus(HttpServletResponse.SC_OK);

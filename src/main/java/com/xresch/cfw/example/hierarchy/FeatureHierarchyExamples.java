@@ -5,7 +5,6 @@ import com.xresch.cfw._main.CFWAppFeature;
 import com.xresch.cfw._main.CFWApplicationExecutor;
 import com.xresch.cfw._main.CFWExtensionFeature;
 import com.xresch.cfw.example._main.ExampleExtensionApplication;
-import com.xresch.cfw.example.javascript.HierarchicalPerson;
 import com.xresch.cfw.response.bootstrap.MenuItem;
 import com.xresch.cfw.utils.CFWRandom;
 
@@ -25,7 +24,7 @@ public class FeatureHierarchyExamples extends CFWAppFeature {
 		// to access
 		ExampleExtensionApplication.EXTENSION_MENU_ROOT.addChild(
 			new MenuItem("Hierarchy Examples")
-				.faicon("fab fa-js")
+				.faicon("fas fa-sitemap")
 				.addPermission(ExampleExtensionApplication.PERMISSION_CFWSAMPLES)
 				.href("/app/hierarchyexamples")
 		);

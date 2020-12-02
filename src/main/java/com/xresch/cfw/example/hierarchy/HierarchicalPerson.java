@@ -1,4 +1,4 @@
-package com.xresch.cfw.example.javascript;
+package com.xresch.cfw.example.hierarchy;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -42,12 +42,12 @@ public class HierarchicalPerson extends CFWObject {
 		
 		@Override
 		public boolean canSort(String sortedElementID, String targetParentID) {
-			return false;
+			return true;
 		}
 		
 		@Override
 		public boolean canAccessHierarchy(String rootElementID) {
-			return false;
+			return true;
 		}
 	};
 	
