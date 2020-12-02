@@ -49,12 +49,11 @@ public class FeatureHierarchyExamples extends CFWAppFeature {
 			
 			HierarchicalPerson ceo = HierarchicalPersonDBMethods.createGetObject(
 					new HierarchicalPerson()
-					.firstname(firstname)
-					.lastname(lastname)
-					.email(email)
-					.location(location)
-					.likesTiramisu(CFWRandom.getBoolean())
-						
+						.firstname(firstname)
+						.lastname(lastname)
+						.email(email)
+						.location(location)
+						.likesTiramisu(CFWRandom.getBoolean())		
 			);
 			
 			//-----------------------------

@@ -42,13 +42,11 @@ public class HierarchicalPerson extends CFWObject {
 		
 		@Override
 		public boolean canSort(String sortedElementID, String targetParentID) {
-			// TODO Auto-generated method stub
 			return false;
 		}
 		
 		@Override
 		public boolean canAccessHierarchy(String rootElementID) {
-			// TODO Auto-generated method stub
 			return false;
 		}
 	};
@@ -124,7 +122,6 @@ public class HierarchicalPerson extends CFWObject {
 	public void initDB() {
 
 	}
-	
 	
 	/**************************************************************************************
 	 * 
