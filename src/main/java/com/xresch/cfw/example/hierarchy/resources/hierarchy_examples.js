@@ -5,10 +5,11 @@
  * @author Reto Scheiwiller, (c) Copyright 2019 
  **************************************************************************************************************/
 
-var SORTHIERARCHY_URL = "./sorthierarchy";
+var HIERARCHY_URL = "/app/hierarchy";
 var JSEXAMPLES_LAST_OPTIONS = null;
 var URL_PARAMS=CFW.http.getURLParams();
 
+var EXAMPLE_CONFIG_ID = "hierarchicalperson";
 
 /******************************************************************
  * Delete
@@ -16,7 +17,7 @@ var URL_PARAMS=CFW.http.getURLParams();
 function hierarchyexamples_duplicate(id){
 	
 	params = {action: "duplicate", item: "person", id: id};
-	CFW.http.getJSON(SORTHIERARCHY_URL, params, 
+	CFW.http.getJSON(HIERARCHY_URL, params, 
 		function(data) {
 			if(data.success){
 				CFW.cache.clearCache();
@@ -66,16 +67,9 @@ function hierarchyexamples_printSortableHierarchy(data){
 						}
 			 			 
 			 		}
-			 	},
-				//actions: actionButtons,
-//				bulkActions: {
-//					"Edit": function (elements, records, values){ alert('Edit records '+values.join(',')+'!'); },
-//					"Delete": function (elements, records, values){ $(elements).remove(); },
-//				},
-//				bulkActionsPos: "both",
-				
+			 	},				
 				rendererSettings: {
-					hierarchy_sorter: {narrow: false, filterable: true}
+					hierarchy_sorter: {configid: EXAMPLE_CONFIG_ID}
 				},
 			};
 				
@@ -98,8 +92,8 @@ function hierarchyexamples_draw(){
 	window.setTimeout( 
 	function(){
 		
-		//CFW.http.fetchAndCacheData(SORTHIERARCHY_URL, {configid: "hierarchicalperson", action: "fetch", item: "hierarchy", rootid: 1}, "hierarchy", hierarchyexamples_printSortableHierarchy);
-		CFW.http.fetchAndCacheData(SORTHIERARCHY_URL, {configid: "hierarchicalperson", action: "fetch", item: "hierarchy"}, "hierarchy", hierarchyexamples_printSortableHierarchy);
+		//CFW.http.fetchAndCacheData(HIERARCHY_URL, {configid: "hierarchicalperson", action: "fetch", item: "hierarchy", rootid: 1}, "hierarchy", hierarchyexamples_printSortableHierarchy);
+		CFW.http.fetchAndCacheData(HIERARCHY_URL, {configid: EXAMPLE_CONFIG_ID, action: "fetch", item: "hierarchy"}, "hierarchy", hierarchyexamples_printSortableHierarchy);
 		
 		CFW.ui.toogleLoader(false);
 	}, 50);
