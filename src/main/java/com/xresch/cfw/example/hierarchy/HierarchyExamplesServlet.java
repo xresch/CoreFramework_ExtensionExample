@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.xresch.cfw._main.CFW;
+import com.xresch.cfw._main.CFWMessages;
 import com.xresch.cfw.caching.FileDefinition.HandlingType;
 import com.xresch.cfw.datahandling.CFWForm;
 import com.xresch.cfw.datahandling.CFWFormHandler;
@@ -38,7 +39,7 @@ public class HierarchyExamplesServlet extends HttpServlet
 	@Override
     protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException
     {
-		HTMLResponse html = new HTMLResponse("Javascript Examples");
+		HTMLResponse html = new HTMLResponse("Hierarchy Examples");
 		
 		if(CFW.Context.Request.hasPermission(ExampleExtensionApplication.PERMISSION_CFWSAMPLES)) {
 			
@@ -59,7 +60,7 @@ public class HierarchyExamplesServlet extends HttpServlet
 				handleDataRequest(request, response);
 			}
 		}else {
-			CFW.Context.Request.addMessageAccessDenied();
+			CFWMessages.accessDenied();
 		}
         
     }
@@ -83,6 +84,9 @@ public class HierarchyExamplesServlet extends HttpServlet
 				switch(item.toLowerCase()) {
 					case "personlist": 		jsonResponse.getContent().append(PersonDBMethods.getPersonListAsJSON());
 	  										break;
+	  				
+					default: 				CFW.Messages.itemNotSupported(item);
+											break;
 				}
 				break;
 			
@@ -93,6 +97,9 @@ public class HierarchyExamplesServlet extends HttpServlet
 											String filterquery = request.getParameter("filterquery");
 											jsonResponse.getContent().append(PersonDBMethods.getPartialPersonListAsJSON(pagesize, pagenumber, filterquery));
 	  										break;
+	  										
+					default: 				CFW.Messages.itemNotSupported(item);
+											break;
 				}
 				break;	
 			
@@ -102,7 +109,7 @@ public class HierarchyExamplesServlet extends HttpServlet
 					case "person": 		deletePerson(jsonResponse, ID);
 										break;  
 										
-					default: 			CFW.Context.Request.addAlertMessage(MessageType.ERROR, "The value of item '"+item+"' is not supported.");
+					default: 			CFW.Messages.itemNotSupported(item);
 										break;
 				}
 				break;	
@@ -113,7 +120,7 @@ public class HierarchyExamplesServlet extends HttpServlet
 					case "person": 	 	duplicatePerson(jsonResponse, ID);
 										break;  
 										
-					default: 			CFW.Context.Request.addAlertMessage(MessageType.ERROR, "The value of item '"+item+"' is not supported.");
+					default: 			CFW.Messages.itemNotSupported(item);
 										break;
 				}
 				break;	
@@ -122,12 +129,12 @@ public class HierarchyExamplesServlet extends HttpServlet
 					case "editperson": 	createEditForm(jsonResponse, ID);
 					break;
 					
-					default: 			CFW.Context.Request.addAlertMessage(MessageType.ERROR, "The value of item '"+item+"' is not supported.");
+					default: 			CFW.Messages.itemNotSupported(item);
 										break;
 				}
 				break;
 						
-			default: 			CFW.Context.Request.addAlertMessage(MessageType.ERROR, "The action '"+action+"' is not supported.");
+			default: 			CFW.Messages.actionNotSupported(action);
 								break;
 								
 		}

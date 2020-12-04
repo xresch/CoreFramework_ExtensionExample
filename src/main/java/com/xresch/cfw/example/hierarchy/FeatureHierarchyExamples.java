@@ -41,23 +41,29 @@ public class FeatureHierarchyExamples extends CFWAppFeature {
 		// Create Testdata
 		if(HierarchicalPersonDBMethods.getCount() == 0) {
 		
-			String firstname = CFWRandom.randomFirstnameOfGod();
-			String lastname = CFWRandom.randomLastnameSweden();
-			String location = CFWRandom.randomMythicalLocation();
-			String email = firstname.toLowerCase() + "." + lastname.toLowerCase() + "@"+location.replace(" ", "-").toLowerCase() + ".com";
+			//----------------------------------
+			// Create 3 hierarchy root elements
+			for(int i = 0; i < 3; i++) {
+				String firstname = CFWRandom.randomFirstnameOfGod();
+				String lastname = CFWRandom.randomLastnameSweden();
+				String location = CFWRandom.randomMythicalLocation();
+				String email = firstname.toLowerCase() + "." + lastname.toLowerCase() + "@"+location.replace(" ", "-").toLowerCase() + ".com";
+				
+				HierarchicalPerson ceo = HierarchicalPersonDBMethods.createGetObject(
+						new HierarchicalPerson()
+							.firstname(firstname)
+							.lastname(lastname)
+							.email(email)
+							.location(location)
+							.likesTiramisu(CFWRandom.getBoolean())		
+				);
+				
+				//-----------------------------
+				// Create Subordinates
+				createSubordinates(ceo, 6, 6, 0, 4);
+			}
 			
-			HierarchicalPerson ceo = HierarchicalPersonDBMethods.createGetObject(
-					new HierarchicalPerson()
-						.firstname(firstname)
-						.lastname(lastname)
-						.email(email)
-						.location(location)
-						.likesTiramisu(CFWRandom.getBoolean())		
-			);
-			
-			//-----------------------------
-			// Create Subordinates
-			createSubordinates(ceo, 6, 6, 0, 4);
+
 		}
 				
 	}

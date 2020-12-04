@@ -98,8 +98,9 @@ function hierarchyexamples_draw(){
 	window.setTimeout( 
 	function(){
 		
-		CFW.http.fetchAndCacheData(SORTHIERARCHY_URL, {type: "hierarchicalperson", action: "fetch", item: "hierarchy", rootid: 1}, "hierarchy", hierarchyexamples_printSortableHierarchy);
-			
+		//CFW.http.fetchAndCacheData(SORTHIERARCHY_URL, {configid: "hierarchicalperson", action: "fetch", item: "hierarchy", rootid: 1}, "hierarchy", hierarchyexamples_printSortableHierarchy);
+		CFW.http.fetchAndCacheData(SORTHIERARCHY_URL, {configid: "hierarchicalperson", action: "fetch", item: "hierarchy"}, "hierarchy", hierarchyexamples_printSortableHierarchy);
+		
 		CFW.ui.toogleLoader(false);
 	}, 50);
 }

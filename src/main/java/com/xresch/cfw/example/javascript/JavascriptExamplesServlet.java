@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.xresch.cfw._main.CFW;
+import com.xresch.cfw._main.CFWMessages;
 import com.xresch.cfw.caching.FileDefinition.HandlingType;
 import com.xresch.cfw.datahandling.CFWForm;
 import com.xresch.cfw.datahandling.CFWFormHandler;
@@ -59,7 +60,7 @@ public class JavascriptExamplesServlet extends HttpServlet
 				handleDataRequest(request, response);
 			}
 		}else {
-			CFW.Context.Request.addMessageAccessDenied();
+			CFWMessages.accessDenied();
 		}
         
     }
@@ -83,6 +84,9 @@ public class JavascriptExamplesServlet extends HttpServlet
 				switch(item.toLowerCase()) {
 					case "personlist": 		jsonResponse.getContent().append(PersonDBMethods.getPersonListAsJSON());
 	  										break;
+	  										
+					default: 				CFW.Messages.itemNotSupported(item);
+											break;
 				}
 				break;
 			
@@ -93,6 +97,9 @@ public class JavascriptExamplesServlet extends HttpServlet
 											String filterquery = request.getParameter("filterquery");
 											jsonResponse.getContent().append(PersonDBMethods.getPartialPersonListAsJSON(pagesize, pagenumber, filterquery));
 	  										break;
+	  										
+					default: 				CFW.Messages.itemNotSupported(item);
+											break;
 				}
 				break;	
 			
@@ -102,7 +109,7 @@ public class JavascriptExamplesServlet extends HttpServlet
 					case "person": 		deletePerson(jsonResponse, ID);
 										break;  
 										
-					default: 			CFW.Context.Request.addAlertMessage(MessageType.ERROR, "The value of item '"+item+"' is not supported.");
+					default: 			CFW.Messages.itemNotSupported(item);
 										break;
 				}
 				break;	
@@ -113,21 +120,22 @@ public class JavascriptExamplesServlet extends HttpServlet
 					case "person": 	 	duplicatePerson(jsonResponse, ID);
 										break;  
 										
-					default: 			CFW.Context.Request.addAlertMessage(MessageType.ERROR, "The value of item '"+item+"' is not supported.");
+					default: 			CFW.Messages.itemNotSupported(item);
 										break;
 				}
 				break;	
+				
 			case "getform": 			
 				switch(item.toLowerCase()) {
 					case "editperson": 	createEditForm(jsonResponse, ID);
-					break;
+										break;
 					
-					default: 			CFW.Context.Request.addAlertMessage(MessageType.ERROR, "The value of item '"+item+"' is not supported.");
+					default: 			CFW.Messages.itemNotSupported(item);
 										break;
 				}
 				break;
 						
-			default: 			CFW.Context.Request.addAlertMessage(MessageType.ERROR, "The action '"+action+"' is not supported.");
+			default: 			CFW.Messages.actionNotSupported(action);
 								break;
 								
 		}
