@@ -40,7 +40,7 @@ public class ServletContextSettingsChooser extends HttpServlet
         	CFWField.newString(FormFieldType.SELECT, "environment")
 				.setLabel("Example Environment")
 				.setDescription("Choose an enviromnent from the list")
-				.setOptions(CFW.DB.ContextSettings.getSelectOptionsForType(ExampleEnvironment.SETTINGS_TYPE))
+				.setOptions(CFW.DB.ContextSettings.getSelectOptionsForTypeAndUser(ExampleEnvironment.SETTINGS_TYPE))
 		);
         
         content.append("<h2>Form with Environment</h2>");
