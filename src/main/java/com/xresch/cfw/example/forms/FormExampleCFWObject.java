@@ -100,10 +100,24 @@ public class FormExampleCFWObject extends CFWObject{
 	
 	//------------------------------------------------------------------------------------------------
 	// A select with key and value options
-	// see initialize()-method for values.
+	private static LinkedHashMap<Integer, String> options = new LinkedHashMap<Integer, String>();
+	static {
+		options.put(1, "Apple");
+		options.put(2, "Banana");
+		options.put(3, "Plumb");
+		options.put(4, "Strawwberry");
+	}
+
 	private CFWField<Integer> keyValSelect = 
 				CFWField.newInteger(FormFieldType.SELECT, "KEY_VAL_SELECT")
+						.setOptions(options)
 						.setValue(2);
+	
+	//------------------------------------------------------------------------------------------------
+	// A select with options
+	private CFWField<String> unmodifiableText = 
+				CFWField.newString(FormFieldType.UNMODIFIABLE_TEXT, "UNMODIFIABLE_TEXT")
+						.setValue("Just display the value as a unmodifiable text.");
 	
 	//------------------------------------------------------------------------------------------------
 	// A WYSIWYG Editor with default value
@@ -233,14 +247,7 @@ public class FormExampleCFWObject extends CFWObject{
 	//======================================================================
 	// Initialize Fields and add the fields to the object
 	public void initialize() {
-		
-		LinkedHashMap<Integer, String> options = new LinkedHashMap<Integer, String>();
-		options.put(1, "Apple");
-		options.put(2, "Banana");
-		options.put(3, "Plumb");
-		options.put(4, "Strawwberry");
-		keyValSelect.setOptions(options);
-		
+				
 		this.addFields(
 				firstname
 				, lastname
@@ -254,6 +261,7 @@ public class FormExampleCFWObject extends CFWObject{
 				, timestamp
 				, select
 				, keyValSelect
+				, unmodifiableText
 				, editor
 				, tags
 				, tagsselector
