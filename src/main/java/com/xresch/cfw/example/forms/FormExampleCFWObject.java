@@ -100,6 +100,7 @@ public class FormExampleCFWObject extends CFWObject{
 	
 	//------------------------------------------------------------------------------------------------
 	// A select with key and value options
+	// see initialize()-method for values.
 	private CFWField<Integer> keyValSelect = 
 				CFWField.newInteger(FormFieldType.SELECT, "KEY_VAL_SELECT")
 						.setValue(2);
