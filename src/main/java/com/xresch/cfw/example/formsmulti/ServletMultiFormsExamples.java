@@ -13,7 +13,8 @@ import com.xresch.cfw._main.CFWMessages;
 import com.xresch.cfw.caching.FileDefinition.HandlingType;
 import com.xresch.cfw.datahandling.CFWForm;
 import com.xresch.cfw.datahandling.CFWFormHandler;
-import com.xresch.cfw.datahandling.CFWFormMulti;
+import com.xresch.cfw.datahandling.CFWMultiForm;
+import com.xresch.cfw.datahandling.CFWMultiFormHandlerDefault;
 import com.xresch.cfw.datahandling.CFWObject;
 import com.xresch.cfw.db.CFWSQL;
 import com.xresch.cfw.example._main.ExampleExtensionApplication;
@@ -108,23 +109,9 @@ public class ServletMultiFormsExamples extends HttpServlet
 		
 		if(personList.size() != 0) {
 			
-			CFWFormMulti editPersonForm = new CFWFormMulti("cfwMulitFormExample"+CFW.Random.randomStringAlphaNumerical(12), "Save", personList);
+			CFWMultiForm editPersonForm = new CFWMultiForm("cfwMultiFormExample"+CFW.Random.randomStringAlphaNumerical(12), "Save", personList);
 			
-			editPersonForm.setFormHandler(new CFWFormHandler() {
-				
-				@Override
-				public void handleForm(HttpServletRequest request, HttpServletResponse response, CFWForm form, CFWObject origin) {
-					
-					if(origin.mapRequestParameters(request)) {
-						
-						if(PersonDBMethods.update((Person)origin)) {
-							CFW.Context.Request.addAlertMessage(MessageType.SUCCESS, "Updated!");
-						}
-							
-					}
-					
-				}
-			});
+			editPersonForm.setMultiFormHandler(new CFWMultiFormHandlerDefault());
 			
 			editPersonForm.appendToPayload(json);
 			json.setSuccess(true);	
