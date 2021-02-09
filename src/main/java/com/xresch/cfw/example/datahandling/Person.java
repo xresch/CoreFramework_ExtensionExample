@@ -58,7 +58,7 @@ public class Person extends CFWObject {
 			.addValidator(new LengthValidator(-1, 255));
 	
 	private CFWField<Boolean> likesTiramisu = CFWField.newBoolean(FormFieldType.BOOLEAN, PersonFields.LIKES_TIRAMISU)
-					.setDescription("Foreign users are managed by other authentication providers like LDAP. Password in database is ignored when a foreign authentication provider is used.")
+					.setDescription("Define if the person loves tiramisu.")
 					.setValue(false);
 	
 

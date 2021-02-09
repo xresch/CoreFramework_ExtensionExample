@@ -18,7 +18,7 @@ function multiformexamples_createTabs(){
 		
 		var list = $('<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">');
 		
-		list.append('<li class="nav-item"><a class="nav-link" id="tab-datahandling" data-toggle="pill" href="#" role="tab" onclick="multiformexamples_draw({tab: \'basicmultiform\'})"><i class="fas fa-share-alt mr-2"></i>Basic Multi Form</a></li>');
+		list.append('<li class="nav-item"><a class="nav-link active" id="tab-datahandling" data-toggle="pill" href="#" role="tab" onclick="multiformexamples_draw({tab: \'basicmultiform\'})"><i class="fas fa-share-alt mr-2"></i>Basic Multi Form</a></li>');
 		
 		var parent = $("#cfw-container");
 		parent.append(list);
