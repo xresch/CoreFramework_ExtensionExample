@@ -114,6 +114,19 @@ public class FormExampleCFWObject extends CFWObject{
 						.setValue(2);
 	
 	//------------------------------------------------------------------------------------------------
+	// Value Label lets the users enter value/label-pairs that can be used for example for custom select options.
+	private static LinkedHashMap<String, String> valueLabels = new LinkedHashMap<String, String>();
+	static {
+		valueLabels.put("myValue", "My Value Label");
+		valueLabels.put("test_some_entry", "Test Some Entry Labels");
+	}
+	private CFWField<LinkedHashMap<String, String>> valueLabel = 
+				CFWField.newValueLabel("JSON_VALUE_LABEL")
+						.setLabel("Value Label")
+						.setDescription("Add Values and labels")
+						.setValue(valueLabels);
+	
+	//------------------------------------------------------------------------------------------------
 	// A select with options
 	private CFWField<String> unmodifiableText = 
 				CFWField.newString(FormFieldType.UNMODIFIABLE_TEXT, "UNMODIFIABLE_TEXT")
@@ -261,6 +274,7 @@ public class FormExampleCFWObject extends CFWObject{
 				, timestamp
 				, select
 				, keyValSelect
+				, valueLabel
 				, unmodifiableText
 				, editor
 				, tags
