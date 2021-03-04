@@ -1,4 +1,4 @@
-package com.xresch.cfw.example.dashboardwidget;
+package com.xresch.cfw.example.dashboarding;
 
 import com.xresch.cfw._main.CFW;
 import com.xresch.cfw._main.CFWAppFeature;
@@ -12,13 +12,10 @@ import com.xresch.cfw.features.manual.ManualPage;
  * @license MIT-License
  **************************************************************************************************************/
 @CFWExtensionFeature
-public class FeatureWidgetExample extends CFWAppFeature {
+public class FeatureDashboardingExample extends CFWAppFeature {
 		
-	public static final String RESOURCE_PACKAGE = "com.xresch.cfw.example.dashboardwidget.resources";
+	public static final String RESOURCE_PACKAGE = "com.xresch.cfw.example.dashboarding.resources";
 
-	
-	public static final ManualPage ROOT_MANUAL_PAGE = CFW.Registry.Manual.addManualPage(null, new ManualPage("Dashboard").faicon("fas fa-tachometer-alt"));
-	
 	@Override
 	public void register() {
 		//----------------------------------
@@ -29,6 +26,11 @@ public class FeatureWidgetExample extends CFWAppFeature {
     	//----------------------------------
     	// Register Widgets
 		CFW.Registry.Widgets.add(new ExampleWidgetHelloWorld());
+		
+		
+    	//----------------------------------
+    	// Register Parameters
+		CFW.Registry.Parameters.add(new ParameterDefinitionExampleEnvironment());
 		
 	}
 
