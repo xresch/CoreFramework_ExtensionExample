@@ -69,7 +69,7 @@ public class FeatureJavascriptExamples extends CFWAppFeature {
 	@Override
 	public void addFeature(CFWApplicationExecutor executor) {
 		
-		executor.addAppServlet(JavascriptExamplesServlet.class, "/jsexamples");
+		executor.addAppServlet(ServletJavascriptExamples.class, "/jsexamples");
 
 	}
 

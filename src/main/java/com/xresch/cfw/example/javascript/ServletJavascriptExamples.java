@@ -24,12 +24,12 @@ import com.xresch.cfw.response.bootstrap.AlertMessage.MessageType;
  * 
  * @author Reto Scheiwiller, (c) Copyright 2020
  **************************************************************************************************************/
-public class JavascriptExamplesServlet extends HttpServlet
+public class ServletJavascriptExamples extends HttpServlet
 {
 
 	private static final long serialVersionUID = 1L;
 	
-	public JavascriptExamplesServlet() {
+	public ServletJavascriptExamples() {
 	
 	}
 	

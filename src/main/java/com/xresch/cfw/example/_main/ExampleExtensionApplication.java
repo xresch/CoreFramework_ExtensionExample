@@ -35,6 +35,7 @@ public class ExampleExtensionApplication implements CFWAppInterface {
 		//----------------------------------
 		// Register Features
 		CFW.Registry.Features.addFeature(FeatureRegular.class);
+		CFW.Registry.Features.addFeature(FeatureManaged.class);
 		
 		//----------------------------------
 		// Register Menu Entry

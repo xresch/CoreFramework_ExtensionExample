@@ -5,7 +5,7 @@ import com.xresch.cfw._main.CFWAppFeature;
 import com.xresch.cfw._main.CFWApplicationExecutor;
 import com.xresch.cfw._main.CFWExtensionFeature;
 import com.xresch.cfw.example._main.ExampleExtensionApplication;
-import com.xresch.cfw.example.javascript.JavascriptExamplesServlet;
+import com.xresch.cfw.example.javascript.ServletJavascriptExamples;
 import com.xresch.cfw.response.bootstrap.MenuItem;
 
 /**************************************************************************************************************
