@@ -55,7 +55,7 @@ public class FeatureHierarchyExamples extends CFWAppFeature {
 							.lastname(lastname)
 							.email(email)
 							.location(location)
-							.likesTiramisu(CFWRandom.getBoolean())		
+							.likesTiramisu(CFWRandom.randomBoolean())		
 				);
 				
 				//-----------------------------
@@ -87,7 +87,7 @@ public class FeatureHierarchyExamples extends CFWAppFeature {
 				.lastname(lastname)
 				.email(email)
 				.location(location)
-				.likesTiramisu(CFWRandom.getBoolean());
+				.likesTiramisu(CFWRandom.randomBoolean());
 			
 			person.setParent(parent);
 			
