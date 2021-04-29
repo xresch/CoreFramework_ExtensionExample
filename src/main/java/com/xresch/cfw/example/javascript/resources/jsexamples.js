@@ -179,7 +179,7 @@ function jsexamples_printDataHandling(data){
 			 	textstylefield: null,
 			 	titlefields: ['NAME'],
 			 	titleformat: '{0}',
-			 	visiblefields: ['PK_ID', 'FIRSTNAME', 'LASTNAME', 'LOCATION', "EMAIL", "LIKES_TIRAMISU"],
+			 	visiblefields: ['PK_ID', 'FIRSTNAME', 'LASTNAME', 'LOCATION', "EMAIL", "LIKES_TIRAMISU", "CHARACTER"],
 			 	labels: {
 			 		PK_ID: "ID",
 			 	},
@@ -192,6 +192,9 @@ function jsexamples_printDataHandling(data){
 							return '<span class="badge badge-danger m-1">false</span>';
 						}
 			 			 
+			 		},
+				 	CHARACTER: function(record, value) { 
+				 		return CFW.format.arrayToBadges(value.split(','));			 			 
 			 		}
 			 	},
 				actions: actionButtons,
@@ -290,7 +293,7 @@ function jsexamples_printPaginationStatic(data){
 			 	textstylefield: null,
 			 	titlefields: ['NAME'],
 			 	titleformat: '{0}',
-			 	visiblefields: ['PK_ID', 'FIRSTNAME', 'LASTNAME', 'LOCATION', "EMAIL", "LIKES_TIRAMISU"],
+			 	visiblefields: ['PK_ID', 'FIRSTNAME', 'LASTNAME', 'LOCATION', "EMAIL", "LIKES_TIRAMISU", "CHARACTER"],
 			 	labels: {
 			 		PK_ID: "ID",
 			 	},
@@ -301,8 +304,10 @@ function jsexamples_printPaginationStatic(data){
 								return '<span class="badge badge-success m-1">true</span>';
 						}else{
 							return '<span class="badge badge-danger m-1">false</span>';
-						}
-			 			 
+						} 
+			 		},
+			 		CHARACTER: function(record, value) { 
+				 		return CFW.format.arrayToBadges(value.split(','));			 			 
 			 		}
 			 	},
 				actions: actionButtons,
@@ -392,7 +397,7 @@ function jsexamples_printPaginationDynamic(){
 		 	textstylefield: null,
 		 	titlefields: ['NAME'],
 		 	titleformat: '{0}',
-		 	visiblefields: ['PK_ID', 'FIRSTNAME', 'LASTNAME', 'LOCATION', "EMAIL", "LIKES_TIRAMISU"],
+		 	visiblefields: ['PK_ID', 'FIRSTNAME', 'LASTNAME', 'LOCATION', "EMAIL", "LIKES_TIRAMISU", "CHARACTER"],
 		 	labels: {
 		 		PK_ID: "ID",
 		 	},
@@ -405,6 +410,9 @@ function jsexamples_printPaginationDynamic(){
 						return '<span class="badge badge-danger m-1">false</span>';
 					}
 		 			 
+		 		},
+		 		CHARACTER: function(record, value) { 
+			 		return CFW.format.arrayToBadges(value.split(','));			 			 
 		 		}
 		 	},
 			actions: actionButtons,
@@ -494,7 +502,7 @@ function jsexamples_printFullDataviewer(){
 		 	textstylefield: null,
 		 	titlefields: ['FIRSTNAME', 'LASTNAME'],
 		 	titleformat: '{0} {1}',
-		 	visiblefields: ['PK_ID', 'FIRSTNAME', 'LASTNAME', 'LOCATION', "EMAIL", "LIKES_TIRAMISU"],
+		 	visiblefields: ['PK_ID', 'FIRSTNAME', 'LASTNAME', 'LOCATION', "EMAIL", "LIKES_TIRAMISU", "CHARACTER"],
 		 	labels: {
 		 		PK_ID: "ID",
 		 	},
@@ -506,7 +514,9 @@ function jsexamples_printFullDataviewer(){
 					}else{
 						return '<span class="badge badge-danger m-1">false</span>';
 					}
-		 			 
+		 		},
+		 		CHARACTER: function(record, value) { 
+			 		return CFW.format.arrayToBadges(value.split(','));			 			 
 		 		}
 		 	},
 			actions: actionButtons,

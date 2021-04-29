@@ -4,11 +4,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.xresch.cfw._main.CFW;
 import com.xresch.cfw.datahandling.CFWField;
 import com.xresch.cfw.datahandling.CFWField.FormFieldType;
 import com.xresch.cfw.datahandling.CFWObject;
 import com.xresch.cfw.features.api.APIDefinition;
 import com.xresch.cfw.features.api.APIDefinitionFetch;
+import com.xresch.cfw.utils.CFWRandom;
 import com.xresch.cfw.validation.EmailValidator;
 import com.xresch.cfw.validation.LengthValidator;
 
@@ -26,7 +28,19 @@ public class Person extends CFWObject {
 		LASTNAME, 
 		LOCATION,
 		EMAIL, 
-		LIKES_TIRAMISU
+		LIKES_TIRAMISU,
+		CHARACTER
+	}
+	
+	private static ArrayList<String> fullTextSearchColumns = new ArrayList<>();
+	static {
+		fullTextSearchColumns.add(PersonFields.PK_ID.toString());
+		fullTextSearchColumns.add(PersonFields.FIRSTNAME.toString());
+		fullTextSearchColumns.add(PersonFields.LASTNAME.toString());
+		fullTextSearchColumns.add(PersonFields.LOCATION.toString());
+		fullTextSearchColumns.add(PersonFields.EMAIL.toString());
+		fullTextSearchColumns.add(PersonFields.LIKES_TIRAMISU.toString());
+		fullTextSearchColumns.add(PersonFields.CHARACTER.toString());
 	}
 	
 	private CFWField<Integer> id = CFWField.newInteger(FormFieldType.HIDDEN, PersonFields.PK_ID)
@@ -61,7 +75,13 @@ public class Person extends CFWObject {
 					.setDescription("Define if the person loves tiramisu.")
 					.setValue(false);
 	
-
+	//------------------------------------------------------------------------------------------------
+	// A tags field which will create a comma separated string
+	private CFWField<String> character = 
+			CFWField.newString(FormFieldType.TAGS, PersonFields.CHARACTER)
+					.addAttribute("maxTags", "7")
+					.setDescription("Type at least 3 characters to get suggestions.");
+					
 	public Person() {
 		initializeFields();
 	}
@@ -78,14 +98,15 @@ public class Person extends CFWObject {
 		
 	private void initializeFields() {
 		this.setTableName(TABLE_NAME);
-		this.enableFulltextSearch();
+		this.enableFulltextSearch(fullTextSearchColumns);
 		
 		this.addFields(id, 
 				firstname, 
 				lastname, 
 				email,
 				location,
-				likesTiramisu
+				likesTiramisu,
+				character
 				);
 	}
 	
@@ -93,6 +114,33 @@ public class Person extends CFWObject {
 	 * 
 	 **************************************************************************************/
 	public void initDB() {
+		//-------------------------------------
+    	// Create Testdata
+		if(PersonDBMethods.getCount() == 0) {
+			
+			for(int i = 0; i < 321; i++) {
+				
+				String firstname = CFWRandom.randomFirstnameOfGod();
+				String lastname = CFWRandom.randomLastnameSweden();
+				String location = CFWRandom.randomMythicalLocation();
+				String email = firstname.toLowerCase() + "." + lastname.toLowerCase() + "@"+location.replace(" ", "-").toLowerCase() + ".com";
+				
+				int randomCount = CFW.Random.randomIntegerInRange(1, 7);
+				String character = String.join(",", CFWRandom.randomArrayOfExaggaratingAdjectives(randomCount));
+				
+				PersonDBMethods.create(
+					new Person()
+						.firstname(firstname)
+						.lastname(lastname)
+						.email(email)
+						.location(location)
+						.likesTiramisu(CFWRandom.randomBoolean())
+						.character(character)
+				);
+					
+				
+			}
+		}
 
 	}
 	
@@ -110,7 +158,8 @@ public class Person extends CFWObject {
 						PersonFields.FIRSTNAME.toString(),
 						PersonFields.LASTNAME.toString(),
 						PersonFields.LOCATION.toString(),
-						PersonFields.LIKES_TIRAMISU.toString()
+						PersonFields.LIKES_TIRAMISU.toString(),
+						PersonFields.CHARACTER.toString(),
 				};
 		
 		String[] outputFields = 
@@ -120,7 +169,8 @@ public class Person extends CFWObject {
 						PersonFields.FIRSTNAME.toString(),
 						PersonFields.LASTNAME.toString(),
 						PersonFields.LOCATION.toString(),
-						PersonFields.LIKES_TIRAMISU.toString()
+						PersonFields.LIKES_TIRAMISU.toString(),
+						PersonFields.CHARACTER.toString(),
 				};
 
 		//----------------------------------
@@ -190,6 +240,15 @@ public class Person extends CFWObject {
 	
 	public Person likesTiramisu(boolean isForeign) {
 		this.likesTiramisu.setValue(isForeign);
+		return this;
+	}
+	
+	public String character() {
+		return character.getValue();
+	}
+	
+	public Person character(String character) {
+		this.character.setValue(character);
 		return this;
 	}
 	

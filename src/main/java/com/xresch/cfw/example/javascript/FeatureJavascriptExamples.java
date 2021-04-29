@@ -39,31 +39,6 @@ public class FeatureJavascriptExamples extends CFWAppFeature {
 	@Override
 	public void initializeDB() {
 		
-		
-		//-------------------------------------
-    	// Create Testdata
-		if(PersonDBMethods.getCount() == 0) {
-			
-			for(int i = 0; i < 321; i++) {
-				
-				String firstname = CFWRandom.randomFirstnameOfGod();
-				String lastname = CFWRandom.randomLastnameSweden();
-				String location = CFWRandom.randomMythicalLocation();
-				String email = firstname.toLowerCase() + "." + lastname.toLowerCase() + "@"+location.replace(" ", "-").toLowerCase() + ".com";
-				
-				PersonDBMethods.create(
-					new Person()
-						.firstname(firstname)
-						.lastname(lastname)
-						.email(email)
-						.location(location)
-						.likesTiramisu(CFWRandom.randomBoolean())
-				);
-					
-				
-			}
-		}
-
 	}
 
 	@Override
