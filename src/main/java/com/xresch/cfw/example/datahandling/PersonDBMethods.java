@@ -2,7 +2,6 @@ package com.xresch.cfw.example.datahandling;
 
 import java.util.logging.Logger;
 
-import com.google.common.base.Strings;
 import com.xresch.cfw.datahandling.CFWObject;
 import com.xresch.cfw.db.CFWDBDefaultOperations;
 import com.xresch.cfw.db.CFWSQL;
@@ -118,29 +117,38 @@ public class PersonDBMethods {
 	
 	public static String getPartialPersonListAsJSON(int pageSize, int pageNumber, String filterquery) {	
 		
-		if(Strings.isNullOrEmpty(filterquery)) {
-			//-------------------------------------
-			// Unfiltered
-			return new CFWSQL(new Person())
-				.queryCache()
-				.columnSubquery("TOTAL_RECORDS", "COUNT(*) OVER()")
-				.select()
-				.limit(pageSize)
-				.offset(pageSize*(pageNumber-1))
+		//-------------------------------------
+		// Filter with fulltext search
+		// Enabled by CFWObject.enableFulltextSearch()
+		// on the Person Object
+		return new CFWSQL(new Person())
+				.fulltextSearch(filterquery, pageSize, pageNumber)
 				.getAsJSON();
-		}else {
-			//-------------------------------------
-			// Filter with fulltext search
-			// Enabled by CFWObject.enableFulltextSearch()
-			// on the Person Object
-			return new CFWSQL(new Person())
-					.queryCache()
-					.select()
-					.fulltextSearch()
-						.custom(filterquery)
-						.build(pageSize, pageSize*(pageNumber-1))
-					.getAsJSON();
-		}
+		
+		
+//		if(Strings.isNullOrEmpty(filterquery)) {
+//			//-------------------------------------
+//			// Unfiltered
+//			return new CFWSQL(new Person())
+//				.queryCache()
+//				.columnSubquery("TOTAL_RECORDS", "COUNT(*) OVER()")
+//				.select()
+//				.limit(pageSize)
+//				.offset(pageSize*(pageNumber-1))
+//				.getAsJSON();
+//		}else {
+//			//-------------------------------------
+//			// Filter with fulltext search
+//			// Enabled by CFWObject.enableFulltextSearch()
+//			// on the Person Object
+//			return new CFWSQL(new Person())
+//					.queryCache()
+//					.select()
+//					.fulltextSearch()
+//						.custom(filterquery)
+//						.build(pageSize, pageNumber)
+//					.getAsJSON();
+//		}
 		
 	}
 	

@@ -80,6 +80,9 @@ public class FormExampleCFWObject extends CFWObject{
 						.addValidator(new NumberRangeValidator(8, 8008))
 						.setValue(42);
 	
+	private CFWField<Boolean> booleanField = 
+			CFWField.newBoolean(FormFieldType.BOOLEAN, "boolean")
+					.setLabel("Boolean");
 	//------------------------------------------------------------------------------------------------
 	// A datepicker field with an initial value
 	private CFWField<Date> date = 
@@ -91,6 +94,12 @@ public class FormExampleCFWObject extends CFWObject{
 	private CFWField<Timestamp> timestamp = 
 				CFWField.newTimestamp(FormFieldType.DATETIMEPICKER, "TIMESTAMP")
 				.setValue(new Timestamp(1580053600000L));
+	
+	//------------------------------------------------------------------------------------------------
+	// A date and time picker field without a default value
+	private CFWField<String> schedule = 
+				CFWField.newSchedule("JSON_SCHEDULE")
+				.setValue(null);
 	
 	//------------------------------------------------------------------------------------------------
 	// A select with options
@@ -270,8 +279,10 @@ public class FormExampleCFWObject extends CFWObject{
 				, textarea
 				, number
 				, numberRange
+				, booleanField
 				, date
 				, timestamp
+				, schedule
 				, select
 				, keyValSelect
 				, valueLabel
