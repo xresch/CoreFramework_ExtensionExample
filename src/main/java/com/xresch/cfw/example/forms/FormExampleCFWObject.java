@@ -99,6 +99,7 @@ public class FormExampleCFWObject extends CFWObject{
 	// A date and time picker field without a default value
 	private CFWField<String> schedule = 
 				CFWField.newSchedule("JSON_SCHEDULE")
+				.setLabel("Schedule")
 				.setValue(null);
 	
 	//------------------------------------------------------------------------------------------------
@@ -140,6 +141,10 @@ public class FormExampleCFWObject extends CFWObject{
 	private CFWField<String> unmodifiableText = 
 				CFWField.newString(FormFieldType.UNMODIFIABLE_TEXT, "UNMODIFIABLE_TEXT")
 						.setValue("Just display the value as a unmodifiable text.");
+	
+	//------------------------------------------------------------------------------------------------
+	// A select for ISO language
+	private CFWField<String> language =  CFWField.newString(FormFieldType.LANGUAGE, "LANGUAGE");
 	
 	//------------------------------------------------------------------------------------------------
 	// A WYSIWYG Editor with default value
@@ -286,6 +291,7 @@ public class FormExampleCFWObject extends CFWObject{
 				, select
 				, keyValSelect
 				, valueLabel
+				, language
 				, unmodifiableText
 				, editor
 				, tags
