@@ -42,11 +42,12 @@ public class FeatureContextSettingsExample extends CFWAppFeature {
 
 	@Override
 	public void initializeDB() {
-		ExampleEnvironmentManagement.initialize();
+		/* do nothing */
 	}
 
 	@Override
 	public void addFeature(CFWApplicationExecutor app) {	
+		ExampleEnvironmentManagement.initialize();
 		app.addAppServlet(ServletContextSettingsChooser.class, "/contextsettingschooser");
 	}
 

@@ -4,7 +4,6 @@ import com.xresch.cfw._main.CFW;
 import com.xresch.cfw._main.CFWAppFeature;
 import com.xresch.cfw._main.CFWApplicationExecutor;
 import com.xresch.cfw._main.CFWExtensionFeature;
-import com.xresch.cfw.features.manual.ManualPage;
 
 /**************************************************************************************************************
  * 
