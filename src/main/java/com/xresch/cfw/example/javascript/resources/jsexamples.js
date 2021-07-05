@@ -335,7 +335,7 @@ function jsexamples_printPaginationStatic(data){
 
 
 /******************************************************************
- * Example of pagination of static data using the dataviewer render.
+ * Example of pagination of dynamic data using the dataviewer render.
  * 
  * @param data as returned by CFW.http.getJSON()
  ******************************************************************/
