@@ -28,7 +28,7 @@ public class FeatureRegular extends CFWAppFeature {
 		CFW.Registry.Components.addRegularMenuItem(
 				(MenuItem)new MenuItem("Show Support Info")
 					.faicon("fas fa-info")
-					.onclick("cfw_showSupportInfoModal();")
+					.onclick("cfw_ui_showSupportInfoModal();")
 				, "Regular Feature");
 		
 	}

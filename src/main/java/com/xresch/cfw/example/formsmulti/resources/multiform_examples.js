@@ -49,12 +49,12 @@ function multiformexamples_delete(id){
 	CFW.http.getJSON(JSEXAMPLES_URL, params, 
 		function(data) {
 			if(data.success){
-				//CFW.ui.showSmallModal('Success!', '<span>The selected '+item+' were deleted.</span>');
+				//CFW.ui.showModalSmall('Success!', '<span>The selected '+item+' were deleted.</span>');
 				//clear cache and reload data
 				CFW.cache.clearCache();
 				multiformexamples_draw(JSEXAMPLES_LAST_OPTIONS);
 			}else{
-				CFW.ui.showSmallModal("Error!", '<span>The selected person could <b style="color: red">NOT</strong> be deleted.</span>');
+				CFW.ui.showModalSmall("Error!", '<span>The selected person could <b style="color: red">NOT</strong> be deleted.</span>');
 			}
 	});
 }

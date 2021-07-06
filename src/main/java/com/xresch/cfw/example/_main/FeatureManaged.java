@@ -49,7 +49,7 @@ public class FeatureManaged extends CFWAppFeature {
 		ExampleExtensionApplication.EXTENSION_MENU_ROOT.addChild(
 				(MenuItem)new MenuItem("Managed Feature")
 					.faicon("fas fa-star")
-					.onclick("CFW.ui.showModal('Managed Example', 'This Feature can be disabled in the Feature management.');")
+					.onclick("CFW.ui.showModalMedium('Managed Example', 'This Feature can be disabled in the Feature management.');")
 		);
 		
 		
