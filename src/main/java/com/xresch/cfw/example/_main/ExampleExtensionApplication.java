@@ -4,6 +4,7 @@ import com.xresch.cfw._main.CFW;
 import com.xresch.cfw._main.CFWAppInterface;
 import com.xresch.cfw._main.CFWApplicationExecutor;
 import com.xresch.cfw._main.CFWExtensionApplication;
+import com.xresch.cfw.features.usermgmt.FeatureUserManagement;
 import com.xresch.cfw.features.usermgmt.Permission;
 import com.xresch.cfw.response.bootstrap.MenuItem;
 
@@ -49,7 +50,7 @@ public class ExampleExtensionApplication implements CFWAppInterface {
 		// 
 		//-----------------------------------------
 		CFW.DB.Permissions.oneTimeCreate(
-				new Permission(PERMISSION_CFWSAMPLES, "user")
+				new Permission(PERMISSION_CFWSAMPLES, FeatureUserManagement.CATEGORY_USER)
 					.description("View and use the CFW Samples."),
 				true,
 				true);
