@@ -19,6 +19,7 @@ import com.xresch.cfw.validation.EmailValidator;
 import com.xresch.cfw.validation.LengthValidator;
 import com.xresch.cfw.validation.NotNullOrEmptyValidator;
 import com.xresch.cfw.validation.NumberRangeValidator;
+import com.xresch.cfw.validation.ScheduleValidator;
 
 public class FormExampleCFWObject extends CFWObject{
 	
@@ -101,6 +102,7 @@ public class FormExampleCFWObject extends CFWObject{
 	private CFWField<CFWSchedule> schedule = 
 				CFWField.newSchedule("JSON_SCHEDULE")
 				.setLabel("Schedule")
+				.addValidator(new ScheduleValidator())
 				.setValue(null);
 	
 	//------------------------------------------------------------------------------------------------
