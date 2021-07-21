@@ -140,7 +140,7 @@ public class HierarchicalPersonDBMethods {
 			return new CFWSQL(new HierarchicalPerson())
 					.queryCache()
 					.select()
-					.fulltextSearch()
+					.fulltextSearchLucene()
 						.custom(filterquery)
 						.build(pageSize, pageSize*(pageNumber-1))
 					.getAsJSON();

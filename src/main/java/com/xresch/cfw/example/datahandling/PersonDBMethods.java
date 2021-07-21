@@ -122,7 +122,7 @@ public class PersonDBMethods {
 		// Enabled by CFWObject.enableFulltextSearch()
 		// on the Person Object
 		return new CFWSQL(new Person())
-				.fulltextSearch(filterquery, pageSize, pageNumber)
+				.fulltextSearchLucene(filterquery, pageSize, pageNumber)
 				.getAsJSON();
 		
 		
