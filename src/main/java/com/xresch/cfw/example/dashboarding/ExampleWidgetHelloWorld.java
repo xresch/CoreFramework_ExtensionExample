@@ -70,9 +70,9 @@ public class ExampleWidgetHelloWorld extends WidgetDefinition {
 	}
 
 	@Override
-	public void fetchData(HttpServletRequest request, JSONResponse response, JsonObject settings) { 
+	public void fetchData(HttpServletRequest request, JSONResponse response, CFWObject settings, JsonObject jsonSettings) { 
 		//int number = settings.get("number").getAsInt();
-		String number = settings.get("number").getAsString();
+		String number = jsonSettings.get("number").getAsString();
 		
 		response.getContent()
 			.append("\"")
@@ -80,7 +80,7 @@ public class ExampleWidgetHelloWorld extends WidgetDefinition {
 		
 		//---------------------------------
 		// Get Environment
-		JsonElement environmentElement = settings.get("environment");
+		JsonElement environmentElement = jsonSettings.get("environment");
 		if(environmentElement.isJsonNull()) {
 			return;
 		}
