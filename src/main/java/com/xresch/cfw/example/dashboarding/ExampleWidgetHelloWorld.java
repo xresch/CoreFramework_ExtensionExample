@@ -21,6 +21,7 @@ import com.xresch.cfw.features.core.AutocompleteList;
 import com.xresch.cfw.features.core.AutocompleteResult;
 import com.xresch.cfw.features.core.CFWAutocompleteHandler;
 import com.xresch.cfw.features.dashboard.WidgetDefinition;
+import com.xresch.cfw.features.usermgmt.User;
 import com.xresch.cfw.response.JSONResponse;
 import com.xresch.cfw.response.bootstrap.AlertMessage.MessageType;
 import com.xresch.cfw.validation.LengthValidator;
@@ -121,7 +122,7 @@ public class ExampleWidgetHelloWorld extends WidgetDefinition {
 	}
 
 	@Override
-	public boolean hasPermission() {
+	public boolean hasPermission(User user) {
 		return true;
 	}
 
