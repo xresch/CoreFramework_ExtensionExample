@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Locale;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -20,15 +24,24 @@ import com.xresch.cfw.example.contextsettings.ExampleEnvironmentManagement;
 import com.xresch.cfw.features.core.AutocompleteList;
 import com.xresch.cfw.features.core.AutocompleteResult;
 import com.xresch.cfw.features.core.CFWAutocompleteHandler;
+import com.xresch.cfw.features.dashboard.DashboardWidget;
 import com.xresch.cfw.features.dashboard.WidgetDefinition;
+import com.xresch.cfw.features.dashboard.WidgetHelloWorld;
 import com.xresch.cfw.features.usermgmt.User;
+import com.xresch.cfw.logging.CFWLog;
 import com.xresch.cfw.response.JSONResponse;
 import com.xresch.cfw.response.bootstrap.AlertMessage.MessageType;
 import com.xresch.cfw.validation.LengthValidator;
 import com.xresch.cfw.validation.NotNullOrEmptyValidator;
 
 public class ExampleWidgetHelloWorld extends WidgetDefinition {
-
+	
+	private static final String NUMBER = "NUMBER";
+	private static final String LIKES_TIRAMISU = "LIKES_TIRAMISU";
+	private static final String MESSAGE = "MESSAGE";
+	
+	private static final Logger logger = CFWLog.getLogger(ExampleWidgetHelloWorld.class.getName());
+	
 	@Override
 	public String getWidgetType() {return "cfwexample_helloworld";}
 
@@ -77,7 +90,9 @@ public class ExampleWidgetHelloWorld extends WidgetDefinition {
 		
 		response.getContent()
 			.append("\"")
-			.append("<p>{!cfw_widget_helloworld_serverside!} "+number+"<p>");
+				.append("<p>{!cfw_widget_helloworld_serverside!} "+number+"<p>")
+			.append("\"")
+			;
 		
 		//---------------------------------
 		// Get Environment
@@ -124,6 +139,54 @@ public class ExampleWidgetHelloWorld extends WidgetDefinition {
 	@Override
 	public boolean hasPermission(User user) {
 		return true;
+	}
+	
+	
+	//=========================================================================
+	// Override the following methods if you want to add support for tasks
+	// to your widget.
+	//=========================================================================
+	public boolean supportsTask() {
+		return true;
+	}
+	
+
+	public CFWObject getTasksParameters() {
+		return new CFWObject()
+				.addField(
+					CFWField.newString(FormFieldType.TEXT, MESSAGE)
+							.setDescription("Message to write to the log file.")
+							.addValidator(new LengthValidator(5,500))
+				)
+				.addField(
+						CFWField.newBoolean(FormFieldType.BOOLEAN, LIKES_TIRAMISU)
+								.setDescription("Affinity of tiramisu to write to the log file")
+				)
+				.addField(
+						CFWField.newInteger(FormFieldType.NUMBER, NUMBER)
+								.setDescription("Number to write to the log")
+				)
+				;
+	}
+	
+
+	public String getTaskDescription() {
+		return "The task of this widget writes a message to the log file.";
+	}
+
+	public void executeTask(JobExecutionContext context, CFWObject taskParams, DashboardWidget widget, CFWObject widgetSettings) throws JobExecutionException {
+		
+		new CFWLog(logger)
+			.custom("likesTiramisu", taskParams.getField(LIKES_TIRAMISU).getValue())
+			.custom("chosenNumber", taskParams.getField(NUMBER).getValue())
+			.info(taskParams.getField(MESSAGE).getValue().toString());
+		
+		//-----------------------------
+		// Random Message for Testing
+		MessageType[] types = MessageType.values();
+		int randomIndex = CFW.Random.randomFromZeroToInteger(3);
+		CFW.Messages.addMessage(types[randomIndex], "Hello World Task wrote a log message.");
+		
 	}
 
 }
