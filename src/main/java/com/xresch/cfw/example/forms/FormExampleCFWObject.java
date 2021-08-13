@@ -2,6 +2,7 @@ package com.xresch.cfw.example.forms;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.LinkedHashMap;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,8 @@ import com.xresch.cfw.datahandling.CFWField;
 import com.xresch.cfw.datahandling.CFWField.FormFieldType;
 import com.xresch.cfw.datahandling.CFWObject;
 import com.xresch.cfw.datahandling.CFWSchedule;
+import com.xresch.cfw.datahandling.CFWSchedule.EndType;
+import com.xresch.cfw.datahandling.CFWSchedule.IntervalType;
 import com.xresch.cfw.features.core.AutocompleteItem;
 import com.xresch.cfw.features.core.AutocompleteList;
 import com.xresch.cfw.features.core.AutocompleteResult;
@@ -85,6 +88,7 @@ public class FormExampleCFWObject extends CFWObject{
 	private CFWField<Boolean> booleanField = 
 			CFWField.newBoolean(FormFieldType.BOOLEAN, "boolean")
 					.setLabel("Boolean");
+	
 	//------------------------------------------------------------------------------------------------
 	// A datepicker field with an initial value
 	private CFWField<Date> date = 
@@ -98,12 +102,18 @@ public class FormExampleCFWObject extends CFWObject{
 				.setValue(new Timestamp(1580053600000L));
 	
 	//------------------------------------------------------------------------------------------------
-	// A date and time picker field without a default value
+	// A schedule picker with default value
 	private CFWField<CFWSchedule> schedule = 
 				CFWField.newSchedule("JSON_SCHEDULE")
 				.setLabel("Schedule")
 				.addValidator(new ScheduleValidator())
-				.setValue(null);
+				.setValue(
+					new CFWSchedule()
+						.timeframeStart(Date.from(Instant.now()))
+						.endType(EndType.RUN_FOREVER)
+						.intervalType(IntervalType.EVERY_X_DAYS)
+						.intervalDays(1)
+				);
 	
 	//------------------------------------------------------------------------------------------------
 	// A select with options

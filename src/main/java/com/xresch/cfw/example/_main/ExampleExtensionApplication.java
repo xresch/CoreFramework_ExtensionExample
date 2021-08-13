@@ -23,6 +23,7 @@ public class ExampleExtensionApplication implements CFWAppInterface {
 			
 			.faicon("fas fa-flask")
 			.addPermission(ExampleExtensionApplication.PERMISSION_CFWSAMPLES);
+	
 	@Override
 	public void settings() {
 		CFW.AppSettings.enableDashboarding(true);
