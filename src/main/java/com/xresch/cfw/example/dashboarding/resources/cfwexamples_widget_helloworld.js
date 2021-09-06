@@ -15,7 +15,7 @@
 			description: CFWL('cfw_widget_helloworld_desc', 'Takes a name and greats a person.'),
 			createWidgetInstance: function (widgetObject, params, callback) {		
 				
-				CFW.dashboard.fetchWidgetData(widgetObject, function(data){
+				CFW.dashboard.fetchWidgetData(widgetObject, params, function(data){
 					
 					var helloString = 
 						CFWL('cfw_widget_helloworld_hello', 'Hello')+' '
