@@ -90,20 +90,21 @@ public class ExampleWidgetHelloWorld extends WidgetDefinition {
 		
 		response.getContent()
 			.append("\"")
-				.append("<p>{!cfw_widget_helloworld_serverside!} "+number+"<p>")
-			.append("\"")
+			.append("<p>{!cfw_widget_helloworld_serverside!} "+number+"<p>")
 			;
 		
 		//---------------------------------
 		// Get Environment
 		JsonElement environmentElement = jsonSettings.get("environment");
 		if(environmentElement.isJsonNull()) {
+			response.append("\"");
 			return;
 		}
 		
 		ExampleEnvironment environment = ExampleEnvironmentManagement.getEnvironment(environmentElement.getAsInt());
 		if(environment == null) {
 			CFW.Context.Request.addAlertMessage(MessageType.WARNING, "Example Widget: The chosen environment seems not configured correctly.");
+			response.append("\"");
 			return;
 		}
 		
