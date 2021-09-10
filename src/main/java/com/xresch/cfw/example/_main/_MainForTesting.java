@@ -9,7 +9,7 @@ public class _MainForTesting {
     {
     	//------------------------------------
     	// Load application Extension
-    	CFWAppInterface app = CFW.loadExtentionApplication();
+    	CFWAppInterface app = CFW.loadExtensionApplication();
 
     	//------------------------------------
     	// Start Application
