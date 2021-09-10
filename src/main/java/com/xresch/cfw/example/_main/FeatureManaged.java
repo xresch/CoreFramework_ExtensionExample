@@ -1,8 +1,8 @@
 package com.xresch.cfw.example._main;
 
-import com.xresch.cfw._main.CFWAppFeature;
 import com.xresch.cfw._main.CFWApplicationExecutor;
 import com.xresch.cfw.response.bootstrap.MenuItem;
+import com.xresch.cfw.spi.CFWAppFeature;
 
 /**************************************************************************************
  * This feature is manually registered with CFW.Registry.Features.addFeature().

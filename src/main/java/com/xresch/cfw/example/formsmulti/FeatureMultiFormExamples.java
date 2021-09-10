@@ -1,16 +1,13 @@
 package com.xresch.cfw.example.formsmulti;
 
 import com.xresch.cfw._main.CFW;
-import com.xresch.cfw._main.CFWAppFeature;
 import com.xresch.cfw._main.CFWApplicationExecutor;
-import com.xresch.cfw._main.CFWExtensionFeature;
 import com.xresch.cfw.example._main.ExampleExtensionApplication;
 import com.xresch.cfw.example.datahandling.Person;
-import com.xresch.cfw.example.datahandling.PersonDBMethods;
 import com.xresch.cfw.response.bootstrap.MenuItem;
-import com.xresch.cfw.utils.CFWRandom;
+import com.xresch.cfw.spi.CFWAppFeature;
 
-@CFWExtensionFeature
+
 public class FeatureMultiFormExamples extends CFWAppFeature {
 	
 	public static final String RESOURCE_PACKAGE = "com.xresch.cfw.example.formsmulti.resources";

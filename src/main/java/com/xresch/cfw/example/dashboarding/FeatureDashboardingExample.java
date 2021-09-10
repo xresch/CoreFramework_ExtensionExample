@@ -1,16 +1,14 @@
 package com.xresch.cfw.example.dashboarding;
 
 import com.xresch.cfw._main.CFW;
-import com.xresch.cfw._main.CFWAppFeature;
 import com.xresch.cfw._main.CFWApplicationExecutor;
-import com.xresch.cfw._main.CFWExtensionFeature;
+import com.xresch.cfw.spi.CFWAppFeature;
 
 /**************************************************************************************************************
  * 
  * @author Reto Scheiwiller, (c) Copyright 2019 
  * @license MIT-License
  **************************************************************************************************************/
-@CFWExtensionFeature
 public class FeatureDashboardingExample extends CFWAppFeature {
 		
 	public static final String RESOURCE_PACKAGE = "com.xresch.cfw.example.dashboarding.resources";

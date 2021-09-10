@@ -1,12 +1,11 @@
 package com.xresch.cfw.example._main;
 
 import com.xresch.cfw._main.CFW;
-import com.xresch.cfw._main.CFWAppInterface;
 import com.xresch.cfw._main.CFWApplicationExecutor;
-import com.xresch.cfw._main.CFWExtensionApplication;
 import com.xresch.cfw.features.usermgmt.FeatureUserManagement;
 import com.xresch.cfw.features.usermgmt.Permission;
 import com.xresch.cfw.response.bootstrap.MenuItem;
+import com.xresch.cfw.spi.CFWAppInterface;
 
 /**********************************************************************************
  * Using @CFWExtensionApplication marks this class as the application that should
@@ -14,7 +13,6 @@ import com.xresch.cfw.response.bootstrap.MenuItem;
  * @author Reto Scheiwiller, (c) Copyright 2019 
  *
  **********************************************************************************/
-@CFWExtensionApplication
 public class ExampleExtensionApplication implements CFWAppInterface {
 
 	public static final String PERMISSION_CFWSAMPLES = "CFW Extension Samples";
@@ -38,6 +36,8 @@ public class ExampleExtensionApplication implements CFWAppInterface {
 		// Register Features
 		CFW.Registry.Features.addFeature(FeatureRegular.class);
 		CFW.Registry.Features.addFeature(FeatureManaged.class);
+		
+		//other features are added using service provider definitions in /src/main/resources/META-INF/services
 		
 		//----------------------------------
 		// Register Menu Entry

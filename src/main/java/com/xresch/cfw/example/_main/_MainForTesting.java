@@ -1,7 +1,7 @@
 package com.xresch.cfw.example._main;
 
 import com.xresch.cfw._main.CFW;
-import com.xresch.cfw._main.CFWAppInterface;
+import com.xresch.cfw.spi.CFWAppInterface;
 
 public class _MainForTesting {
 			

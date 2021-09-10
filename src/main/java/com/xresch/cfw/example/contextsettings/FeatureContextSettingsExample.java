@@ -1,19 +1,16 @@
 package com.xresch.cfw.example.contextsettings;
 
 import com.xresch.cfw._main.CFW;
-import com.xresch.cfw._main.CFWAppFeature;
 import com.xresch.cfw._main.CFWApplicationExecutor;
-import com.xresch.cfw._main.CFWExtensionFeature;
 import com.xresch.cfw.example._main.ExampleExtensionApplication;
-import com.xresch.cfw.example.javascript.ServletJavascriptExamples;
 import com.xresch.cfw.response.bootstrap.MenuItem;
+import com.xresch.cfw.spi.CFWAppFeature;
 
 /**************************************************************************************************************
  * 
  * @author Reto Scheiwiller, (c) Copyright 2020
  * @license MIT-License
  **************************************************************************************************************/
-@CFWExtensionFeature
 public class FeatureContextSettingsExample extends CFWAppFeature {
 	
 	public static final String PACKAGE_RESOURCE = "com.xresch.cfw.example.contextsettings.resources";

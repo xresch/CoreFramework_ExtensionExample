@@ -1,12 +1,10 @@
 package com.xresch.cfw.example._main;
 
-import com.xresch.cfw._main.CFWAppFeature;
 import com.xresch.cfw._main.CFWApplicationExecutor;
-import com.xresch.cfw._main.CFWExtensionFeature;
 import com.xresch.cfw.example.forms.FormExampleServlet;
 import com.xresch.cfw.response.bootstrap.MenuItem;
+import com.xresch.cfw.spi.CFWAppFeature;
 
-@CFWExtensionFeature
 public class AnnotationFeatureTest extends CFWAppFeature {
 
 	@Override
@@ -30,8 +28,6 @@ public class AnnotationFeatureTest extends CFWAppFeature {
 				.href("http://www.google.ch")
 				.addAttribute("target", "_blank")
 		);
-		
-		
 	}
 
 	@Override
