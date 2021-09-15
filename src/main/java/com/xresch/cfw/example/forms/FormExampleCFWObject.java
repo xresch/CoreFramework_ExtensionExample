@@ -137,8 +137,10 @@ public class FormExampleCFWObject extends CFWObject{
 						.setValue(2);
 	
 	//------------------------------------------------------------------------------------------------
-	// A list of checkboxes with key and value options
+	// A list of checkboxes with key and label options
 	private static LinkedHashMap<String, String> checkboxOptions = new LinkedHashMap<String, String>();
+	
+	// default values
 	private static LinkedHashMap<String, Boolean> checkboxDefaultValues = new LinkedHashMap<String, Boolean>();
 	static {
 		checkboxOptions.put("tiramisu_key", "Tiramisu");
@@ -147,6 +149,7 @@ public class FormExampleCFWObject extends CFWObject{
 		checkboxOptions.put("chocolate_key", "Chocolate");
 		
 		// other values are null and therefore false
+		// set all default values if you do not want to check for nulls
 		checkboxDefaultValues.put("tiramisu_key", true);
 		checkboxDefaultValues.put("ice_cream_key", true);
 	}
