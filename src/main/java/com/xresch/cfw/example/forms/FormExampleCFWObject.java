@@ -137,6 +137,27 @@ public class FormExampleCFWObject extends CFWObject{
 						.setValue(2);
 	
 	//------------------------------------------------------------------------------------------------
+	// A list of checkboxes with key and value options
+	private static LinkedHashMap<String, String> checkboxOptions = new LinkedHashMap<String, String>();
+	private static LinkedHashMap<String, Boolean> checkboxDefaultValues = new LinkedHashMap<String, Boolean>();
+	static {
+		checkboxOptions.put("tiramisu_key", "Tiramisu");
+		checkboxOptions.put("panna_cotta_key", "Panna Cotta");
+		checkboxOptions.put("ice_cream_key", "Ice Cream");
+		checkboxOptions.put("chocolate_key", "Chocolate");
+		
+		// other values are null and therefore false
+		checkboxDefaultValues.put("tiramisu_key", true);
+		checkboxDefaultValues.put("ice_cream_key", true);
+	}
+
+	private CFWField<LinkedHashMap<String, Boolean>> checkoxes = 
+				CFWField.newCheckboxes("JSON_CHECKBOXES")
+						.setDescription("Checkbox options.")
+						.setOptions(checkboxOptions)
+						.setValue(checkboxDefaultValues);
+	
+	//------------------------------------------------------------------------------------------------
 	// Value Label lets the users enter value/label-pairs that can be used for example for custom select options.
 	private static LinkedHashMap<String, String> valueLabels = new LinkedHashMap<String, String>();
 	static {
@@ -303,6 +324,7 @@ public class FormExampleCFWObject extends CFWObject{
 				, schedule
 				, select
 				, keyValSelect
+				, checkoxes
 				, valueLabel
 				, language
 				, unmodifiableText
