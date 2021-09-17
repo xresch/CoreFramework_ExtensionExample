@@ -141,7 +141,7 @@ public class FormExampleCFWObject extends CFWObject{
 	private static LinkedHashMap<String, String> checkboxOptions = new LinkedHashMap<String, String>();
 	
 	// default values
-	private static LinkedHashMap<String, Boolean> checkboxDefaultValues = new LinkedHashMap<String, Boolean>();
+	private static LinkedHashMap<String, String> checkboxDefaultValues = new LinkedHashMap<String, String>();
 	static {
 		checkboxOptions.put("tiramisu_key", "Tiramisu");
 		checkboxOptions.put("panna_cotta_key", "Panna Cotta");
@@ -150,18 +150,18 @@ public class FormExampleCFWObject extends CFWObject{
 		
 		// other values are null and therefore false
 		// set all default values if you do not want to check for nulls
-		checkboxDefaultValues.put("tiramisu_key", true);
-		checkboxDefaultValues.put("ice_cream_key", true);
+		checkboxDefaultValues.put("tiramisu_key", "true");
+		checkboxDefaultValues.put("ice_cream_key", "true");
 	}
 
-	private CFWField<LinkedHashMap<String, Boolean>> checkoxesNoDefaults = 
+	private CFWField<LinkedHashMap<String, String>> checkoxesNoDefaults = 
 				CFWField.newCheckboxes("JSON_CHECKBOXES")
 						.setLabel("Checkboxes no Defaults")
 						.setDescription("Checkbox options without default selection.")
 						.setOptions(checkboxOptions)
 						;
 	
-	private CFWField<LinkedHashMap<String, Boolean>> checkoxesWithDefaults = 
+	private CFWField<LinkedHashMap<String, String>> checkoxesWithDefaults = 
 			CFWField.newCheckboxes("JSON_CHECKBOXES_WITH_DEFAULTS")
 					.setLabel("Checkboxes with Defaults")
 					.setDescription("Checkbox options with a default selection.")
