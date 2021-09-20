@@ -26,6 +26,8 @@ import com.xresch.cfw.features.core.AutocompleteResult;
 import com.xresch.cfw.features.core.CFWAutocompleteHandler;
 import com.xresch.cfw.features.dashboard.DashboardWidget;
 import com.xresch.cfw.features.dashboard.WidgetDefinition;
+import com.xresch.cfw.features.jobs.CFWJobsAlertObject;
+import com.xresch.cfw.features.jobs.CFWJobsAlertObject.AlertType;
 import com.xresch.cfw.features.usermgmt.User;
 import com.xresch.cfw.logging.CFWLog;
 import com.xresch.cfw.response.JSONResponse;
@@ -152,7 +154,12 @@ public class ExampleWidgetHelloWorld extends WidgetDefinition {
 	
 
 	public CFWObject getTasksParameters() {
-		return new CFWObject()
+		
+		//Create Default Object for Alert Settings
+		CFWJobsAlertObject alertObject = new CFWJobsAlertObject();
+		
+		//Add additional fields
+		alertObject
 				.addField(
 					CFWField.newString(FormFieldType.TEXT, MESSAGE)
 							.setDescription("Message to write to the log file.")
@@ -167,6 +174,8 @@ public class ExampleWidgetHelloWorld extends WidgetDefinition {
 								.setDescription("Number to write to the log")
 				)
 				;
+		
+		return alertObject;
 	}
 	
 
@@ -186,6 +195,34 @@ public class ExampleWidgetHelloWorld extends WidgetDefinition {
 		MessageType[] types = MessageType.values();
 		int randomIndex = CFW.Random.randomFromZeroToInteger(3);
 		CFW.Messages.addMessage(types[randomIndex], "Hello World Task wrote a log message.");
+		
+		//-----------------------------
+		// Alerting Example
+		CFWJobsAlertObject alertObject = new CFWJobsAlertObject(context, this.getWidgetType());
+		
+		alertObject.mapJobExecutionContext(context);
+		
+		boolean randomCondition = CFW.Random.randomBoolean();
+		CFW.Messages.addInfoMessage("Last Condition: "+randomCondition);
+		
+		AlertType type = alertObject.checkSendAlert(randomCondition, null);
+		
+		if(!type.equals(AlertType.NONE)) {
+
+			String dashboardOrigin = widget.createWidgetOriginMessage();
+			
+			String message = "Hi There!\n\nThis is only a test, have a marvelous day!";
+			String messageHTML = "<p>Hi There!<p></p>This is only a test, have a marvelous day!</p>"
+								 +dashboardOrigin;
+			
+			if(type.equals(AlertType.RAISE)) {
+				alertObject.doSendAlert("[TEST] Alert: A situation is occuring!", message, messageHTML);
+			}
+			
+			if(type.equals(AlertType.RESOLVE)) {
+				alertObject.doSendAlert("[TEST] Alert: A situation has resolved!.", message, messageHTML);
+			}
+		}
 		
 	}
 
