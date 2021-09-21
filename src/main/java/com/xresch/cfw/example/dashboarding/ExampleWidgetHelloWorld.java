@@ -220,7 +220,7 @@ public class ExampleWidgetHelloWorld extends WidgetDefinition {
 			}
 			
 			if(type.equals(AlertType.RESOLVE)) {
-				alertObject.doSendAlert("[TEST] Alert: A situation has resolved!.", message, messageHTML);
+				alertObject.doSendAlert("[TEST] Alert: A situation has resolved!", message, messageHTML);
 			}
 		}
 		
