@@ -95,7 +95,8 @@ public class HierarchyExamplesServlet extends HttpServlet
 					case "personlist": 		String pagesize = request.getParameter("pagesize");
 											String pagenumber = request.getParameter("pagenumber");
 											String filterquery = request.getParameter("filterquery");
-											jsonResponse.getContent().append(PersonDBMethods.getPartialPersonListAsJSON(pagesize, pagenumber, filterquery));
+											String sortby = request.getParameter("sortby");
+											jsonResponse.getContent().append(PersonDBMethods.getPartialPersonListAsJSON(pagesize, pagenumber, filterquery, sortby));
 	  										break;
 	  										
 					default: 				CFW.Messages.itemNotSupported(item);

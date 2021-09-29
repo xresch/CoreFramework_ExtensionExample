@@ -142,7 +142,7 @@ public class HierarchicalPersonDBMethods {
 					.select()
 					.fulltextSearchLucene()
 						.custom(filterquery)
-						.build(pageSize, pageSize*(pageNumber-1))
+						.build(null, pageSize, pageSize*(pageNumber-1))
 					.getAsJSON();
 		}
 		

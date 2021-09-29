@@ -110,21 +110,25 @@ public class PersonDBMethods {
 		
 	}
 	
-	public static String getPartialPersonListAsJSON(String pageSize, String pageNumber, String filterquery) {
-		return getPartialPersonListAsJSON(Integer.parseInt(pageSize), Integer.parseInt(pageNumber), filterquery);
+	public static String getPartialPersonListAsJSON(String pageSize, String pageNumber, String filterquery, String sortby) {
+		return getPartialPersonListAsJSON(Integer.parseInt(pageSize), Integer.parseInt(pageNumber), filterquery, sortby);
 	}
 	
 	
-	public static String getPartialPersonListAsJSON(int pageSize, int pageNumber, String filterquery) {	
+	public static String getPartialPersonListAsJSON(int pageSize, int pageNumber, String filterquery, String sortby) {	
 		
 		//-------------------------------------
 		// Filter with fulltext search
 		// Enabled by CFWObject.enableFulltextSearch()
 		// on the Person Object
 		return new CFWSQL(new Person())
-				.fulltextSearchLucene(filterquery, pageSize, pageNumber)
+				.fulltextSearchLucene(filterquery, sortby, pageSize, pageNumber)
 				.getAsJSON();
 		
+		
+		//===========================================
+		// Manual Alternative
+		//===========================================
 		
 //		if(Strings.isNullOrEmpty(filterquery)) {
 //			//-------------------------------------
