@@ -125,7 +125,6 @@ public class PersonDBMethods {
 		
 		//ascending is default
 		boolean sortAscending = Strings.isNullOrEmpty(sortbydirection) || !sortbydirection.equals("desc");
-		System.out.println("sortAscending:"+sortAscending);
 		
 		//Do not cache this statement
 		return new CFWSQL(new Person())
