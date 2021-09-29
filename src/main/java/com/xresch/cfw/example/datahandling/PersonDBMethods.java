@@ -2,6 +2,7 @@ package com.xresch.cfw.example.datahandling;
 
 import java.util.logging.Logger;
 
+import com.google.common.base.Strings;
 import com.xresch.cfw.datahandling.CFWObject;
 import com.xresch.cfw.db.CFWDBDefaultOperations;
 import com.xresch.cfw.db.CFWSQL;
@@ -110,19 +111,25 @@ public class PersonDBMethods {
 		
 	}
 	
-	public static String getPartialPersonListAsJSON(String pageSize, String pageNumber, String filterquery, String sortby) {
-		return getPartialPersonListAsJSON(Integer.parseInt(pageSize), Integer.parseInt(pageNumber), filterquery, sortby);
+	public static String getPartialPersonListAsJSON(String pageSize, String pageNumber, String filterquery, String sortby, String sortbydirection) {
+		return getPartialPersonListAsJSON(Integer.parseInt(pageSize), Integer.parseInt(pageNumber), filterquery, sortby, sortbydirection);
 	}
 	
 	
-	public static String getPartialPersonListAsJSON(int pageSize, int pageNumber, String filterquery, String sortby) {	
+	public static String getPartialPersonListAsJSON(int pageSize, int pageNumber, String filterquery, String sortby, String sortbydirection) {	
 		
 		//-------------------------------------
 		// Filter with fulltext search
 		// Enabled by CFWObject.enableFulltextSearch()
 		// on the Person Object
+		
+		//ascending is default
+		boolean sortAscending = Strings.isNullOrEmpty(sortbydirection) || !sortbydirection.equals("desc");
+		System.out.println("sortAscending:"+sortAscending);
+		
+		//Do not cache this statement
 		return new CFWSQL(new Person())
-				.fulltextSearchLucene(filterquery, sortby, pageSize, pageNumber)
+				.fulltextSearchLucene(filterquery, sortby, sortAscending, pageSize, pageNumber)
 				.getAsJSON();
 		
 		
