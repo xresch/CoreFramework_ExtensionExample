@@ -111,21 +111,18 @@ public class PersonDBMethods {
 		
 	}
 	
-	public static String getPartialPersonListAsJSON(String pageSize, String pageNumber, String filterquery, String sortby, String sortbydirection) {
-		return getPartialPersonListAsJSON(Integer.parseInt(pageSize), Integer.parseInt(pageNumber), filterquery, sortby, sortbydirection);
+	public static String getPartialPersonListAsJSON(String pageSize, String pageNumber, String filterquery, String sortby, boolean sortAscending) {
+		return getPartialPersonListAsJSON(Integer.parseInt(pageSize), Integer.parseInt(pageNumber), filterquery, sortby, sortAscending);
 	}
 	
 	
-	public static String getPartialPersonListAsJSON(int pageSize, int pageNumber, String filterquery, String sortby, String sortbydirection) {	
+	public static String getPartialPersonListAsJSON(int pageSize, int pageNumber, String filterquery, String sortby, boolean sortAscending) {	
 		
 		//-------------------------------------
 		// Filter with fulltext search
 		// Enabled by CFWObject.enableFulltextSearch()
 		// on the Person Object
-		
-		//ascending is default
-		boolean sortAscending = Strings.isNullOrEmpty(sortbydirection) || !sortbydirection.equals("desc");
-		
+
 		//Do not cache this statement
 		return new CFWSQL(new Person())
 				.fulltextSearchLucene(filterquery, sortby, sortAscending, pageSize, pageNumber)

@@ -96,9 +96,10 @@ public class HierarchyExamplesServlet extends HttpServlet
 											String pagenumber = request.getParameter("pagenumber");
 											String filterquery = request.getParameter("filterquery");
 											String sortby = request.getParameter("sortby");
-											String sortbydirection = request.getParameter("sortbydirection");
+											String isAscendingString = request.getParameter("isascending");
+											boolean isAscending = (isAscendingString == null || isAscendingString.equals("true")) ? true : false;
 											
-											jsonResponse.getContent().append(PersonDBMethods.getPartialPersonListAsJSON(pagesize, pagenumber, filterquery, sortby, sortbydirection));
+											jsonResponse.getContent().append(PersonDBMethods.getPartialPersonListAsJSON(pagesize, pagenumber, filterquery, sortby, isAscending));
 	  										break;
 	  										
 					default: 				CFW.Messages.itemNotSupported(item);
