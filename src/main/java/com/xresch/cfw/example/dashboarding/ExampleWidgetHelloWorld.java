@@ -216,11 +216,11 @@ public class ExampleWidgetHelloWorld extends WidgetDefinition {
 								 +dashboardOrigin;
 			
 			if(type.equals(AlertType.RAISE)) {
-				alertObject.doSendAlert(context, "[TEST] Alert: A situation is occuring!", message, messageHTML);
+				alertObject.doSendAlert(context, MessageType.ERROR, "[TEST] Alert: A situation is occuring!", message, messageHTML);
 			}
 			
 			if(type.equals(AlertType.RESOLVE)) {
-				alertObject.doSendAlert(context, "[TEST] Alert: A situation has resolved!", message, messageHTML);
+				alertObject.doSendAlert(context, MessageType.SUCCESS, "[TEST] Alert: A situation has resolved!", message, messageHTML);
 			}
 		}
 		
