@@ -577,6 +577,10 @@ function jsexamples_printFullDataviewer(){
 							name: 'csv',
 							renderdef: {}
 						},
+						{	label: 'XML',
+							name: 'xml',
+							renderdef: {}
+						},
 						{	label: 'JSON',
 							name: 'json',
 							renderdef: {}
