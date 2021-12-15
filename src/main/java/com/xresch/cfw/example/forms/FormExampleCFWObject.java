@@ -3,6 +3,7 @@ package com.xresch.cfw.example.forms;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 import javax.servlet.http.HttpServletRequest;
@@ -168,6 +169,19 @@ public class FormExampleCFWObject extends CFWObject{
 					.setOptions(checkboxOptions)
 					.setValue(checkboxDefaultValues)
 					;
+	
+	//------------------------------------------------------------------------------------------------
+	// Value Label lets the users enter value/label-pairs that can be used for example for custom select options.
+	private static ArrayList<String> customListItems = new ArrayList<>();
+	static {
+		customListItems.add("Some entry");
+		customListItems.add("Another Entry");
+	}
+	private CFWField<ArrayList<String> > customList = 
+				CFWField.newCustomList("CUSTOM_LIST")
+						.setDescription("Add items to the list.")
+						.setValue(customListItems);
+	
 	//------------------------------------------------------------------------------------------------
 	// Value Label lets the users enter value/label-pairs that can be used for example for custom select options.
 	private static LinkedHashMap<String, String> valueLabels = new LinkedHashMap<String, String>();
@@ -337,6 +351,7 @@ public class FormExampleCFWObject extends CFWObject{
 				, keyValSelect
 				, checkoxesNoDefaults
 				, checkoxesWithDefaults
+				, customList
 				, valueLabel
 				, language
 				, unmodifiableText
