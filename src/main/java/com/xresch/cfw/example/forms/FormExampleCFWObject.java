@@ -9,12 +9,14 @@ import java.util.LinkedHashMap;
 import javax.servlet.http.HttpServletRequest;
 
 import com.google.common.base.Strings;
+import com.xresch.cfw._main.CFW;
 import com.xresch.cfw.datahandling.CFWField;
 import com.xresch.cfw.datahandling.CFWField.FormFieldType;
 import com.xresch.cfw.datahandling.CFWObject;
 import com.xresch.cfw.datahandling.CFWSchedule;
 import com.xresch.cfw.datahandling.CFWSchedule.EndType;
 import com.xresch.cfw.datahandling.CFWSchedule.IntervalType;
+import com.xresch.cfw.datahandling.CFWTimeframe;
 import com.xresch.cfw.features.core.AutocompleteItem;
 import com.xresch.cfw.features.core.AutocompleteList;
 import com.xresch.cfw.features.core.AutocompleteResult;
@@ -116,6 +118,16 @@ public class FormExampleCFWObject extends CFWObject{
 						.intervalDays(1)
 				);
 	
+	//------------------------------------------------------------------------------------------------
+	// A schedule picker with default value
+	private CFWField<CFWTimeframe> timeframe = 
+				CFWField.newTimeframe("JSON_TIMEFRAME")
+				.setLabel("Timeframe Picker")
+				.setValue(
+					new CFWTimeframe()
+						.setEarliest(CFW.Utils.Time.getCurrentTimestampWithOffset(0, 0, 3, 3, 30))
+						.setLatest(CFW.Utils.Time.getCurrentTimestampWithOffset(0, 0, 1, 1, 1))
+				);
 	//------------------------------------------------------------------------------------------------
 	// A select with options
 	private CFWField<String> select = 
@@ -346,6 +358,7 @@ public class FormExampleCFWObject extends CFWObject{
 				, booleanField
 				, date
 				, timestamp
+				, timeframe
 				, schedule
 				, select
 				, keyValSelect
