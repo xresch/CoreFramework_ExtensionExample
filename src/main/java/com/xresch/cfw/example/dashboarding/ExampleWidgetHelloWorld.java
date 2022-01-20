@@ -62,7 +62,7 @@ public class ExampleWidgetHelloWorld extends WidgetDefinition {
 							.setLabel("Hobbies")
 							.setAutocompleteHandler(new CFWAutocompleteHandler(5) {
 								
-								public AutocompleteResult getAutocompleteData(HttpServletRequest request, String inputValue) {
+								public AutocompleteResult getAutocompleteData(HttpServletRequest request, String inputValue, int cursorPosition) {
 									AutocompleteList list = new AutocompleteList();
 									LinkedHashMap<Object, Object>  array = new LinkedHashMap<Object, Object>() ;
 									for(int i = 0; i < 25; i++ ) {
