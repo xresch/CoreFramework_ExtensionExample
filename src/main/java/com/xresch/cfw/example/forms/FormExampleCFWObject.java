@@ -307,20 +307,39 @@ public class FormExampleCFWObject extends CFWObject{
 					list.addItem(
 						new AutocompleteItem(
 							lastWord.toUpperCase()+i, 
-							"Replace with "+lastWord.toUpperCase()+i, 
-							"Replace last word with uppercase.")
-								.setMethodReplace(lastWord)
+							"Replace Last Word with "+lastWord.toUpperCase()+i, 
+							"Replace Last word with uppercase.")
+								.setMethodReplaceLast(lastWord)
+					);
+				}
+				
+				//-----------------------------------------------
+				// Create Replace Before Cursor Examples
+				AutocompleteList listMethodReplacebeforeCursor = new AutocompleteList();
+				
+				for(int i = 0; i < 5; i++ ) {
+					String beforeCursor = inputValue.substring(0, cursorPosition);
+					System.out.println("beforeCursor:"+beforeCursor);
+					String[] splitted = beforeCursor.split(" ");
+					String lastWord = splitted[splitted.length-1];
+					
+					listMethodReplacebeforeCursor.addItem(
+						new AutocompleteItem(
+							lastWord.toUpperCase()+i, 
+							"Replace Before Cursor with "+lastWord.toUpperCase()+i, 
+							"Replace last word before cursor with uppercase.")
+								.setMethodReplaceBeforeCursor(lastWord)
 					);
 				}
 				
 				//-----------------------------------------------
 				// Create Append Examples
-				AutocompleteList list2 = new AutocompleteList();
+				AutocompleteList listMethodAppend = new AutocompleteList();
 				for(int i = 0; i < 5; i++ ) {
 					String[] splitted = inputValue.split(" ");
 					String lastWord = splitted[splitted.length-1];
 					
-					list2.addItem(
+					listMethodAppend.addItem(
 							new AutocompleteItem(
 								lastWord.toUpperCase()+i, 
 								"Append "+lastWord.toUpperCase()+i, 
@@ -330,7 +349,8 @@ public class FormExampleCFWObject extends CFWObject{
 				}
 				
 				return new AutocompleteResult(list)
-						.addList(list2)
+						.addList(listMethodReplacebeforeCursor)
+						.addList(listMethodAppend)
 						.setHTMLDescription("<p>Example of autocomplete methods replace and append.</ol>");
 			}
 		});
