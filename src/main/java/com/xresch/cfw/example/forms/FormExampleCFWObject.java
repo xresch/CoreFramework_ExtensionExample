@@ -298,13 +298,13 @@ public class FormExampleCFWObject extends CFWObject{
 				
 				//-----------------------------------------------
 				// Create Replace Examples
-				AutocompleteList list = new AutocompleteList();
-				
+				AutocompleteList replaceLastList = new AutocompleteList();
+				replaceLastList.title("Replace Last");
 				for(int i = 0; i < 5; i++ ) {
 					String[] splitted = inputValue.split(" ");
 					String lastWord = splitted[splitted.length-1];
 					
-					list.addItem(
+					replaceLastList.addItem(
 						new AutocompleteItem(
 							lastWord.toUpperCase()+i, 
 							"Replace Last Word with "+lastWord.toUpperCase()+i, 
@@ -316,6 +316,7 @@ public class FormExampleCFWObject extends CFWObject{
 				//-----------------------------------------------
 				// Create Replace Before Cursor Examples
 				AutocompleteList listMethodReplacebeforeCursor = new AutocompleteList();
+				listMethodReplacebeforeCursor.title("Replace Last Before Cursor");
 				
 				for(int i = 0; i < 5; i++ ) {
 					String beforeCursor = inputValue.substring(0, cursorPosition);
@@ -335,6 +336,7 @@ public class FormExampleCFWObject extends CFWObject{
 				//-----------------------------------------------
 				// Create Append Examples
 				AutocompleteList listMethodAppend = new AutocompleteList();
+				listMethodAppend.title("Append at End of String");
 				for(int i = 0; i < 5; i++ ) {
 					String[] splitted = inputValue.split(" ");
 					String lastWord = splitted[splitted.length-1];
@@ -348,7 +350,7 @@ public class FormExampleCFWObject extends CFWObject{
 						);
 				}
 				
-				return new AutocompleteResult(list)
+				return new AutocompleteResult(replaceLastList)
 						.addList(listMethodReplacebeforeCursor)
 						.addList(listMethodAppend)
 						.setHTMLDescription("<p>Example of autocomplete methods replace and append.</ol>");
