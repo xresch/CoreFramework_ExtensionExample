@@ -128,6 +128,11 @@ public class FormExampleCFWObject extends CFWObject{
 						.setEarliest(CFW.Utils.Time.getCurrentTimestampWithOffset(0, 0, 3, 3, 30))
 						.setLatest(CFW.Utils.Time.getCurrentTimestampWithOffset(0, 0, 1, 1, 1))
 				);
+	
+	//------------------------------------------------------------------------------------------------
+	// A select for a timezone
+	private CFWField<String> timezone =  CFWField.newString(FormFieldType.TIMEZONEPICKER, "TIME_ZONE");
+	
 	//------------------------------------------------------------------------------------------------
 	// A select with options
 	private CFWField<String> select = 
@@ -216,7 +221,7 @@ public class FormExampleCFWObject extends CFWObject{
 	//------------------------------------------------------------------------------------------------
 	// A select for ISO language
 	private CFWField<String> language =  CFWField.newString(FormFieldType.LANGUAGE, "LANGUAGE");
-	
+		
 	//------------------------------------------------------------------------------------------------
 	// A WYSIWYG Editor with default value
 	private CFWField<String> editor = 
@@ -382,6 +387,7 @@ public class FormExampleCFWObject extends CFWObject{
 				, timestamp
 				, timeframe
 				, schedule
+				, timezone
 				, select
 				, keyValSelect
 				, checkoxesNoDefaults
