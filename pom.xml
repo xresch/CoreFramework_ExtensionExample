@@ -6,7 +6,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.xresch</groupId>
 	<artifactId>cfw-extension-example</artifactId>
-	<version>5.0.0</version>
+	<version>6.0.0</version>
 
 	<!-- ================= PROPERTIES ================== -->
 	<properties>
