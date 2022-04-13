@@ -183,7 +183,7 @@ public class ExampleWidgetHelloWorld extends WidgetDefinition {
 		return "The task of this widget writes a message to the log file.";
 	}
 
-	public void executeTask(JobExecutionContext context, CFWObject taskParams, DashboardWidget widget, CFWObject widgetSettings) throws JobExecutionException {
+	public void executeTask(JobExecutionContext context, CFWObject taskParams, DashboardWidget widget, CFWObject widgetSettings, Integer offsetMinutes) throws JobExecutionException {
 		
 		new CFWLog(logger)
 			.custom("likesTiramisu", taskParams.getField(LIKES_TIRAMISU).getValue())
