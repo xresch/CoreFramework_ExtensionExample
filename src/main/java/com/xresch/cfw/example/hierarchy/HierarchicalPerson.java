@@ -41,7 +41,7 @@ public class HierarchicalPerson extends CFWObject {
 									new Object[] {HierarchicalPersonFields.FIRSTNAME, HierarchicalPersonFields.LASTNAME}) {
 		
 		@Override
-		public boolean canSort(int sortedElementID, int targetParentID) {
+		public boolean canBeReordered(CFWObject sortedElement, CFWObject targetParent) {
 			return true;
 		}
 		
