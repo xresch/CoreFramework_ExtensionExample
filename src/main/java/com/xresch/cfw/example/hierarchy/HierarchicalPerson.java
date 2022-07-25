@@ -37,8 +37,12 @@ public class HierarchicalPerson extends CFWObject {
 //		SUBORDINATE,
 //	}
 	
-		private static CFWHierarchyConfig hierarchyConfig = new CFWHierarchyConfig(HierarchicalPerson.class, 9, 
-									new Object[] {HierarchicalPersonFields.FIRSTNAME, HierarchicalPersonFields.LASTNAME}) {
+		private static CFWHierarchyConfig hierarchyConfig = 
+				new CFWHierarchyConfig(
+						  HierarchicalPerson.class
+						, new Object[] {HierarchicalPersonFields.FIRSTNAME, HierarchicalPersonFields.LASTNAME}
+						, new Object[] {HierarchicalPersonFields.PK_ID, HierarchicalPersonFields.FIRSTNAME, HierarchicalPersonFields.LASTNAME}
+						) {
 		
 		@Override
 		public boolean canBeReordered(CFWObject sortedElement, CFWObject targetParent) {
