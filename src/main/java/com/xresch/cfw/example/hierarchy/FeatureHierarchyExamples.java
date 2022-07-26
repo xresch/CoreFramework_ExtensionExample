@@ -47,15 +47,19 @@ public class FeatureHierarchyExamples extends CFWAppFeature {
 				String location = CFWRandom.randomMythicalLocation();
 				String email = firstname.toLowerCase() + "." + lastname.toLowerCase() + "@"+location.replace(" ", "-").toLowerCase() + ".com";
 				
-				HierarchicalPerson ceo = HierarchicalPersonDBMethods.createGetObject(
+				
+				HierarchicalPerson ceo = 
 						new HierarchicalPerson()
 							.firstname(firstname)
 							.lastname(lastname)
 							.email(email)
 							.location(location)
-							.likesTiramisu(CFWRandom.randomBoolean())		
-				);
+							.likesTiramisu(CFWRandom.randomBoolean());
 				
+				//Make sure to set parent to root so you get proper insert order(affects DB column H_POS)
+				ceo.setParent(null);
+				
+				ceo = HierarchicalPersonDBMethods.createGetObject(ceo);
 				//-----------------------------
 				// Create Subordinates
 				createSubordinates(ceo, 6, 6, 0, 4);
