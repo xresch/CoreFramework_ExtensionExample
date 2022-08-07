@@ -2,6 +2,7 @@ package com.xresch.cfw.example.hierarchy;
 
 import com.xresch.cfw._main.CFW;
 import com.xresch.cfw._main.CFWApplicationExecutor;
+import com.xresch.cfw.datahandling.CFWHierarchy;
 import com.xresch.cfw.example._main.ExampleExtensionApplication;
 import com.xresch.cfw.response.bootstrap.MenuItem;
 import com.xresch.cfw.spi.CFWAppFeature;
@@ -57,12 +58,14 @@ public class FeatureHierarchyExamples extends CFWAppFeature {
 							.likesTiramisu(CFWRandom.randomBoolean());
 				
 				//Make sure to set parent to root so you get proper insert order(affects DB column H_POS)
-				ceo.setParent(null);
+				Integer ceoID = CFWHierarchy.create(null, ceo);
 				
-				ceo = HierarchicalPersonDBMethods.createGetObject(ceo);
+				if(ceoID == null) {
+					return; // error
+				}
 				//-----------------------------
 				// Create Subordinates
-				createSubordinates(ceo, 6, 6, 0, 4);
+				createSubordinates(ceoID, 6, 6, 0, 4);
 			}
 			
 
@@ -70,7 +73,7 @@ public class FeatureHierarchyExamples extends CFWAppFeature {
 				
 	}
 
-	private void createSubordinates(HierarchicalPerson parent, int minSubordinates, int maxSubordinates, int currentDepth, int maxDepth) {
+	private void createSubordinates(int parentID, int minSubordinates, int maxSubordinates, int currentDepth, int maxDepth) {
 		
 		//-----------------------------------------
 		// 
@@ -91,15 +94,17 @@ public class FeatureHierarchyExamples extends CFWAppFeature {
 				.location(location)
 				.likesTiramisu(CFWRandom.randomBoolean());
 			
-			person.setParent(parent);
+			Integer createdPersonID = CFWHierarchy.create(parentID, person);
 			
-			HierarchicalPerson personFromDB = HierarchicalPersonDBMethods.createGetObject(person);
-			
+			if(createdPersonID == null) {
+				return; // error
+			}
+
 			//-----------------------------
 			// Create Subordinates
 			if(currentDepth < maxDepth) {
 				int newMin = (minSubordinates-2 > 0) ? minSubordinates-2 : 0;
-				createSubordinates(personFromDB, newMin, maxSubordinates-1, currentDepth+1, maxDepth);
+				createSubordinates(createdPersonID, newMin, maxSubordinates-1, currentDepth+1, maxDepth);
 			}
 		}
 	}
