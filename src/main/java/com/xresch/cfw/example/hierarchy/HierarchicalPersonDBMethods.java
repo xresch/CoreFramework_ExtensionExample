@@ -153,7 +153,7 @@ public class HierarchicalPersonDBMethods {
 		return new CFWSQL(new HierarchicalPerson())
 				.queryCache()
 				.selectCount()
-				.getCount();
+				.executeCount();
 		
 	}
 	

@@ -164,7 +164,7 @@ public class PersonDBMethods {
 		return new Person()
 				.queryCache(PersonDBMethods.class, "getCount")
 				.selectCount()
-				.getCount();
+				.executeCount();
 		
 	}
 	
