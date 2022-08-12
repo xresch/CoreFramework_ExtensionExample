@@ -5,7 +5,7 @@
  * @author Reto Scheiwiller, (c) Copyright 2019 
  **************************************************************************************************************/
 
-var HIERARCHY_URL = "/app/hierarchy";
+var URL_HIERARCHY = "/app/hierarchy";
 var JSEXAMPLES_LAST_OPTIONS = null;
 var URL_PARAMS=CFW.http.getURLParams();
 
@@ -17,7 +17,7 @@ var EXAMPLE_CONFIG_ID = "hierarchicalperson";
 function hierarchyexamples_duplicate(id){
 	
 	params = {action: "duplicate", item: "person", id: id};
-	CFW.http.getJSON(HIERARCHY_URL, params, 
+	CFW.http.getJSON(URL_HIERARCHY, params, 
 		function(data) {
 			if(data.success){
 				CFW.cache.clearCache();
@@ -92,8 +92,8 @@ function hierarchyexamples_draw(){
 	window.setTimeout( 
 	function(){
 		
-		//CFW.http.fetchAndCacheData(HIERARCHY_URL, {configid: "hierarchicalperson", action: "fetch", item: "hierarchy", rootid: 1}, "hierarchy", hierarchyexamples_printSortableHierarchy);
-		CFW.http.fetchAndCacheData(HIERARCHY_URL, {configid: EXAMPLE_CONFIG_ID, action: "fetch", item: "hierarchy"}, "hierarchy", hierarchyexamples_printSortableHierarchy);
+		//CFW.http.fetchAndCacheData(URL_HIERARCHY, {configid: "hierarchicalperson", action: "fetch", item: "hierarchy", rootid: 1}, "hierarchy", hierarchyexamples_printSortableHierarchy);
+		CFW.http.fetchAndCacheData(URL_HIERARCHY, {configid: EXAMPLE_CONFIG_ID, action: "fetch", item: "hierarchy"}, "hierarchy", hierarchyexamples_printSortableHierarchy);
 		
 		CFW.ui.toogleLoader(false);
 	}, 50);
