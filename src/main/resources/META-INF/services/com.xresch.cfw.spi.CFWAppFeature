@@ -4,3 +4,4 @@ com.xresch.cfw.example.dashboarding.FeatureDashboardingExample
 com.xresch.cfw.example.formsmulti.FeatureMultiFormExamples
 com.xresch.cfw.example.hierarchy.FeatureHierarchyExamples
 com.xresch.cfw.example.javascript.FeatureJavascriptExamples
+com.xresch.cfw.example.query.FeatureQueryExamples
