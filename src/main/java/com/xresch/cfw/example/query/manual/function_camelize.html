@@ -1,0 +1,27 @@
+
+<p>Use this function whenever you want to trade camels, if you find yourself in Camelot or if you need some more ups and downs in life.</p>
+
+<p>Following query creates example records and does various sample camelation operations:</p>
+
+<pre><code class="language-cfwquery">| source random 
+| keep INDEX, FIRSTNAME, LASTNAME, LOCATION
+| set
+	# returns the default value "CaCaCaRaMeL!!!"
+	CARAMEL = camelize()
+	# make regular camels
+	FIRSTNAME = camelize(FIRSTNAME)
+	# make camels with 2 lowercase and one uppercase letter
+	LASTNAME = camelize(LASTNAME, 2)
+	# make camels with 4 lowercase letters
+	LOCATION = camelize(LOCATION, 4)
+	# create a camel contact channel 
+	CAMAIL = camelize(
+			  (replace(FIRSTNAME," ","_")
+			+ "."
+			+ replace(LASTNAME," ","_")
+			+ "@"
+			+ replace(LOCATION," ","_")
+			+ ".ca.mail")
+			, 4
+		)</code></pre>
+

@@ -22,6 +22,10 @@ public class FeatureQueryExamples extends CFWAppFeature {
 		//----------------------------------
 		// Register Commands
 		CFW.Registry.Query.registerCommand(new CFWQueryCommandTiramisu(null));
+		
+		//----------------------------------
+		// Register Functions
+		CFW.Registry.Query.registerFunction(new CFWQueryFunctionCamelize(null));
 	}
 
 	@Override
