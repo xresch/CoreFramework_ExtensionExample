@@ -2,6 +2,7 @@ package com.xresch.cfw.example.query;
 
 import com.xresch.cfw._main.CFW;
 import com.xresch.cfw._main.CFWApplicationExecutor;
+import com.xresch.cfw.features.query.commands.CFWQueryCommandSource;
 import com.xresch.cfw.spi.CFWAppFeature;
 
 public class FeatureQueryExamples extends CFWAppFeature {
@@ -16,8 +17,11 @@ public class FeatureQueryExamples extends CFWAppFeature {
 		
 		//----------------------------------
 		// Register Sources
-		CFW.Registry.Query.registerSource(new QuerySourceHelloWorld(null));
+		CFW.Registry.Query.registerSource(new CFWQuerySourceHelloWorld(null));
 	
+		//----------------------------------
+		// Register Commands
+		CFW.Registry.Query.registerCommand(new CFWQueryCommandTiramisu(null));
 	}
 
 	@Override

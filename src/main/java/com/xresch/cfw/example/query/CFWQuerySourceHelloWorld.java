@@ -30,13 +30,13 @@ import com.xresch.cfw.utils.json.JsonTimerangeChecker;
  * @author Reto Scheiwiller, (c) Copyright 2021 
  * @license MIT-License
  **************************************************************************************************************/
-public class QuerySourceHelloWorld extends CFWQuerySource {
+public class CFWQuerySourceHelloWorld extends CFWQuerySource {
 
 
 	/******************************************************************
 	 *
 	 ******************************************************************/
-	public QuerySourceHelloWorld(CFWQuery parent) {
+	public CFWQuerySourceHelloWorld(CFWQuery parent) {
 		super(parent);
 	}
 

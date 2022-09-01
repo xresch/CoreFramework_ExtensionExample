@@ -1,0 +1,17 @@
+
+<p>The tiramisu command will turn the value of a random field into the name of an Italian dessert. 
+You can specify the fields that should be considered for dessertification. If no fields are specified, all the fields(including hidden ones) can be picked randomly. 
+By setting the parameter random=false, the dessert will always be Tiramisu. </p>
+
+<p>Following code will create random records and replace one of the fields values with a random Italian dessert:</p>
+
+<pre><code class="language-cfwquery">| source random 
+| tiramisu</code></pre>
+
+
+<p>The following query uses the command alias 'dessertification' and will only replace values in the selected fields, 
+and dessert is always 'Tiramisu':</p>
+<pre><code class="language-cfwquery">| source random 
+| dessertification 
+	FIRSTNAME, LASTNAME, LOCATION 
+	random=false</code></pre>
