@@ -115,10 +115,10 @@ function jsexamples_printDataHandling(data){
 
 	//--------------------------------
 	// Button
-	var addPersonButton = $('<button class="btn btn-sm btn-success mb-2" onclick="jsexamples_addPerson()">'
+	var addButton = $('<button class="btn btn-sm btn-success mb-2" onclick="jsexamples_addPerson()">'
 						+ '<i class="mr-1 fas fa-plus-circle"></i>Add Person</button>');
 
-	parent.append(addPersonButton);
+	parent.append(addButton);
 	
 	
 	//--------------------------------
@@ -229,10 +229,10 @@ function jsexamples_printPaginationStatic(data){
 
 	//--------------------------------
 	// Button
-	var addPersonButton = $('<button class="btn btn-sm btn-success mb-2" onclick="jsexamples_addPerson()">'
+	var addButton = $('<button class="btn btn-sm btn-success mb-2" onclick="jsexamples_addPerson()">'
 						+ '<i class="mr-1 fas fa-plus-circle"></i>Add Person</button>');
 
-	parent.append(addPersonButton);
+	parent.append(addButton);
 	
 	
 	//--------------------------------
@@ -329,7 +329,7 @@ function jsexamples_printPaginationStatic(data){
 		parent.append(renderResult);
 		
 	}else{
-		CFW.ui.addAlert('error', 'Something went wrong and no users can be displayed.');
+		CFW.ui.addAlert('error', 'Something went wrong and no data can be displayed.');
 	}
 }
 
@@ -345,10 +345,10 @@ function jsexamples_printPaginationDynamic(){
 
 	//--------------------------------
 	// Button
-	var addPersonButton = $('<button class="btn btn-sm btn-success mb-2" onclick="jsexamples_addPerson()">'
+	var addButton = $('<button class="btn btn-sm btn-success mb-2" onclick="jsexamples_addPerson()">'
 						+ '<i class="mr-1 fas fa-plus-circle"></i>Add Person</button>');
 
-	parent.append(addPersonButton);
+	parent.append(addButton);
 	
 	
 	//======================================
@@ -450,10 +450,10 @@ function jsexamples_printFullDataviewer(){
 
 	//--------------------------------
 	// Button
-	var addPersonButton = $('<button class="btn btn-sm btn-success mb-2" onclick="jsexamples_addPerson()">'
+	var addButton = $('<button class="btn btn-sm btn-success mb-2" onclick="jsexamples_addPerson()">'
 						+ '<i class="mr-1 fas fa-plus-circle"></i>Add Person</button>');
 
-	parent.append(addPersonButton);
+	parent.append(addButton);
 	
 	
 	//======================================
@@ -538,6 +538,14 @@ function jsexamples_printFullDataviewer(){
 							name: 'table',
 							renderdef: {
 								rendererSettings: {
+									table: {filterable: false, narrow: true},
+								},
+							}
+						},
+						{	label: 'Bigger Table',
+							name: 'table',
+							renderdef: {
+								rendererSettings: {
 									table: {filterable: false},
 								},
 							}
@@ -552,6 +560,7 @@ function jsexamples_printFullDataviewer(){
 								},
 							}
 						},
+						
 						{	label: 'Panels',
 							name: 'panels',
 							renderdef: {}
