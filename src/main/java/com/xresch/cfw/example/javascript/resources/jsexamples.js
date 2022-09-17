@@ -633,7 +633,7 @@ function jsexamples_draw(options){
 	CFW.cache.storeValueForPage("jsexamples-lasttab", options.tab);
 	$("#tab-content").html("");
 	
-	CFW.ui.toogleLoader(true);
+	CFW.ui.toggleLoader(true);
 	
 	window.setTimeout( 
 	function(){
@@ -650,6 +650,6 @@ function jsexamples_draw(options){
 			default:				CFW.ui.addToastDanger('This tab is unknown: '+options.tab);
 		}
 		
-		CFW.ui.toogleLoader(false);
+		CFW.ui.toggleLoader(false);
 	}, 50);
 }
