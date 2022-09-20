@@ -31,7 +31,7 @@ public class ParameterDefinitionExampleEnvironment extends ParameterDefinition {
 		CFWField settingsField = ExampleSettingsFactory.createExampleEnvironmentSelectorField();
 				
 		if(fieldValue != null) {
-			settingsField.setValueConvert(fieldValue);
+			settingsField.setValueConvert(fieldValue, true);
 		}
 	
 		return settingsField;
