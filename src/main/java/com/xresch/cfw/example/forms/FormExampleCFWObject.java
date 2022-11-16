@@ -103,6 +103,21 @@ public class FormExampleCFWObject extends CFWObject{
 	private CFWField<Timestamp> timestamp = 
 				CFWField.newTimestamp(FormFieldType.DATETIMEPICKER, "TIMESTAMP")
 				.setValue(new Timestamp(1580053600000L));
+		
+	//------------------------------------------------------------------------------------------------
+	// A schedule picker with default value
+	private CFWField<CFWTimeframe> timeframe = 
+				CFWField.newTimeframe("JSON_TIMEFRAME")
+				.setLabel("Timeframe Picker")
+				.setValue(
+					new CFWTimeframe()
+						.setEarliest(CFW.Utils.Time.getCurrentTimestampWithOffset(0, 0, 3, 3, 30))
+						.setLatest(CFW.Utils.Time.getCurrentTimestampWithOffset(0, 0, 1, 1, 1))
+				);
+	
+	//------------------------------------------------------------------------------------------------
+	// A select for a timezone
+	private CFWField<String> timezone =  CFWField.newString(FormFieldType.TIMEZONEPICKER, "TIME_ZONE");
 	
 	//------------------------------------------------------------------------------------------------
 	// A schedule picker with default value
@@ -120,18 +135,11 @@ public class FormExampleCFWObject extends CFWObject{
 	
 	//------------------------------------------------------------------------------------------------
 	// A schedule picker with default value
-	private CFWField<CFWTimeframe> timeframe = 
-				CFWField.newTimeframe("JSON_TIMEFRAME")
-				.setLabel("Timeframe Picker")
-				.setValue(
-					new CFWTimeframe()
-						.setEarliest(CFW.Utils.Time.getCurrentTimestampWithOffset(0, 0, 3, 3, 30))
-						.setLatest(CFW.Utils.Time.getCurrentTimestampWithOffset(0, 0, 1, 1, 1))
-				);
-	
-	//------------------------------------------------------------------------------------------------
-	// A select for a timezone
-	private CFWField<String> timezone =  CFWField.newString(FormFieldType.TIMEZONEPICKER, "TIME_ZONE");
+	private CFWField<String> chartSettings = 
+				CFWField.newChartSettings("JSON_CHART_SETTINGS")
+				.setLabel("Chart Settings")
+				//.addValidator(new ScheduleValidator())
+				.setValue(null);
 	
 	//------------------------------------------------------------------------------------------------
 	// A select with options
@@ -386,8 +394,9 @@ public class FormExampleCFWObject extends CFWObject{
 				, date
 				, timestamp
 				, timeframe
-				, schedule
 				, timezone
+				, schedule
+				, chartSettings
 				, select
 				, keyValSelect
 				, checkoxesNoDefaults
