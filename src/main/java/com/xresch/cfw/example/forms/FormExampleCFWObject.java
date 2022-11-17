@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.google.common.base.Strings;
 import com.xresch.cfw._main.CFW;
+import com.xresch.cfw.datahandling.CFWChartSettings;
+import com.xresch.cfw.datahandling.CFWChartSettings.AxisType;
+import com.xresch.cfw.datahandling.CFWChartSettings.ChartType;
 import com.xresch.cfw.datahandling.CFWField;
 import com.xresch.cfw.datahandling.CFWField.FormFieldType;
 import com.xresch.cfw.datahandling.CFWObject;
@@ -135,11 +138,21 @@ public class FormExampleCFWObject extends CFWObject{
 	
 	//------------------------------------------------------------------------------------------------
 	// A schedule picker with default value
-	private CFWField<String> chartSettings = 
+	private CFWField<CFWChartSettings> chartSettings = 
 				CFWField.newChartSettings("JSON_CHART_SETTINGS")
 				.setLabel("Chart Settings")
-				//.addValidator(new ScheduleValidator())
-				.setValue(null);
+				.setValue(
+					new CFWChartSettings()
+						.chartType(ChartType.scatter)
+						.showLegend(true)
+						.showAxes(false)
+						.stacked(true)
+						.pointRadius(12)
+						.xaxisType(AxisType.logarithmic)
+						.yaxisType(AxisType.logarithmic)
+						.yaxisMin(-42)
+						.yaxisMax(10000)
+				);
 	
 	//------------------------------------------------------------------------------------------------
 	// A select with options
