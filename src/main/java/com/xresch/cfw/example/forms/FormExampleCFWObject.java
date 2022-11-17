@@ -147,11 +147,11 @@ public class FormExampleCFWObject extends CFWObject{
 						.showLegend(true)
 						.showAxes(false)
 						.stacked(true)
-						.pointRadius(12)
+						.pointRadius(12.1f)
 						.xaxisType(AxisType.logarithmic)
 						.yaxisType(AxisType.logarithmic)
-						.yaxisMin(-42)
-						.yaxisMax(10000)
+						.yaxisMin(-42.2f)
+						.yaxisMax(10000.1f)
 				);
 	
 	//------------------------------------------------------------------------------------------------
