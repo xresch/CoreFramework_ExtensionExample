@@ -45,7 +45,7 @@ public class HierarchicalPerson extends CFWObject {
 						) {
 		
 		@Override
-		public boolean canBeReordered(CFWObject sortedElement, CFWObject targetParent) {
+		public boolean canBeReordered(CFWObject targetParent, CFWObject sortedElement) {
 			return true;
 		}
 		
