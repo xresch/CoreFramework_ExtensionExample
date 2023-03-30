@@ -26,8 +26,8 @@ import com.xresch.cfw.features.core.AutocompleteList;
 import com.xresch.cfw.features.core.AutocompleteResult;
 import com.xresch.cfw.features.core.CFWAutocompleteHandler;
 import com.xresch.cfw.features.dashboard.DashboardWidget;
-import com.xresch.cfw.features.dashboard.WidgetDefinition;
-import com.xresch.cfw.features.dashboard.WidgetDataCache.WidgetDataCachePolicy;
+import com.xresch.cfw.features.dashboard.widgets.WidgetDefinition;
+import com.xresch.cfw.features.dashboard.widgets.WidgetDataCache.WidgetDataCachePolicy;
 import com.xresch.cfw.features.jobs.CFWJobsAlertObject;
 import com.xresch.cfw.features.jobs.CFWJobsAlertObject.AlertType;
 import com.xresch.cfw.features.usermgmt.User;
@@ -45,14 +45,23 @@ public class ExampleWidgetHelloWorld extends WidgetDefinition {
 	
 	private static final Logger logger = CFWLog.getLogger(ExampleWidgetHelloWorld.class.getName());
 	
+	/******************************************************************************
+	 * 
+	 ******************************************************************************/
 	@Override
 	public String getWidgetType() {return "cfwexample_helloworld";}
-
+	
+	/******************************************************************************
+	 * 
+	 ******************************************************************************/
 	@Override
 	public WidgetDataCachePolicy getCachePolicy() {
 		return WidgetDataCachePolicy.OFF;
 	}
 	
+	/******************************************************************************
+	 * 
+	 ******************************************************************************/
 	@Override
 	public CFWObject getSettings() {
 		return new CFWObject()
@@ -90,7 +99,18 @@ public class ExampleWidgetHelloWorld extends WidgetDefinition {
 				)
 		;
 	}
-
+	
+	/******************************************************************************
+	 * 
+	 ******************************************************************************/
+	@Override
+	public boolean canSave(HttpServletRequest request, JSONResponse response, CFWObject settings, CFWObject settingsWithParams) {
+		return true;
+	}
+	
+	/******************************************************************************
+	 * 
+	 ******************************************************************************/
 	@Override
 	public void fetchData(HttpServletRequest request, JSONResponse response, CFWObject settings, JsonObject jsonSettings, CFWTimeframe timeframe) { 
 		//int number = settings.get("number").getAsInt();
@@ -122,7 +142,10 @@ public class ExampleWidgetHelloWorld extends WidgetDefinition {
 		response.getContent()
 		.append("\"");
 	}
-
+	
+	/******************************************************************************
+	 * 
+	 ******************************************************************************/
 	@Override
 	public ArrayList<FileDefinition> getJavascriptFiles() {
 		ArrayList<FileDefinition> array = new ArrayList<FileDefinition>();
@@ -130,13 +153,19 @@ public class ExampleWidgetHelloWorld extends WidgetDefinition {
 		array.add(js);
 		return array;
 	}
-
+	
+	/******************************************************************************
+	 * 
+	 ******************************************************************************/
 	@Override
 	public ArrayList<FileDefinition> getCSSFiles() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	/******************************************************************************
+	 * 
+	 ******************************************************************************/
 	@Override
 	public HashMap<Locale, FileDefinition> getLocalizationFiles() {
 		HashMap<Locale, FileDefinition> map = new HashMap<Locale, FileDefinition>();
@@ -144,7 +173,10 @@ public class ExampleWidgetHelloWorld extends WidgetDefinition {
 		map.put(Locale.GERMAN, new FileDefinition(HandlingType.JAR_RESOURCE, FeatureDashboardingExample.RESOURCE_PACKAGE, "lang_de_widget_helloworld.properties"));
 		return map;
 	}
-
+	
+	/******************************************************************************
+	 * 
+	 ******************************************************************************/
 	@Override
 	public boolean hasPermission(User user) {
 		return true;
@@ -159,7 +191,10 @@ public class ExampleWidgetHelloWorld extends WidgetDefinition {
 		return true;
 	}
 	
-
+	
+	/******************************************************************************
+	 * 
+	 ******************************************************************************/
 	public CFWObject getTasksParameters() {
 		
 		//Create Default Object for Alert Settings
@@ -185,11 +220,17 @@ public class ExampleWidgetHelloWorld extends WidgetDefinition {
 		return alertObject;
 	}
 	
-
+	
+	/******************************************************************************
+	 * 
+	 ******************************************************************************/
 	public String getTaskDescription() {
 		return "The task of this widget writes a message to the log file.";
 	}
-
+	
+	/******************************************************************************
+	 * 
+	 ******************************************************************************/
 	public void executeTask(JobExecutionContext context, CFWObject taskParams, DashboardWidget widget, CFWObject widgetSettings, CFWTimeframe offset) throws JobExecutionException {
 		
 		new CFWLog(logger)
