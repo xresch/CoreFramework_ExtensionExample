@@ -114,8 +114,8 @@ public class FormExampleCFWObject extends CFWObject{
 				.setLabel("Timeframe Picker")
 				.setValue(
 					new CFWTimeframe()
-						.setEarliest(CFW.Utils.Time.getCurrentTimestampWithOffset(0, 0, 3, 3, 30))
-						.setLatest(CFW.Utils.Time.getCurrentTimestampWithOffset(0, 0, 1, 1, 1))
+						.setEarliest(CFW.Time.getCurrentTimestampWithOffset(0, 0, 3, 3, 30))
+						.setLatest(CFW.Time.getCurrentTimestampWithOffset(0, 0, 1, 1, 1))
 				);
 	
 	//------------------------------------------------------------------------------------------------
