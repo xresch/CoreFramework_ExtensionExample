@@ -79,7 +79,7 @@ public class ExampleWidgetHelloWorld extends WidgetDefinition {
 	 ************************************************************/
 	@Override
 	public String descriptionHTML() {
-		return CFW.Files.readPackageResource(FeatureDashboard.PACKAGE_MANUAL, "widget_"+getWidgetType()+".html");
+		return CFW.Files.readPackageResource(FeatureDashboardingExample.PACKAGE_RESOURCES, "widget_"+getWidgetType()+".html");
 	}
 	
 	/******************************************************************************
@@ -172,7 +172,7 @@ public class ExampleWidgetHelloWorld extends WidgetDefinition {
 	@Override
 	public ArrayList<FileDefinition> getJavascriptFiles() {
 		ArrayList<FileDefinition> array = new ArrayList<FileDefinition>();
-		FileDefinition js = new FileDefinition(HandlingType.JAR_RESOURCE, FeatureDashboardingExample.RESOURCE_PACKAGE, "cfwexamples_widget_helloworld.js");
+		FileDefinition js = new FileDefinition(HandlingType.JAR_RESOURCE, FeatureDashboardingExample.PACKAGE_RESOURCES, "cfwexamples_widget_helloworld.js");
 		array.add(js);
 		return array;
 	}
@@ -192,8 +192,8 @@ public class ExampleWidgetHelloWorld extends WidgetDefinition {
 	@Override
 	public HashMap<Locale, FileDefinition> getLocalizationFiles() {
 		HashMap<Locale, FileDefinition> map = new HashMap<Locale, FileDefinition>();
-		map.put(Locale.ENGLISH, new FileDefinition(HandlingType.JAR_RESOURCE, FeatureDashboardingExample.RESOURCE_PACKAGE, "lang_en_widget_helloworld.properties"));
-		map.put(Locale.GERMAN, new FileDefinition(HandlingType.JAR_RESOURCE, FeatureDashboardingExample.RESOURCE_PACKAGE, "lang_de_widget_helloworld.properties"));
+		map.put(Locale.ENGLISH, new FileDefinition(HandlingType.JAR_RESOURCE, FeatureDashboardingExample.PACKAGE_RESOURCES, "lang_en_widget_helloworld.properties"));
+		map.put(Locale.GERMAN, new FileDefinition(HandlingType.JAR_RESOURCE, FeatureDashboardingExample.PACKAGE_RESOURCES, "lang_de_widget_helloworld.properties"));
 		return map;
 	}
 	
