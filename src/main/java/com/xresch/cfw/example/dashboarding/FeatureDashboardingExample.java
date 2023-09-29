@@ -12,6 +12,8 @@ import com.xresch.cfw.spi.CFWAppFeature;
 public class FeatureDashboardingExample extends CFWAppFeature {
 		
 	public static final String RESOURCE_PACKAGE = "com.xresch.cfw.example.dashboarding.resources";
+	
+	public static final String WIDGET_CATEGORY_EXTENSION_EXAMPLES = "Extension Examples";
 
 	@Override
 	public void register() {
