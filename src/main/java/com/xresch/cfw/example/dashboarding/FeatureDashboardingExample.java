@@ -1,7 +1,13 @@
 package com.xresch.cfw.example.dashboarding;
 
+import java.util.Locale;
+
 import com.xresch.cfw._main.CFW;
 import com.xresch.cfw._main.CFWApplicationExecutor;
+import com.xresch.cfw.caching.FileDefinition;
+import com.xresch.cfw.caching.FileDefinition.HandlingType;
+import com.xresch.cfw.features.dashboard.FeatureDashboard;
+import com.xresch.cfw.features.manual.FeatureManual;
 import com.xresch.cfw.spi.CFWAppFeature;
 
 /**************************************************************************************************************
@@ -20,7 +26,14 @@ public class FeatureDashboardingExample extends CFWAppFeature {
 		//----------------------------------
 		// Register Package
 		CFW.Files.addAllowedPackage(PACKAGE_RESOURCES);
-
+		
+		//----------------------------------
+		// Register Languages 
+		// if you use properties in widgets in global locale files, you can add them with the following code		
+//		FileDefinition english = new FileDefinition(HandlingType.JAR_RESOURCE, PACKAGE_RESOURCES, "lang_en_customGlobal.properties");
+//		CFW.Localization.registerLocaleFile(Locale.ENGLISH, FeatureDashboard.URI_DASHBOARD_VIEW, english);
+//		CFW.Localization.registerLocaleFile(Locale.ENGLISH, FeatureDashboard.URI_DASHBOARD_VIEW_PUBLIC, english);
+//		CFW.Localization.registerLocaleFile(Locale.ENGLISH, FeatureManual.URI_MANUAL, english);
 		
     	//----------------------------------
     	// Register Widgets
