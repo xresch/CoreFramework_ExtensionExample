@@ -193,8 +193,8 @@ public class Person extends CFWObject {
 		return id.getValue();
 	}
 	
-	public Person id(Integer id) {
-		this.id.setValue(id);
+	public Person id(Integer value) {
+		this.id.setValue(value);
 		return this;
 	}
 	
@@ -202,8 +202,8 @@ public class Person extends CFWObject {
 		return email.getValue();
 	}
 	
-	public Person email(String email) {
-		this.email.setValue(email);
+	public Person email(String value) {
+		this.email.setValue(value);
 		return this;
 	}
 	
@@ -211,8 +211,8 @@ public class Person extends CFWObject {
 		return firstname.getValue();
 	}
 	
-	public Person firstname(String firstname) {
-		this.firstname.setValue(firstname);
+	public Person firstname(String value) {
+		this.firstname.setValue(value);
 		return this;
 	}
 	
@@ -220,8 +220,8 @@ public class Person extends CFWObject {
 		return lastname.getValue();
 	}
 	
-	public Person lastname(String lastname) {
-		this.lastname.setValue(lastname);
+	public Person lastname(String value) {
+		this.lastname.setValue(value);
 		return this;
 	}
 	
@@ -229,8 +229,8 @@ public class Person extends CFWObject {
 		return location.getValue();
 	}
 	
-	public Person location(String location) {
-		this.location.setValue(location);
+	public Person location(String value) {
+		this.location.setValue(value);
 		return this;
 	}
 	
@@ -238,8 +238,8 @@ public class Person extends CFWObject {
 		return likesTiramisu.getValue();
 	}
 	
-	public Person likesTiramisu(boolean isForeign) {
-		this.likesTiramisu.setValue(isForeign);
+	public Person likesTiramisu(boolean value) {
+		this.likesTiramisu.setValue(value);
 		return this;
 	}
 	
@@ -247,8 +247,8 @@ public class Person extends CFWObject {
 		return character.getValue();
 	}
 	
-	public Person character(String character) {
-		this.character.setValue(character);
+	public Person character(String value) {
+		this.character.setValue(value);
 		return this;
 	}
 	
