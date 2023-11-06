@@ -604,16 +604,10 @@ function jsexamples_printFullDataviewer(){
 	parent.append(renderResult);
 	
 }
-/******************************************************************
- * Main method for building the different views.
- * 
- * @param options Array with arguments:
- * 	{
- * 		tab: 'mydashboards|shareddashboards|admindashboards', 
- *  }
- * @return 
- ******************************************************************/
 
+/******************************************************************
+ * Initial Draw, creates tabs
+ ******************************************************************/
 function jsexamples_initialDraw(){
 	
 	jsexamples_createTabs();
@@ -627,6 +621,16 @@ function jsexamples_initialDraw(){
 	jsexamples_draw({tab: tabToDisplay});
 }
 
+
+/******************************************************************
+ * Main method for building the different views.
+ * 
+ * @param options Array with arguments:
+ * 	{
+ * 		tab: 'mydashboards|shareddashboards|admindashboards', 
+ *  }
+ * @return 
+ ******************************************************************/
 function jsexamples_draw(options){
 	JSEXAMPLES_LAST_OPTIONS = options;
 	
