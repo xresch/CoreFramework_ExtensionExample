@@ -194,7 +194,7 @@ function jsexamples_printDataHandling(data){
 			 			 
 			 		},
 				 	CHARACTER: function(record, value) { 
-				 		return CFW.format.arrayToBadges(value.split(','));			 			 
+				 		return CFW.format.badgesFromArray(value.split(','));			 			 
 			 		}
 			 	},
 				actions: actionButtons,
@@ -307,7 +307,7 @@ function jsexamples_printPaginationStatic(data){
 						} 
 			 		},
 			 		CHARACTER: function(record, value) { 
-				 		return CFW.format.arrayToBadges(value.split(','));			 			 
+				 		return CFW.format.badgesFromArray(value.split(','));			 			 
 			 		}
 			 	},
 				actions: actionButtons,
@@ -412,7 +412,7 @@ function jsexamples_printPaginationDynamic(){
 		 			 
 		 		},
 		 		CHARACTER: function(record, value) { 
-			 		return CFW.format.arrayToBadges(value.split(','));			 			 
+			 		return CFW.format.badgesFromArray(value.split(','));			 			 
 		 		}
 		 	},
 			actions: actionButtons,
@@ -516,7 +516,7 @@ function jsexamples_printFullDataviewer(){
 					}
 		 		},
 		 		CHARACTER: function(record, value) { 
-			 		return CFW.format.arrayToBadges(value.split(','));			 			 
+			 		return CFW.format.badgesFromArray(value.split(','));			 			 
 		 		}
 		 	},
 			actions: actionButtons,
