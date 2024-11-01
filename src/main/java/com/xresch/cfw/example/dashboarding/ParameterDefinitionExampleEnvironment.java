@@ -4,6 +4,7 @@ import java.util.HashSet;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.google.gson.JsonObject;
 import com.xresch.cfw.datahandling.CFWField;
 import com.xresch.cfw.datahandling.CFWTimeframe;
 import com.xresch.cfw.features.parameter.ParameterDefinition;
@@ -38,6 +39,16 @@ public class ParameterDefinitionExampleEnvironment extends ParameterDefinition {
 		return settingsField;
 	}
 	
+	@Override
+	public String descriptionShort() {
+		return "This parameter allows the user to select an example environment.";
+	}
+
+	@Override
+	public String descriptionHTML() {
+		return "<p>Put here your verbose description for the manual.</p>";
+	}
+	
 	/***************************************************************
 	 * If another field should be displayed in the widget "Parameter"
 	 * for this type of parameter, return a different field here.
@@ -45,7 +56,7 @@ public class ParameterDefinitionExampleEnvironment extends ParameterDefinition {
 	 ***************************************************************/
 	@SuppressWarnings({ "rawtypes" })
 	@Override
-	public CFWField getFieldForWidget(HttpServletRequest request, String dashboardid, Object parameterValue, CFWTimeframe timeframe) {
+	public CFWField getFieldForWidget(HttpServletRequest request, String dashboardid, Object parameterValue, CFWTimeframe timeframe, JsonObject userSelectedParamValues) {
 
 		return getFieldForSettings(request, dashboardid, parameterValue);
 	}

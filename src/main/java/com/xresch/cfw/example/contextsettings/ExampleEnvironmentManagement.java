@@ -44,7 +44,7 @@ public class ExampleEnvironmentManagement {
 			}
 			
 			@Override
-			public void onDelete(AbstractContextSettings typeSettings) {
+			public void onDeleteOrDeactivate(AbstractContextSettings typeSettings) {
 				environments.remove(typeSettings.getDefaultObject().id());
 				CFW.Context.Request.addAlertMessage(MessageType.INFO, "ContextSettingsChangeListener.onDelete() was triggered.(find it in class: "+this.getClass().getName()+")");
 			}
@@ -108,7 +108,7 @@ public class ExampleEnvironmentManagement {
 		// Clear environments
 		environments = new HashMap<Integer, ExampleEnvironment>();
 		
-		ArrayList<AbstractContextSettings> settingsArray = CFW.DB.ContextSettings.getContextSettingsForType(ExampleEnvironment.SETTINGS_TYPE);
+		ArrayList<AbstractContextSettings> settingsArray = CFW.DB.ContextSettings.getContextSettingsForType(ExampleEnvironment.SETTINGS_TYPE, true);
 
 		for(AbstractContextSettings settings : settingsArray) {
 			ExampleEnvironment current = (ExampleEnvironment)settings;
