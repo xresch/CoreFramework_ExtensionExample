@@ -30,7 +30,8 @@ public class ParameterDefinitionExampleEnvironment extends ParameterDefinition {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public CFWField getFieldForSettings(HttpServletRequest request, String dashboardid, Object fieldValue) {
-		CFWField settingsField = ExampleSettingsFactory.createExampleEnvironmentSelectorField();
+		CFWField settingsField = ExampleSettingsFactory.createExampleEnvironmentSelectorField()
+													   .allowHTML(true); // do not sanitize HTML here to allow dashboard editors to do shenanigans
 				
 		if(fieldValue != null) {
 			settingsField.setValueConvert(fieldValue, true);
@@ -58,7 +59,7 @@ public class ParameterDefinitionExampleEnvironment extends ParameterDefinition {
 	@Override
 	public CFWField getFieldForWidget(HttpServletRequest request, String dashboardid, Object parameterValue, CFWTimeframe timeframe, JsonObject userSelectedParamValues) {
 
-		return getFieldForSettings(request, dashboardid, parameterValue);
+		return getFieldForSettings(request, dashboardid, parameterValue).allowHTML(false); //you might want to sanitize here as it is user input
 	}
 	
 	/***************************************************************
