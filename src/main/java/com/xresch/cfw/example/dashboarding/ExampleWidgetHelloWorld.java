@@ -35,6 +35,7 @@ import com.xresch.cfw.features.usermgmt.User;
 import com.xresch.cfw.logging.CFWLog;
 import com.xresch.cfw.response.JSONResponse;
 import com.xresch.cfw.response.bootstrap.AlertMessage.MessageType;
+import com.xresch.cfw.utils.CFWMonitor;
 import com.xresch.cfw.validation.LengthValidator;
 import com.xresch.cfw.validation.NotNullOrEmptyValidator;
 
@@ -221,7 +222,7 @@ public class ExampleWidgetHelloWorld extends WidgetDefinition {
 	public CFWObject getTasksParameters() {
 		
 		//Create Default Object for Alert Settings
-		CFWJobsAlertObject alertObject = new CFWJobsAlertObject();
+		CFWJobsAlertObject alertObject = new CFWJobsAlertObject(false);
 		
 		//Add additional fields
 		alertObject
@@ -254,7 +255,7 @@ public class ExampleWidgetHelloWorld extends WidgetDefinition {
 	/******************************************************************************
 	 * 
 	 ******************************************************************************/
-	public void executeTask(JobExecutionContext context, CFWObject taskParams, DashboardWidget widget, CFWObject widgetSettings, CFWTimeframe offset) throws JobExecutionException {
+	public void executeTask(JobExecutionContext context, CFWObject taskParams, DashboardWidget widget, CFWObject widgetSettings, CFWMonitor monitor, CFWTimeframe offset) throws JobExecutionException {
 		
 		new CFWLog(logger)
 			.custom("likesTiramisu", taskParams.getField(LIKES_TIRAMISU).getValue())
@@ -269,7 +270,7 @@ public class ExampleWidgetHelloWorld extends WidgetDefinition {
 		
 		//-----------------------------
 		// Alerting Example
-		CFWJobsAlertObject alertObject = new CFWJobsAlertObject(context, this.getWidgetType());
+		CFWJobsAlertObject alertObject = new CFWJobsAlertObject(context, this.getWidgetType(), false);
 		
 		alertObject.mapJobExecutionContext(context);
 		
