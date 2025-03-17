@@ -11,7 +11,7 @@ import com.xresch.cfw.features.contextsettings.AbstractContextSettings;
 import com.xresch.cfw.features.contextsettings.ContextSettings;
 import com.xresch.cfw.features.contextsettings.ContextSettingsChangeListener;
 import com.xresch.cfw.logging.CFWLog;
-import com.xresch.cfw.response.bootstrap.AlertMessage.MessageType;
+import com.xresch.cfw.response.bootstrap.CFWHTMLItemAlertMessage.MessageType;
 
 
 public class ExampleEnvironmentManagement {
@@ -40,13 +40,13 @@ public class ExampleEnvironmentManagement {
 			public void onChange(AbstractContextSettings setting, boolean isNew) {
 				ExampleEnvironment env = (ExampleEnvironment)setting;
 				ExampleEnvironmentManagement.createEnvironment(env);
-				CFW.Context.Request.addAlertMessage(MessageType.INFO, "ContextSettingsChangeListener.onChange() was triggered.(find it in class: "+this.getClass().getName()+")");
+				CFW.Messages.addInfoMessage("ContextSettingsChangeListener.onChange() was triggered.(find it in class: "+this.getClass().getName()+")");
 			}
 			
 			@Override
 			public void onDeleteOrDeactivate(AbstractContextSettings typeSettings) {
 				environments.remove(typeSettings.getDefaultObject().id());
-				CFW.Context.Request.addAlertMessage(MessageType.INFO, "ContextSettingsChangeListener.onDelete() was triggered.(find it in class: "+this.getClass().getName()+")");
+				CFW.Messages.addInfoMessage("ContextSettingsChangeListener.onDelete() was triggered.(find it in class: "+this.getClass().getName()+")");
 			}
 		};
 		
@@ -125,7 +125,7 @@ public class ExampleEnvironmentManagement {
 
 		InetSocketAddress address = new InetSocketAddress(environment.host(), environment.port());
 		if(address.isUnresolved()) {
-			CFW.Context.Request.addAlertMessage(MessageType.ERROR, "The URL could not be resolved: "+environment.host()+":"+environment.port());
+			CFW.Messages.addErrorMessage("The URL could not be resolved: "+environment.host()+":"+environment.port());
 			return;
 		};
 		

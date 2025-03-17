@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.logging.Logger;
 
 import com.google.gson.JsonElement;
@@ -14,7 +15,7 @@ import com.xresch.cfw.features.query.CFWQueryAutocompleteHelper;
 import com.xresch.cfw.features.query.CFWQueryCommand;
 import com.xresch.cfw.features.query.CFWQuerySource;
 import com.xresch.cfw.features.query.EnhancedJsonObject;
-import com.xresch.cfw.features.query.FeatureQuery;
+import com.xresch.cfw.features.query._CFWQueryCommon;
 import com.xresch.cfw.features.query.parse.CFWQueryParser;
 import com.xresch.cfw.features.query.parse.QueryPart;
 import com.xresch.cfw.features.query.parse.QueryPartArray;
@@ -50,6 +51,18 @@ public class CFWQueryCommandTiramisu extends CFWQueryCommand {
 	public String[] uniqueNameAndAliases() {
 		return new String[] {"tiramisu", "dessertification"};
 	}
+	
+	/***********************************************************************************************
+	 * 
+	 ***********************************************************************************************/
+	@Override
+	public TreeSet<String> getTags(){
+		TreeSet<String> tags = new TreeSet<>();
+		tags.add(_CFWQueryCommon.TAG_STRINGS);
+		tags.add("desserts");
+		return tags;
+	}
+
 
 	/***********************************************************************************************
 	 * 
@@ -187,5 +200,7 @@ public class CFWQueryCommandTiramisu extends CFWQueryCommand {
 		this.setDoneIfPreviousDone();
 		
 	}
+
+
 
 }

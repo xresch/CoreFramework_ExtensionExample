@@ -2,7 +2,7 @@ package com.xresch.cfw.example._main;
 
 import com.xresch.cfw._main.CFW;
 import com.xresch.cfw._main.CFWApplicationExecutor;
-import com.xresch.cfw.response.bootstrap.MenuItem;
+import com.xresch.cfw.response.bootstrap.CFWHTMLItemMenuItem;
 import com.xresch.cfw.spi.CFWAppFeature;
 
 /**************************************************************************************
@@ -20,13 +20,13 @@ public class FeatureRegular extends CFWAppFeature {
 		// the menu entry.
 		
 		CFW.Registry.Components.addRegularMenuItem(
-				(MenuItem)new MenuItem("Regular Feature")
+				(CFWHTMLItemMenuItem)new CFWHTMLItemMenuItem("Regular Feature")
 				.faicon("fas fa-seedling"),
 				null
 		);
 		
 		CFW.Registry.Components.addRegularMenuItem(
-				(MenuItem)new MenuItem("Show Support Info")
+				(CFWHTMLItemMenuItem)new CFWHTMLItemMenuItem("Show Support Info")
 					.faicon("fas fa-info")
 					.onclick("cfw_ui_showSupportInfoModal();")
 				, "Regular Feature");

@@ -18,7 +18,6 @@ import com.xresch.cfw.example.datahandling.Person;
 import com.xresch.cfw.example.datahandling.PersonDBMethods;
 import com.xresch.cfw.response.HTMLResponse;
 import com.xresch.cfw.response.JSONResponse;
-import com.xresch.cfw.response.bootstrap.AlertMessage.MessageType;
 
 /**************************************************************************************************************
  * 
@@ -176,7 +175,7 @@ public class HierarchyExamplesServlet extends HttpServlet
 						Person Person = (Person)origin;
 						
 						if(PersonDBMethods.create(Person) ) {
-							CFW.Context.Request.addAlertMessage(MessageType.SUCCESS, "HierarchicalPerson created successfully!");
+							CFW.Messages.addSuccessMessage("HierarchicalPerson created successfully!");
 						}
 					}
 				}
@@ -205,7 +204,7 @@ public class HierarchyExamplesServlet extends HttpServlet
 					if(origin.mapRequestParameters(request)) {
 						
 						if(PersonDBMethods.update((Person)origin)) {
-							CFW.Context.Request.addAlertMessage(MessageType.SUCCESS, "Updated!");
+							CFW.Messages.addSuccessMessage("Updated!");
 						}
 							
 					}

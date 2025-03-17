@@ -4,7 +4,7 @@ import com.xresch.cfw._main.CFW;
 import com.xresch.cfw._main.CFWApplicationExecutor;
 import com.xresch.cfw.example._main.ExampleExtensionApplication;
 import com.xresch.cfw.example.datahandling.Person;
-import com.xresch.cfw.response.bootstrap.MenuItem;
+import com.xresch.cfw.response.bootstrap.CFWHTMLItemMenuItem;
 import com.xresch.cfw.spi.CFWAppFeature;
 
 public class FeatureJavascriptExamples extends CFWAppFeature {
@@ -21,7 +21,7 @@ public class FeatureJavascriptExamples extends CFWAppFeature {
     	// Register Menus that needs permission
 		// to access
 		ExampleExtensionApplication.EXTENSION_MENU_ROOT.addChild(
-			new MenuItem("Javascript Examples")
+			new CFWHTMLItemMenuItem("Javascript Examples")
 				.faicon("fab fa-js")
 				.addPermission(ExampleExtensionApplication.PERMISSION_CFWSAMPLES)
 				.href("/app/jsexamples")

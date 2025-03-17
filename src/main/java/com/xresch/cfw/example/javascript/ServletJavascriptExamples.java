@@ -18,7 +18,6 @@ import com.xresch.cfw.example.datahandling.Person;
 import com.xresch.cfw.example.datahandling.PersonDBMethods;
 import com.xresch.cfw.response.HTMLResponse;
 import com.xresch.cfw.response.JSONResponse;
-import com.xresch.cfw.response.bootstrap.AlertMessage.MessageType;
 
 /**************************************************************************************************************
  * 
@@ -177,7 +176,7 @@ public class ServletJavascriptExamples extends HttpServlet
 						Person Person = (Person)origin;
 						
 						if(PersonDBMethods.create(Person) ) {
-							CFW.Context.Request.addAlertMessage(MessageType.SUCCESS, "Person created successfully!");
+							CFW.Messages.addSuccessMessage("Person created successfully!");
 						}
 					}
 				}
@@ -206,7 +205,7 @@ public class ServletJavascriptExamples extends HttpServlet
 					if(origin.mapRequestParameters(request)) {
 						
 						if(PersonDBMethods.update((Person)origin)) {
-							CFW.Context.Request.addAlertMessage(MessageType.SUCCESS, "Updated!");
+							CFW.Messages.addSuccessMessage("Updated!");
 						}
 							
 					}

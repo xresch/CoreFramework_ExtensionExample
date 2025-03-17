@@ -3,7 +3,7 @@ package com.xresch.cfw.example.contextsettings;
 import com.xresch.cfw._main.CFW;
 import com.xresch.cfw._main.CFWApplicationExecutor;
 import com.xresch.cfw.example._main.ExampleExtensionApplication;
-import com.xresch.cfw.response.bootstrap.MenuItem;
+import com.xresch.cfw.response.bootstrap.CFWHTMLItemMenuItem;
 import com.xresch.cfw.spi.CFWAppFeature;
 
 /**************************************************************************************************************
@@ -30,7 +30,7 @@ public class FeatureContextSettingsExample extends CFWAppFeature {
 		//----------------------------------
 		// Register Context Settings
 		ExampleExtensionApplication.EXTENSION_MENU_ROOT.addChild(
-				new MenuItem("Context Settings Chooser")
+				new CFWHTMLItemMenuItem("Context Settings Chooser")
 					.faicon("fas fa-cogs")
 					.addPermission(ExampleExtensionApplication.PERMISSION_CFWSAMPLES)
 					.href("/app/contextsettingschooser")

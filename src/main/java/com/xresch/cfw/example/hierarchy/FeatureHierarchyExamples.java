@@ -4,7 +4,7 @@ import com.xresch.cfw._main.CFW;
 import com.xresch.cfw._main.CFWApplicationExecutor;
 import com.xresch.cfw.datahandling.CFWHierarchy;
 import com.xresch.cfw.example._main.ExampleExtensionApplication;
-import com.xresch.cfw.response.bootstrap.MenuItem;
+import com.xresch.cfw.response.bootstrap.CFWHTMLItemMenuItem;
 import com.xresch.cfw.spi.CFWAppFeature;
 import com.xresch.cfw.utils.CFWRandom;
 
@@ -22,7 +22,7 @@ public class FeatureHierarchyExamples extends CFWAppFeature {
     	// Register Menus that needs permission
 		// to access
 		ExampleExtensionApplication.EXTENSION_MENU_ROOT.addChild(
-			new MenuItem("Hierarchy Examples")
+			new CFWHTMLItemMenuItem("Hierarchy Examples")
 				.faicon("fas fa-sitemap")
 				.addPermission(ExampleExtensionApplication.PERMISSION_CFWSAMPLES)
 				.href("/app/hierarchyexamples")

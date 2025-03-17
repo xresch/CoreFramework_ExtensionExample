@@ -16,7 +16,7 @@ import com.xresch.cfw.datahandling.CFWForm;
 import com.xresch.cfw.logging.CFWLog;
 import com.xresch.cfw.response.HTMLResponse;
 import com.xresch.cfw.response.JSONResponse;
-import com.xresch.cfw.response.bootstrap.AlertMessage.MessageType;
+import com.xresch.cfw.response.bootstrap.CFWHTMLItemAlertMessage.MessageType;
 
 public class ServletContextSettingsChooser extends HttpServlet
 {

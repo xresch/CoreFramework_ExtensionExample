@@ -1,7 +1,7 @@
 package com.xresch.cfw.example._main;
 
 import com.xresch.cfw._main.CFWApplicationExecutor;
-import com.xresch.cfw.response.bootstrap.MenuItem;
+import com.xresch.cfw.response.bootstrap.CFWHTMLItemMenuItem;
 import com.xresch.cfw.spi.CFWAppFeature;
 
 /**************************************************************************************
@@ -47,7 +47,7 @@ public class FeatureManaged extends CFWAppFeature {
 		// the menu entry.
 				
 		ExampleExtensionApplication.EXTENSION_MENU_ROOT.addChild(
-				(MenuItem)new MenuItem("Managed Feature")
+				(CFWHTMLItemMenuItem)new CFWHTMLItemMenuItem("Managed Feature")
 					.faicon("fas fa-star")
 					.onclick("CFW.ui.showModalMedium('Managed Example', 'This Feature can be disabled in the Feature management.');")
 		);

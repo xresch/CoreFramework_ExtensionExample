@@ -4,7 +4,7 @@ import com.xresch.cfw._main.CFW;
 import com.xresch.cfw._main.CFWApplicationExecutor;
 import com.xresch.cfw.features.usermgmt.FeatureUserManagement;
 import com.xresch.cfw.features.usermgmt.Permission;
-import com.xresch.cfw.response.bootstrap.MenuItem;
+import com.xresch.cfw.response.bootstrap.CFWHTMLItemMenuItem;
 import com.xresch.cfw.spi.CFWAppInterface;
 
 /**********************************************************************************
@@ -17,7 +17,7 @@ public class ExampleExtensionApplication implements CFWAppInterface {
 
 	public static final String PERMISSION_CFWSAMPLES = "CFW Extension Samples";
 	
-	public static final MenuItem EXTENSION_MENU_ROOT = new MenuItem("Extension Examples")
+	public static final CFWHTMLItemMenuItem EXTENSION_MENU_ROOT = new CFWHTMLItemMenuItem("Extension Examples")
 			
 			.faicon("fas fa-flask")
 			.addPermission(ExampleExtensionApplication.PERMISSION_CFWSAMPLES);

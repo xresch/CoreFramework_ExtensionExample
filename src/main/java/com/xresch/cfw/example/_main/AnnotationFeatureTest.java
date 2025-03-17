@@ -2,7 +2,7 @@ package com.xresch.cfw.example._main;
 
 import com.xresch.cfw._main.CFWApplicationExecutor;
 import com.xresch.cfw.example.forms.FormExampleServlet;
-import com.xresch.cfw.response.bootstrap.MenuItem;
+import com.xresch.cfw.response.bootstrap.CFWHTMLItemMenuItem;
 import com.xresch.cfw.spi.CFWAppFeature;
 
 public class AnnotationFeatureTest extends CFWAppFeature {
@@ -15,14 +15,14 @@ public class AnnotationFeatureTest extends CFWAppFeature {
 		// to access
 				
 		ExampleExtensionApplication.EXTENSION_MENU_ROOT.addChild(
-			new MenuItem("Form Example")
+			new CFWHTMLItemMenuItem("Form Example")
 				.faicon("fas fa-th-large")
 				.addPermission(ExampleExtensionApplication.PERMISSION_CFWSAMPLES)
 				.href("/app/formexample")
 		);
 		
 		ExampleExtensionApplication.EXTENSION_MENU_ROOT.addChild(
-			new MenuItem("Open Google")
+			new CFWHTMLItemMenuItem("Open Google")
 				.faicon("fab fa-google")
 				.addPermission(ExampleExtensionApplication.PERMISSION_CFWSAMPLES)
 				.href("http://www.google.ch")

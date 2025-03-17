@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.xresch.cfw._main.CFW;
 import com.xresch.cfw.datahandling.CFWField;
 import com.xresch.cfw.datahandling.CFWField.FormFieldType;
 import com.xresch.cfw.datahandling.CFWForm;
@@ -16,7 +17,7 @@ import com.xresch.cfw.datahandling.CFWObject;
 import com.xresch.cfw.logging.CFWLog;
 import com.xresch.cfw.response.HTMLResponse;
 import com.xresch.cfw.response.JSONResponse;
-import com.xresch.cfw.response.bootstrap.AlertMessage.MessageType;
+import com.xresch.cfw.response.bootstrap.CFWHTMLItemAlertMessage.MessageType;
 
 public class FormExampleServlet extends HttpServlet
 {
@@ -70,9 +71,9 @@ public class FormExampleServlet extends HttpServlet
 				//------------------------------
 				// Test output
 				JSONResponse json = new JSONResponse();
-		    	json.addAlert(MessageType.SUCCESS, "CFWFormHandler: Post recieved from "+formID+"!!!");
-		    	json.addAlert(MessageType.INFO, origin.dumpFieldsAsKeyValueHTML());
-		    	form.mapRequestParameters(request);
+				CFW.Messages.addSuccessMessage("CFWFormHandler: Post recieved from "+formID+"!!!");
+				CFW.Messages.addInfoMessage(origin.dumpFieldsAsKeyValueHTML());
+
 			}
 		});
         content.append(handledForm2.getHTML());
