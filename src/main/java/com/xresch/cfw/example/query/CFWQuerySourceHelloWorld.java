@@ -168,16 +168,16 @@ public class CFWQuerySourceHelloWorld extends CFWQuerySource {
 			currentObject.addProperty("index", i );
 			currentObject.addProperty("time", earliest +(i * diffStep));
         	
-			currentObject.addProperty("type", (CFW.Random.randomBoolean()) ? "Hello" : "World" );
+			currentObject.addProperty("type", (CFW.Random.bool()) ? "Hello" : "World" );
 			currentObject.addProperty("helloworld", "Hello World!" );
 			
 			if(name != null) {
 				currentObject.addProperty("hi_there", "Hi "+name+"!" );
 			}else {
-				currentObject.addProperty("hi_there", "Hi "+CFW.Random.randomFirstnameOfGod()+"!" );
+				currentObject.addProperty("hi_there", "Hi "+CFW.Random.firstnameOfGod()+"!" );
 			}
 			
-			currentObject.addProperty("lucky_number", CFW.Random.randomIntegerInRange(min, max));
+			currentObject.addProperty("lucky_number", CFW.Random.integerInRange(min, max));
 			
 			//-------------------------------
         	// Add result to the output queue

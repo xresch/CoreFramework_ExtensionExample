@@ -265,7 +265,7 @@ public class ExampleWidgetHelloWorld extends WidgetDefinition {
 		//-----------------------------
 		// Random Message for Testing
 		MessageType[] types = MessageType.values();
-		int randomIndex = CFW.Random.randomFromZeroToInteger(3);
+		int randomIndex = CFW.Random.fromZeroToInteger(3);
 		CFW.Messages.addMessage(types[randomIndex], "Hello World Task wrote a log message.");
 		
 		//-----------------------------
@@ -274,7 +274,7 @@ public class ExampleWidgetHelloWorld extends WidgetDefinition {
 		
 		alertObject.mapJobExecutionContext(context);
 		
-		boolean randomCondition = CFW.Random.randomBoolean();
+		boolean randomCondition = CFW.Random.bool();
 		CFW.Messages.addInfoMessage("Last Condition: "+randomCondition);
 		
 		AlertType type = alertObject.checkSendAlert(randomCondition, null);

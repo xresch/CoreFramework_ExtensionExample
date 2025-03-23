@@ -105,7 +105,7 @@ public class ServletMultiFormsExamples extends HttpServlet
 		
 		if(personList.size() != 0) {
 			
-			CFWMultiForm editPersonForm = new CFWMultiForm("cfwMultiFormExample"+CFW.Random.randomStringAlphaNumerical(12), "Save", personList);
+			CFWMultiForm editPersonForm = new CFWMultiForm("cfwMultiFormExample"+CFW.Random.stringAlphaNum(12), "Save", personList);
 			
 			editPersonForm.setMultiFormHandler(new CFWMultiFormHandlerDefault());
 			

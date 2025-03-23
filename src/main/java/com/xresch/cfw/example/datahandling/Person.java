@@ -120,13 +120,13 @@ public class Person extends CFWObject {
 			
 			for(int i = 0; i < 321; i++) {
 				
-				String firstname = CFWRandom.randomFirstnameOfGod();
-				String lastname = CFWRandom.randomLastnameSweden();
-				String location = CFWRandom.randomMythicalLocation();
+				String firstname = CFWRandom.firstnameOfGod();
+				String lastname = CFWRandom.lastnameSweden();
+				String location = CFWRandom.mythicalLocation();
 				String email = firstname.toLowerCase() + "." + lastname.toLowerCase() + "@"+location.replace(" ", "-").toLowerCase() + ".com";
 				
-				int randomCount = CFW.Random.randomIntegerInRange(1, 7);
-				String character = String.join(",", CFWRandom.randomArrayOfExaggaratingAdjectives(randomCount));
+				int randomCount = CFW.Random.integerInRange(1, 7);
+				String character = String.join(",", CFWRandom.arrayOfExaggaratingAdjectives(randomCount));
 				
 				PersonDBMethods.create(
 					new Person()
@@ -134,7 +134,7 @@ public class Person extends CFWObject {
 						.lastname(lastname)
 						.email(email)
 						.location(location)
-						.likesTiramisu(CFWRandom.randomBoolean())
+						.likesTiramisu(CFWRandom.bool())
 						.character(character)
 				);
 					

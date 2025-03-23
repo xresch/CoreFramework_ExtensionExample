@@ -43,9 +43,9 @@ public class FeatureHierarchyExamples extends CFWAppFeature {
 			//----------------------------------
 			// Create 3 hierarchy root elements
 			for(int i = 0; i < 3; i++) {
-				String firstname = CFWRandom.randomFirstnameOfGod();
-				String lastname = CFWRandom.randomLastnameSweden();
-				String location = CFWRandom.randomMythicalLocation();
+				String firstname = CFWRandom.firstnameOfGod();
+				String lastname = CFWRandom.lastnameSweden();
+				String location = CFWRandom.mythicalLocation();
 				String email = firstname.toLowerCase() + "." + lastname.toLowerCase() + "@"+location.replace(" ", "-").toLowerCase() + ".com";
 				
 				
@@ -55,7 +55,7 @@ public class FeatureHierarchyExamples extends CFWAppFeature {
 							.lastname(lastname)
 							.email(email)
 							.location(location)
-							.likesTiramisu(CFWRandom.randomBoolean());
+							.likesTiramisu(CFWRandom.bool());
 				
 				//Make sure to set parent to root so you get proper insert order(affects DB column H_POS)
 				Integer ceoID = CFWHierarchy.create(null, ceo);
@@ -78,13 +78,13 @@ public class FeatureHierarchyExamples extends CFWAppFeature {
 		//-----------------------------------------
 		// 
 		//-----------------------------------------
-		int max = CFWRandom.randomIntegerInRange(minSubordinates, maxSubordinates);
+		int max = CFWRandom.integerInRange(minSubordinates, maxSubordinates);
 
 		for(int i = 0; i < max; i++) {
 
-			String firstname = CFWRandom.randomFirstnameOfGod();
-			String lastname = CFWRandom.randomLastnameSweden();
-			String location = CFWRandom.randomMythicalLocation();
+			String firstname = CFWRandom.firstnameOfGod();
+			String lastname = CFWRandom.lastnameSweden();
+			String location = CFWRandom.mythicalLocation();
 			String email = firstname.toLowerCase() + "." + lastname.toLowerCase() + "@"+location.replace(" ", "-").toLowerCase() + ".com";
 			
 			HierarchicalPerson person = new HierarchicalPerson()
@@ -92,7 +92,7 @@ public class FeatureHierarchyExamples extends CFWAppFeature {
 				.lastname(lastname)
 				.email(email)
 				.location(location)
-				.likesTiramisu(CFWRandom.randomBoolean());
+				.likesTiramisu(CFWRandom.bool());
 			
 			Integer createdPersonID = CFWHierarchy.create(parentID, person);
 			
