@@ -69,22 +69,5 @@ public class ParameterDefinitionExampleEnvironment extends ParameterDefinition {
 	public boolean isDynamic() {
 		return false;
 	}
-	/***************************************************************
-	 * Check for which widget types this widget is available.
-	 * Return true if it is available for the given widget, else 
-	 * return false. (Tip: use a unique naming convention for your widgets).
-	 * 
-	 ***************************************************************/
-	@Override
-	public boolean isAvailable(HashSet<String> widgetTypesArray) {
-		
-		for(String type : widgetTypesArray) {
-			if(type.startsWith("cfwexample_")) {
-				return true;
-			}
-			
-		}
-		return false;
-	}
 
 }
