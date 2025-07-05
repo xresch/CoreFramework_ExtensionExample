@@ -13,6 +13,7 @@ import com.xresch.cfw._main.CFW;
 import com.xresch.cfw.datahandling.CFWChartSettings;
 import com.xresch.cfw.datahandling.CFWChartSettings.AxisType;
 import com.xresch.cfw.datahandling.CFWChartSettings.ChartType;
+import com.xresch.cfw.datahandling.CFWDatabasedFile;
 import com.xresch.cfw.datahandling.CFWField;
 import com.xresch.cfw.datahandling.CFWField.FormFieldType;
 import com.xresch.cfw.datahandling.CFWObject;
@@ -153,6 +154,14 @@ public class FormExampleCFWObject extends CFWObject{
 						.yaxisMin(-42.2f)
 						.yaxisMax(10000.1f)
 				);
+	
+	//------------------------------------------------------------------------------------------------
+	// A schedule picker with default value
+	private CFWField<CFWDatabasedFile> filepicker = 
+				CFWField.newFilepicker("JSON_FILEPICKER")
+				.setLabel("File Picker")
+				.setDescription("Let's you upload a file to the database.")
+				;
 	
 	//------------------------------------------------------------------------------------------------
 	// A select with options
@@ -409,6 +418,7 @@ public class FormExampleCFWObject extends CFWObject{
 				, timeframe
 				, timezone
 				, schedule
+				, filepicker
 				, chartSettings
 				, select
 				, keyValSelect
