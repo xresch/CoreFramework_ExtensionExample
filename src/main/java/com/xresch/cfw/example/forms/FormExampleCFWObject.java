@@ -13,7 +13,7 @@ import com.xresch.cfw._main.CFW;
 import com.xresch.cfw.datahandling.CFWChartSettings;
 import com.xresch.cfw.datahandling.CFWChartSettings.AxisType;
 import com.xresch.cfw.datahandling.CFWChartSettings.ChartType;
-import com.xresch.cfw.datahandling.CFWStoredFileReference;
+import com.xresch.cfw.datahandling.CFWStoredFileReferences;
 import com.xresch.cfw.datahandling.CFWField;
 import com.xresch.cfw.datahandling.CFWField.FormFieldType;
 import com.xresch.cfw.datahandling.CFWObject;
@@ -157,7 +157,7 @@ public class FormExampleCFWObject extends CFWObject{
 	
 	//------------------------------------------------------------------------------------------------
 	// A schedule picker with default value
-	private CFWField<CFWStoredFileReference> filepicker = 
+	private CFWField<CFWStoredFileReferences> filepicker = 
 				CFWField.newFilepicker("JSON_FILEPICKER")
 				.setLabel("File Picker")
 				.setDescription("Let's you upload a file to the database.")
