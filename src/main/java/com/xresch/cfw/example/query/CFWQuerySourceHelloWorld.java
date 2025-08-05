@@ -177,7 +177,7 @@ public class CFWQuerySourceHelloWorld extends CFWQuerySource {
 				currentObject.addProperty("hi_there", "Hi "+CFW.Random.firstnameOfGod()+"!" );
 			}
 			
-			currentObject.addProperty("lucky_number", CFW.Random.integerInRange(min, max));
+			currentObject.addProperty("lucky_number", CFW.Random.integer(min, max));
 			
 			//-------------------------------
         	// Add result to the output queue

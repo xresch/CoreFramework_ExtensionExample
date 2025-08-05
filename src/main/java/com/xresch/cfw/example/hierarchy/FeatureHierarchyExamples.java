@@ -78,7 +78,7 @@ public class FeatureHierarchyExamples extends CFWAppFeature {
 		//-----------------------------------------
 		// 
 		//-----------------------------------------
-		int max = CFWRandom.integerInRange(minSubordinates, maxSubordinates);
+		int max = CFWRandom.integer(minSubordinates, maxSubordinates);
 
 		for(int i = 0; i < max; i++) {
 

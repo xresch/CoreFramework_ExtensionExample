@@ -125,7 +125,7 @@ public class Person extends CFWObject {
 				String location = CFWRandom.mythicalLocation();
 				String email = firstname.toLowerCase() + "." + lastname.toLowerCase() + "@"+location.replace(" ", "-").toLowerCase() + ".com";
 				
-				int randomCount = CFW.Random.integerInRange(1, 7);
+				int randomCount = CFW.Random.integer(1, 7);
 				String character = String.join(",", CFWRandom.arrayOfExaggaratingAdjectives(randomCount));
 				
 				PersonDBMethods.create(
