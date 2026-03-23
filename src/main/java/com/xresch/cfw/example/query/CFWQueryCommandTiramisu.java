@@ -182,7 +182,7 @@ public class CFWQueryCommandTiramisu extends CFWQueryCommand {
 				continue; 
 			}
 
-			String randomField = CFW.Random.fromSet(0, finalFields);
+			String randomField = CFW.Random.fromSet(finalFields, 0);
 
 			//---------------------------------
 			// Get Dessert
