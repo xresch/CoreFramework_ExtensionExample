@@ -9,6 +9,7 @@ import com.xresch.cfw.features.query.CFWQueryContext;
 import com.xresch.cfw.features.query.CFWQueryFunction;
 import com.xresch.cfw.features.query.EnhancedJsonObject;
 import com.xresch.cfw.features.query._CFWQueryCommon;
+import com.xresch.cfw.features.query.parse.QueryPart;
 import com.xresch.cfw.features.query.parse.QueryPartValue;
 
 public class CFWQueryFunctionCamelize extends CFWQueryFunction {
@@ -93,7 +94,7 @@ public class CFWQueryFunctionCamelize extends CFWQueryFunction {
 	 * 
 	 ***********************************************************************************************/
 	@Override
-	public QueryPartValue execute(EnhancedJsonObject object, ArrayList<QueryPartValue> parameters) {
+	public QueryPartValue execute(EnhancedJsonObject object, ArrayList<QueryPartValue> parameters, ArrayList<QueryPart> unevalParams) {
 		
 		int paramCount = parameters.size();
 		
