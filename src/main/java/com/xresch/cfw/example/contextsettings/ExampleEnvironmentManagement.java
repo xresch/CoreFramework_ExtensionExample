@@ -108,7 +108,7 @@ public class ExampleEnvironmentManagement {
 		// Clear environments
 		environments = new HashMap<Integer, ExampleEnvironment>();
 		
-		ArrayList<AbstractContextSettings> settingsArray = CFW.DB.ContextSettings.getContextSettingsForType(ExampleEnvironment.SETTINGS_TYPE, true);
+		ArrayList<AbstractContextSettings> settingsArray = CFW.DB.ContextSettings.getContextSettingsForTypeAll(ExampleEnvironment.SETTINGS_TYPE, true);
 
 		for(AbstractContextSettings settings : settingsArray) {
 			ExampleEnvironment current = (ExampleEnvironment)settings;
